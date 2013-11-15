@@ -24,9 +24,12 @@
 *.out
 *.pdfsync
 *.ps
+*.pdf
 *.snm
 *.synctex.gz
 *.toc
 *.vrb
 *.xdy
 *.tdo
+*~
+*.bak

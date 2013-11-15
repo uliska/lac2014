@@ -1,0 +1,36 @@
+This package contains document templates for the Linux Audio
+Conference 2012 (LAC2012, see http://lac.linuxaudio.org/2012).
+For the reviewing process, we expect paper submissions in PDF.
+Please make use of one of the following templates:
+
+- OpenOffice/LibreOffice document
+- LaTeX document
+
+For the layout process of the proceedings, we might ask for the source
+materials (text, images, etc.) of the accepted papers later.
+
+Usage instructions:
+
+- For the OpenOffice template: Just use it, mostly intuitively.
+  When finished, export the document to PDF and send that.
+
+- For the LaTeX templates:
+  - Write down your paper text as usual
+  - If you make references, put authors into file sample.bib
+  - Run "pdflatex <yourfile>"
+  - Run "bibtex <yourfile>"
+  - Run "pdflatex <yourfile>" _two_ more times so that all references to
+    the bibliography data can be resolved
+  - Send in the pdf file
+
+We include some pdf examples along with the latex source files (for 1
+author, 2 authors...).
+
+If you cannot produce PDF using one of these templates, please contact
+us via email to: lac at linuxaudio dot org
+
+Both templates are slightly modified copies of the templates provided
+by the International Conference on Computational Linguistics (Coling).
+Many thanks to Coling for their permission to use them!
+The originals may be found here:
+http://www.issco.unige.ch/coling2004/coling2004downloads.html

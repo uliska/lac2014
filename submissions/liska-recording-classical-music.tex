@@ -159,61 +159,98 @@ files as storage format.
 We are talking about describing and annotating musical structures, and LilyPond offers a concise input language for just this, which is also very suitable for version control.
 It is highly customizable through it's built-in Scheme extension, so we can for example accomodate the annotation contexts, and we could even use LilyPond itself to “engrave” an editing plan as a score.
 
-\subsection{Considerations About an Initial Application}
+\section{An Initial Application}
 At this point of discussion it seems possible to think about implementing a \textsc{gui} application to annotate takes.
 But while it might be possible to do that with reasonable effort this would still result in a somewhat nerdy solution that most recording producers wouldn't even consider as an alternative to the \textsc{daw}s they are used to.
-Nevertheless this could be a rewarding project because one could already discuss and solve the fundamental design issues regarding the structural, i.\,e.\ musical logic a future larger-scale \textsc{gui} application could be based on.
+Nevertheless this could be a rewarding project because one could already discuss and solve the fundamental design issues regarding the structural, i.\,e.\ musical logic a future \textsc{gui} application could be based on.
 
-\subsubsection{Development Platform}
-Of course this can be done in nearly any conceivable way, but if I were to start it I would implement this with PyQt.
+\subsection{Development Platform}
+Of course this project can be realized in nearly any conceivable way, but if I were to start it I would start with a PyQt application.
 Having some experience contributing to the Frescobaldi%
 \footnote{\url{http://www.frescobaldi.org}}
 LilyPond editor I think this is a very suitable platform for this kind of project -- and particularly the one I'm familiar with.
 
-The \textsc{ui} elements needed for this application could completely be reused in a greater context of a \textsc{daw}-like program, therefore I would try to design them in a way that they can simply be \emph{used} as widgets in another program too.
+The \textsc{ui} elements needed for this application could completely be reused in a greater context of a \textsc{daw}-like program, therefore I would try to design them in a way that they can simply be \emph{used} as widgets in alater program too.
 
-\subsubsection{Annotating a Single Take}
+\subsection{Annotating a Single Take}
 The core element of our application is an editor for individual takes.
 This is what we'll spend most of our time with, particularly during the initial evaluation of the recorded material but also later at any time.
 Therefore this shouldn't be a dialog but a dockable panel which is permanently visible and simply gets updated when a new take is selected.
 It contains a zoomable graphical representation of the audio in the take, presumably as a waveform or volume graph display, as well as some elements like marker indicators and editors.
 Playback controls should cover the usual range of features like moving forward and backward, listening to ranges, start from marker positions etc.
 
-This representation of a take is covered by a “timeline” representing the musical structure, that is it displays rests, barlines and time signature, similar to a percussion staff.
-Rehearsal marks, tempo indicators and more might be added easily to this.
-Initially this musical structure consists of evenly spaced measures with a default time signature, but during work the editor can add relevant information such as time signature changes and assign positions in the audio files to positions in the musical structure.
+This representation of a take is covered by a “timeline” representing the musical structure, that is it doesn't (primarily) displays a time code but rather barlines rests and time signature, similar to a percussion staff.
+Rehearsal marks, tempo indicators and more might easily be added to this.
+Initially this musical structure consists of evenly spaced measures with a default time signature, but during work the editor can add relevant information such as time signature changes.
+And he can link the musical structure to positions in the audio files with an interface similar to setting markers.
 Through this the program also gets an inherent understanding of tempo changes allowing it to interpolate positions for playback.
-The timeline should visually distinguish between \emph{set} and \emph{interpolated} positions.
+The timeline should visually distinguish between positions \emph{set explicitely} and \emph{interpolated}.
 
-(There is one little detail I'd like to point out here: By trimming a take to the \emph{usable} range in the take one can effectively kick the useless material out of sight.
-No need anymore to re-listen to false starts or breaks for page-turning etc.)
+(There is one little detail I'd like to point out here: By trimming a take to the \emph{usable} range one can effectively kick the useless material out of sight.
+No need anymore to re-listen to false starts or page-turning interruptions etc.)
 
-Information edited in an individual take will be propagated to the whole project and may be averaged with information from other takes, and this will deepen the project's knowledge about the musical structure and gradually improve the accuracy of interpolated positions.
-This means that if you start to edit a take covering music already annotated in another take the program already knows about changes in time signatures and tempo.
+Information edited in an individual take will be propagated to the whole project and may be averaged with information from other takes.
+This will deepen the project's knowledge about the musical structure and gradually improve the accuracy of position interpolations.
+This means that if you start to edit a take covering music which was already annotated in another take the program already knows about changes in time signatures and tempo.
 
 But of course the most relevant information added to takes is our evaluation.
-It should be possible to rate any range or spot numerically, with some special values available form marking something as “unusable”, “usable as base material”, “suggested” or ”to be used”.
+It should be possible to rate any range or spot numerically, with some special values available form marking something as “unusable”, “usable as base material”, “suggested” or ”to be used” and “editing plan”.
 Apart from numerical or tabular display the waveform representation could visualize this through differently colored background or a similar way.
 Adding ratings should be accessible through right-clicking on the waveform or through keyboard shortcuts while playing back.
-Apart from the ratings one can add arbitrary verbal comments, on the take as a whole or at specific spots or regions.
+Apart from the ratings one can add arbitrary verbal comments to the take as a whole, specific spots or regions or explicit ratings.
 
 It should be possible (but I'm not sure yet if it's worth the effort) to compile a score fragment with LilyPond, representing the musical structure and displaying the rating and comments in some way.
 
-\subsubsection{Project Overview}
+\subsection{Project Overview}
 The “Project View” of this initial application should be very much list-like.
 Graphical solutions integrating into a “timeline”-like representation of the composition and much more are considerations for the last section of this paper.
-So we are starting with something like a traditional “Region List”.
-but different from that we have superior information for sorting, highlighting or hiding items, namely the information on the musical content and our ratings.
+So we start with something like a traditional “Region List”, but with the benefit of having superior information available for sorting, highlighting or filtering items, namely the information on the musical content and our ratings.
 
-By default takes should be sorted by their starting point, but we could also sort by overall rating, length of usable ranges or whatever we consider useful.
-Filtering can be applied so we for example only see takes that contain a minimal rating of X for a given spot or range.
-For example we could -- while editing a single take -- see a list of all alternative takes containing the spot the playback cursor currently is, sorted reversly by rating.
+While in traditional \textsc{daw}s takes are initially sorted by number, that is by their recording order -- which usually is only vaguely related to the musical structure of the recorded piece.
+By default our application should sort takes by their starting point, but we could also sort by overall rating, length of usable ranges or whatever we consider useful.
+Filtering can be applied so we can hide takes based on their content or their rating.
+For example we could -- while editing a single take -- see a list of all alternative takes containing the spot the playback cursor currently is, reversly sorted by rating.
 I won't list more ideas here (because that's something for the actual application design), but I'm sure you get the idea how this approach can dramatically increase productivity for the main task a recording producer has for editing classical music: preparing the editing plan.
 
-\subsubsection{Editing Plan}
-The editing plan is a list of pairs with musical sections and references to takes.
+\subsection{Editing Plan}
+Conceptually an editing plan is a list of pairs with musical sections and references to takes.
 Traditionally takes are only referenced as numbers because that's all we have to refer to.
 But in our application we have significantly more: links from musical moments to positions in the audio files the takes are based on.
+The precision of these links depends on the accuracy of our annotations, but generally one can expect that particularly the points actually interesting for transition between takes have been thoroughly examined.
+Suggesting to add exact links to these points surely isn't much overhead, particularly given the advantage you gain by it.
+
+With the knowledge our application has of the material we can easily display a list of takes that have ratings of at least “suggested”.
+But even more interesting is the reversal: a list of musical ranges that \emph{don't} have takes with sufficient rating.
+With these options we always have a clear picture of the progress of our editing plan, we see which parts of the composition still have to be resolved, and for the other parts we can see which alternative takes we may choose from.
+
+In addition to a tabular representation this can be presented in a \textsc{ui} element quite similar to an arranger window.
+The horizontal axis represents the timeline but is of course primarily structured musically.
+The topmost “track” is reserved for the final editing plan, then there are tracks (or groups of tracks) for “to be used” or “suggested” takes, followed by a last area for all other takes.
+Takes are presented as blocks (by default without waveform display but colored according to the rating) placed at their position in the piece.
+This way one has a complete overview of the available recorded material, structured by relevance and quality through the assignment to tracks and by the color-coding.
+
+When we're finished with our preparation -- that is the “editing plan” track is seamlessly filled with take fragments -- the editing plan can be exported: As a list with transition points and references to takes and positions in them, and possibly as a score (compiled by LilyPond) displaying the same information.
+Additionally it would be nice to be able to export to \textsc{daw} programs' project files so one could for example open the result in Ardour and have the relevant takes already in the arranger window, ready to be finally edited.
+
+\subsubsection{Transition Editor}
+There is one more topic to consider, which would be more suitable for the final section of this paper but which is necessary to make a usable initial application: a \emph{Transition Editor}.
+
+One crucial point when preparing an editing plan is not only to select usable takes for a given musical moment or range but also check if any considered transition between takes is actually possible.
+Takes have to be compatible with respect to tempo, dynamics, internal balance and “atmosphere” (reverberation trails are particularly tricky) -- and this can only be tested by actually trying a transition.
+Without such a feature even an initial application wouldn't be really usable.
+
+Therefore I suggest to implement a rather simplistic Transition Editor which allows to position two takes relatively and offer simple options to edit the cross-fade.
+From my experience this will be sufficient in most cases to judge if a given transition can be done later with a professional tool -- please refer to the last section of this paper for my thoughts on the future of this functionality.
+
+By moving this to a dedicated tool we can avoid usability issues one usually has when working in an arranger window, particularly we can benefit from the fact that we're not bound by keeping in sync with a timeline.
+So we don't have to scroll and zoom around to find and pull interesting takes to our current timeline position.
+Instead (as we know about the links between musical structure and playback positions in the audio files) we can simply \emph{select} a desired take, which is then immediately present pre-cut at about the right point.
+Imagine a dialog where you have a musical moment (e.\,g. “M.\,128, 3rd beat”) as the central reference point.
+From a dropdown list you can then choose (for the “left” or “right” part of the transition) from all applicable takes, sorted by rating.
+All this is self-contained and completely independent from the notion of a timeline.
+The result of such an edit will simply be a usable transition which can be used in the editing plan (or put on a stash of usable transitions for later consideration).
+If we have edited all transitions that are necessary to join the take fragments in the editing plan everything is there to render a preliminary first edit of the recording -- which will in most cases already be usable as a nice reference.
+How this is actually managed and made accessible for a user interface will be a matter of concrete application design.
 
 \section{The Bigger Picture -- A \textsc{gui} Application}
 

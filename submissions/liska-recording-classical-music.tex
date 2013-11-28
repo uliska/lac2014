@@ -252,18 +252,43 @@ The result of such an edit will simply be a usable transition which can be used 
 If we have edited all transitions that are necessary to join the take fragments in the editing plan everything is there to render a preliminary first edit of the recording -- which will in most cases already be usable as a nice reference.
 How this is actually managed and made accessible for a user interface will be a matter of concrete application design.
 
-\section{The Bigger Picture -- A \textsc{gui} Application}
+\section{The Bigger Picture}
+While an application as outlined in the previous section could already be tremenduously efficient for managing classical recordings it is still far from being able to replace dedicated \textsc{daw}s like Ardour, ProTools or Pyramix from the perspective of a professional recording producer.
+But anything less than aiming at a professional tool for professional users doesn't seem to make sense to me.
+Therefore it will be necessary to carefully consider how to achieve professional quality.
 
-\subsection{Integration with Other Tools}
+There are new thoughts in my approach and surely some unique structural and interface concepts, but of course many of the problems at hand have already been solved perfectly.
+For example I don't see a point in reinventing a versatile waveform display.
+And there has of course been so much research in Digital Signal Processing that it seems stupid trying to do anything in this area better than existing solutions, without any prior experience.
+So the question is if and how it is possible to reuse existing solutions, to integrate with existing applications or at least provide tools and workflows for a seamless cooperation with existing applications.
+
+Probably the nicest solution would be to actually create an application that contains everything one needs.
+This would make it possible to benefit from the new interface approach and complete a production within one environment.
+Take the Transition Editor as an example: If it would be possible to tweak this to professional level it would provide a unparalleled tool to edit classical recordings.
+But in order to achieve that it will be indispensable to reuse existing technology, either from applications like Ardour or through libraries and toolkits.
+
+If one decides that this isn't the way to go one would have to see if it's possible to integrate the concepts into existing applications, for example by offering an alternative to the arranger window and providing the necessary additional tools.
+This way one could simply \emph{use} existing tools like waveform display, audio core, editors etc. -- and maybe at the same time offer the new tools to be used in other contexts in the existing application.
+But it may well be that such an approach would even be more complex than inventing a complete application.
+
+A last approach -- and maybe not the worst -- would be to have the new application as a standalone program but offer tools to integrate workflows with other programs.
+For example my application would work on existing audio files which are located anywhere and “imported” through a simple symlink.
+If that symlink pointed to the audio folder of another application one could simply do the recording in the other application and the newly recorded takes are automatically added to the project.
+The editing plan could then be prepared in the new application and the final editing be done in the other \textsc{daw}.
+This approach has the main advantage that the recording producers can use whatever tools they are used to (or have available) -- provided our new application is able to run on the same OS or can use a shared storage device it can link to.
+
+\subsection{Final Considerations}
+There are a few topics that have to be considered
 
 Other processes involved but not my main interest:
 
 \begin{itemize}
 \item Recording music
 \item Mixing music
-\item Actual editing
+\item Actual editing (?)
 \item Exporting (e.g. to CD)\\
 	The least would be to export an Ardour project file
+\item Git workflows, particularly collaborative ones.
 \end{itemize}
 
 \section{Conclusions}

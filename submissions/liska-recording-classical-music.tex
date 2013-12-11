@@ -62,8 +62,9 @@ This way I had around 60 hours of recorded material to digest, which gave me mor
 This experience convinced me that the metaphor of a multi-track magnetic tape recorder is quite inappropriate for recording classical music.
 In this paper I'm going to outline a new approach to that task which is based on the initial question: “What if the takes knew about their content instead only about their length?”
 
-I'm going to make suggestions for a possible application design, although I currently don't (or rather can't) have any plans to implement any of this.
-If this paper would motivate someone to start a project of its own or if it could raise discussion about integrating my ideas into existing software it would have achieved its goal.
+I'm going to make suggestions for a possible \textsc{gui} application concept, although I currently don't (or rather can't) have plans to implement any of it.
+However, I probably could be talked into it if there would be enough interest from people with the necessary complementary skills.
+And if this paper would motivate someone to start a project of its own or if it could raise discussion about integrating my ideas into existing software it would have achieved its goal too.
 
 \section{Two Recording Paradigms}
 
@@ -159,18 +160,11 @@ files as storage format.
 We are talking about describing and annotating musical structures, and LilyPond offers a concise input language for just this, which is also very suitable for version control.
 It is highly customizable through it's built-in Scheme extension, so we can for example accomodate the annotation contexts, and we could even use LilyPond itself to “engrave” an editing plan as a score.
 
-\section{An Initial Application}
-At this point of discussion it seems possible to think about implementing a \textsc{gui} application to annotate takes.
-But while it might be possible to do that with reasonable effort this would still result in a somewhat nerdy solution that most recording producers wouldn't even consider as an alternative to the \textsc{daw}s they are used to.
-Nevertheless this could be a rewarding project because one could already discuss and solve the fundamental design issues regarding the structural, i.\,e.\ musical logic a future \textsc{gui} application could be based on.
+\section{Components of an Application}
 
-\subsection{Development Platform}
-Of course this project can be realized in nearly any conceivable way, but if I were to start it I would start with a PyQt application.
-Having some experience contributing to the Frescobaldi%
-\footnote{\url{http://www.frescobaldi.org}}
-LilyPond editor I think this is a very suitable platform for this kind of project -- and particularly the one I'm familiar with.
-
-The \textsc{ui} elements needed for this application could completely be reused in a greater context of a \textsc{daw}-like program, therefore I would try to design them in a way that they can simply be \emph{used} as widgets in alater program too.
+By now it seems possible to think about implementing a \textsc{gui} application to annotate takes.
+But in my eyes this would only make sense if it's possible to create a professional tool for professional users, anything else seems like a waste of time.
+Before I finish this paper with some thoughts how such an application look like in general and where it could fit in the “workbench” of a professional recording producer I'm going to describe the core components that such an application would have to have.
 
 \subsection{Annotating a Single Take}
 The core element of our application is an editor for individual takes.
@@ -276,6 +270,14 @@ For example my application would work on existing audio files which are located 
 If that symlink pointed to the audio folder of another application one could simply do the recording in the other application and the newly recorded takes are automatically added to the project.
 The editing plan could then be prepared in the new application and the final editing be done in the other \textsc{daw}.
 This approach has the main advantage that the recording producers can use whatever tools they are used to (or have available) -- provided our new application is able to run on the same OS or can use a shared storage device it can link to.
+
+\subsection{Development Platform}
+Of course this project can be realized in nearly any conceivable way, but if I were to start it I would start with a PyQt application.
+Having some experience contributing to the Frescobaldi%
+\footnote{\url{http://www.frescobaldi.org}}
+LilyPond editor I think this is a very suitable platform for this kind of project -- and particularly the one I'm familiar with.
+
+The \textsc{ui} elements needed for this application could completely be reused in a greater context of a \textsc{daw}-like program, therefore I would try to design them in a way that they can simply be \emph{used} as widgets in alater program too.
 
 \subsection{Final Considerations}
 There are a few topics that have to be considered

@@ -181,11 +181,50 @@ input language as the format for take files.
 We are talking about describing and annotating musical structures, and LilyPond offers a concise input language for just this, which is also very suitable for version control.
 It is highly customizable, can be annotated, and we could even use LilyPond itself to “engrave” a final editing plan as a score.
 
-\section{Components of an Application}
+\section{Outlining an Application}
 
-By now it seems possible to think about implementing a \textsc{gui} application to annotate takes.
-But in my eyes this would only make sense if it's possible to create a professional tool for professional users, anything else seems like a waste of time.
-Before I finish this paper with some thoughts how such an application look like in general and where it could fit in the “workbench” of a professional recording producer I'm going to describe the core components that such an application would have to have.
+As stated earlier I don't have any concrete plans with this, but I will outline a concept for a \textsc{gui} application as if I were going to start development soon.
+Of course such a project can be realized with a wide range of tools, but if I were to start it I would go for a PyQt application.
+Having some experience contributing to the Frescobaldi%
+\footnote{\url{http://www.frescobaldi.org}}
+LilyPond editor I think it is a very comfortable platform to work with -- and particularly the one I'm familiar with.
+
+The main design issue I don't have a clear opinion about is the \emph{scope} of an application.
+The only possible target in my eyes would be aiming at a tool that is used by professional recording producers -- creating yet another toy \textsc{daw} seems waste of time.
+But while it seems fascinating to have a comprehensive \textsc{daw} using my new concepts it would probably be grossly negligent to try competing with all the existing \textsc{dsp} knowledge that already is on the market.
+I currently see three options how to deal with this situation:
+
+\begin{itemize*}
+\item Find existing code that can be exploited, either in dedicated libraries or in open source software.
+Of course this could limit the choice of programming languages.
+\item Find an existing project that would be interested in incorporating the ideas into their \textsc{daw} system.
+This would probably limit the choice of languages even more, but might compensate for this with existing experience and a framework.
+\item Design the program as a standalone complementary tool, just like you'd have a bibliographic or indexing tool for authoring scholarly books.
+This seems the most versatile option, and as it's the only one that is currently conceivable from my position I'll continue this paper with this option.
+\end{itemize*}
+
+
+\subsection{Intended Scope}
+
+An application should provide a comprehensive set of tools to cover the whole process of managing the recorded material and preparing an edition plan.
+There are other parts of the production process that seem too ambitious to tackle individually, and these should rather be realized by integrating existing tools as seamlessly as possible.
+Amongst those are most notably the whole field of Digital Signal Processing, particularly recording/mixing and crossfade editing.
+However, I will give these aspects some thought at the appropriate places.
+
+The tasks our projected application should be able to perform and that I'll describe in the following sections are:
+Accessing/importing and managing audio files,
+annotating individual takes and the project structure, and
+preparing and exporting the edition plan.
+
+\subsection{Managing Audio Files}
+
+The starting point for working on a musical production is the recorded audio material.
+Our projected application would \emph{not} (at least for a start) try to implement a complete recording solution, instead we are going to simply \emph{use} existing audio material.
+
+The simplest way to do so is to manage audio files by incorporating them through a symlink.
+Combined with file system monitoring this would have the main advantage that the recording producer can use whatever tools she is used to (or has available).
+When a file has been recorded within the other application it is automatically available in the pool of “our” application.
+
 
 \subsection{Annotating a Single Take}
 The core element of our application is an editor for individual takes.
@@ -267,66 +306,12 @@ The result of such an edit will simply be a usable transition which can be used 
 If we have edited all transitions that are necessary to join the take fragments in the editing plan everything is there to render a preliminary first edit of the recording -- which will in most cases already be usable as a nice reference.
 How this is actually managed and made accessible for a user interface will be a matter of concrete application design.
 
-\section{The Bigger Picture}
-While an application as outlined in the previous section could already be tremenduously efficient for managing classical recordings it is still far from being able to replace dedicated \textsc{daw}s like Ardour, ProTools or Pyramix from the perspective of a professional recording producer.
-But anything less than aiming at a professional tool for professional users doesn't seem to make sense to me.
-Therefore it will be necessary to carefully consider how to achieve professional quality.
 
-There are new thoughts in my approach and surely some unique structural and interface concepts, but of course many of the problems at hand have already been solved perfectly.
-For example I don't see a point in reinventing a versatile waveform display.
-And there has of course been so much research in Digital Signal Processing that it seems stupid trying to do anything in this area better than existing solutions, without any prior experience.
-So the question is if and how it is possible to reuse existing solutions, to integrate with existing applications or at least provide tools and workflows for a seamless cooperation with existing applications.
-
-Probably the nicest solution would be to actually create an application that contains everything one needs.
-This would make it possible to benefit from the new interface approach and complete a production within one environment.
-Take the Transition Editor as an example: If it would be possible to tweak this to professional level it would provide a unparalleled tool to edit classical recordings.
-But in order to achieve that it will be indispensable to reuse existing technology, either from applications like Ardour or through libraries and toolkits.
-
-If one decides that this isn't the way to go one would have to see if it's possible to integrate the concepts into existing applications, for example by offering an alternative to the arranger window and providing the necessary additional tools.
-This way one could simply \emph{use} existing tools like waveform display, audio core, editors etc. -- and maybe at the same time offer the new tools to be used in other contexts in the existing application.
-But it may well be that such an approach would even be more complex than inventing a complete application.
-
-A last approach -- and maybe not the worst -- would be to have the new application as a standalone program but offer tools to integrate workflows with other programs.
-For example my application would work on existing audio files which are located anywhere and “imported” through a simple symlink.
-If that symlink pointed to the audio folder of another application one could simply do the recording in the other application and the newly recorded takes are automatically added to the project.
-The editing plan could then be prepared in the new application and the final editing be done in the other \textsc{daw}.
-This approach has the main advantage that the recording producers can use whatever tools they are used to (or have available) -- provided our new application is able to run on the same OS or can use a shared storage device it can link to.
-
-\subsection{Development Platform}
-Of course this project can be realized in nearly any conceivable way, but if I were to start it I would start with a PyQt application.
-Having some experience contributing to the Frescobaldi%
-\footnote{\url{http://www.frescobaldi.org}}
-LilyPond editor I think this is a very suitable platform for this kind of project -- and particularly the one I'm familiar with.
-
-The \textsc{ui} elements needed for this application could completely be reused in a greater context of a \textsc{daw}-like program, therefore I would try to design them in a way that they can simply be \emph{used} as widgets in alater program too.
-
-\subsection{Final Considerations}
-There are a few topics that have to be considered
-
-Other processes involved but not my main interest:
-
-\begin{itemize}
-\item Recording music
-\item Mixing music
-\item Actual editing (?)
-\item Exporting (e.g. to CD)\\
-	The least would be to export an Ardour project file
-\item Git workflows, particularly collaborative ones.
-\end{itemize}
 
 \section{Conclusions}
 
 State only here that the Arranger Window is completely inappropriate?
 
-\begin{quote}
-
-
-In a classical recording we only need one track at a time.
-Actually we are recording on multiple tracks (each sound source has its own track) -- but only as a means of separating sound sources up to the final mixdown, in general we don't have any interest in acccessing and displaying them separately during the editing process.
-
-Usually the editor uses additional tracks in the Arranger Window as a kind of dashboard to juggle with alternative takes until she's decided which ones to use for the final edit.
-But while this is \emph{possible} it is quite \emph{counterproductive} for the major tasks when preparing a classical recording.
-\end{quote}
 
 \section{Acknowledgements}
 

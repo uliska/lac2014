@@ -1,5 +1,16 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{lac2014}
+
+% Style the document.
+% For any further use of the document (e.g. in the context of proceedings)
+% this \usepackage can simply be removed.
+% Packages that may be necessary to display the _content_ of this paper
+% are called directly from within this file.
+\usepackage{ulCFPstyles}
+
+% More packages needed for compiling this document
+\usepackage{hyperref}
+
 \sloppy
 \newenvironment{contentsmall}{\small}
 
@@ -46,7 +57,7 @@ As a technically inclined musician I have always been interested in recording pr
 But in recent years I had the opportunity to produce (as a pianist) a large-scale series of professional recordings for Deutschlandradio Kultur, resulting in six CDs, recorded in 26 days over several years%
 \footnote{Quotation or reference here?}.
 The recording producer entrusted me with the complete recordings along with his notes so I could judge the first edits and very concisely express wishes and suggestions for improvements.
-This way I had around 50 \textcolor{red}{CHECK} hours of recorded material to digest, which gave me more than enough reason to reflect on the workflows imposed by the usual \textsc{daw} tools.
+This way I had around 60 hours of recorded material to digest, which gave me more than enough reason to reflect on the workflows imposed by the usual \textsc{daw} tools.
 
 This experience convinced me that the metaphor of a multi-track magnetic tape recorder is quite inappropriate for recording classical music.
 In this paper I'm going to outline a new approach to that task which is based on the initial question: “What if the takes knew about their content instead only about their length?”
@@ -54,85 +65,128 @@ In this paper I'm going to outline a new approach to that task which is based on
 I'm going to make suggestions for a possible application design, although I currently don't (or rather can't) have any plans to implement any of this.
 If this paper would motivate someone to start a project of its own or if it could raise discussion about integrating my ideas into existing software it would have achieved its goal.
 
+\section{Two Recording Paradigms}
 
-\section{Section}
+Of course there are more shades to the matter  than simply speaking of “pop” and ”classical” music.
+And of course there is a variety of approaches how to produce recordings that don't match the black \& white labeling suggested by such a separation.
+So please bear with me if I'm occasionally over-generalizing things.
+But I think there basically are two main paradigms of recording music, and for simplicity's sake I will call them the \emph{pop} and the \emph{classical} approach in this paper.
 
-Text\footnote{Text of note.}, note at end of page.
+\subsection{Recording Pop Music and the Multi-Track Tape Metaphor}
 
+The \emph{pop} approach is built on top of the model of a multi-track magnetic tape, realized through an \emph{Arranger Window} in all \textsc{daw} programs I know of.
+The tape reel is represented as a preexistent \emph{timeline}, and each new “take” is recorded to its final position on it, adding to anything else that has been already recorded.
+Different layers (voices/instruments) of the arrangement can be recorded sequentially as “overdubs” on multiple “tracks” representing those on the vintage tape.
 
-\subsection{Subsection}
-
-
+\subsection{Recording Classical Music}
  
-\subsubsection{Subsubsection}
+The \emph{classical} approach rather imitates a stereo magnetic tape treated with scissors.
+The complete arrangement is recorded to one track and there are no overdubs.
+Instead the editor selects parts from the takes and glues them together, creating a seemingly continuous recording.
 
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection (see Table~\ref{table1}).
+While this process results in a series of segments on a horizontal timeline too, there are significant differences to the previously described set-up:
+The timeline is completely flexible and doesn't have a direct relation to the musical content.
+And there isn't the vertical stack of multiple tracks, \emph{conceptually} there is only one.
 
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
+Obviously it's perfectly possible to produce \emph{classical} recordings with tools adhering to the \emph{pop} paradigm it's far from natural, and there could be fundamental improvements on the way we conceive this specific task. 
 
+\section{A New Approach to Managing Recorded Material}
 
-\begin{table}[h]
- \begin{center}
-\begin{tabular}{|l|l|}
+In the process of preparing an editing plan for a recording of classical music the task of a recording producer boils down to keeping track of recorded takes and choosing the best take for each section of the composition.
+If the recording session has been complicated and yielded a large number of takes this house-keeping can be a tedious and error-prone process.
+Usually one makes do with the more or less sketchy pencil annotations in the score, but it's tedious (to say the least) to look up usable takes for any given measure from such a score.
+In order to be able to \emph{reliably} look up usable takes they have to be documented quite thoroughly.
+First we need to list the recorded ranges of all takes (including differing subtakes) in order to know where a given moment actually is covered.
+If we don't want to listen to the same recordings over and over again we should also document our evaluation of the takes that we'll have to do anyway while listening to them.
+But even this will merely give us pointers to the complete takes to consider while we still have to “use” the waveform display to navigate through them.
 
-      \hline
-      Software & Features\\
-      \hline\hline
-      AA & Harddisk-Recording\\
-      BB & MIDI Sequencing\\
-      CC & Score Notation\\
-      \hline
+So the question is: If we're going to document our material anyway, why don't we simultaneously teach the takes to know about themselves?
 
-\end{tabular}
-\caption{Example}\label{table1}
- \end{center}
-\end{table}
+\subsection{Takes Know About Their Content}
 
+The core idea of this paper is making the takes completely aware of themselves.
+If the takes “know” about the segments of the composition they contain and the editor's rating they can “answer” the question: “Which options do I have for an inserting edit in measure 17?”
+In order to achieve this I suggest a switch of perspective and don't deal with \emph{Regions} as segments of audio files but rather with \emph{Takes} as segments of the composition.
 
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
-Text of the subsubsection.
+While it is possible (and in a way recommendable) to start with a detailed description of the composition it is equally possible to simply start with the number of measures%
+\footnote{Or any other unit or numbering scheme, e.\,g.\ rehearsal marks, systems or pages.}
+and refine it with a full representation of the musical structure including (changing) time signatures or formal elements along the way.
+The project will inherently learn about the composition with each added information.
 
+\subsection{Tagging Takes}
+Instead of documenting the material on paper or in a separate text or spreadsheet document we can use the take files themselves to store (and use) the gathered information.
+The very least a take has to know is the covered range in musical terms, along with a reference to the audio file it is using.
+This is all we have to provide to get started with the take, so the new approach won't actually step in our way.
+But the more information we feed the take -- as the documentation of our musical analysis -- the more we can benefit from the new approach.
+I'd estimate this approach expects 15\,\% overhead in thorough documentation but gives back 150\,\% through increased efficiency.
 
-\section{Section}
+A take should contain information about the musical structure as well as about our rating of the recording.
+Apart from markers and ranges with comments and ratings we can add pointers to positions in the audio file for any given musical moment. 
+And we can add markers for the musical structure, such as changes in time signature or labels denoting formal elements (e.\,g.\,“Coda”).
+These informations can be compared and interpolated with information from other takes covering the same music, and we'll incrementally improve our project's knowledge about the composition.
 
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
+We will use this for example to locate playing positions in the takes.
+In the end we will be able to see and listen to all alternative takes for any given musical moment, without having to look up unreliably annotations or impractical in the score or listening to loads of takes.
 
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. More text. Text. Text.
+\subsection{Storage and Version Control}
 
-\section{Section}
+I suggest storing the information about takes in individual text files, one file for each take.
+This is in line with the concept of the takes being self-sufficient, and in particular it is practical for using version control to manage projects.
+An application implementing my concept should transparently use plain text files and version control as its storage mechanism.
 
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
-Text. Text. More text. Text. Text.
-Text. Text. Text. Text. Text.
+I see several advantages using Git in the storage concept:
+\begin{itemize}
+\item Undo/redo cannot only be \emph{unlimited} but also completely \emph{selective}.
+\item There is an exhaustive \emph{project history} readily available to be presented in any desired form. 
+\item Branching provides a way to always work in the context of an implicit session.
+There is no need for “autosave”, because all changes are stored immediately to disk, so a program crash doesn't lose \emph{any} information.
+Instead of “saving” at the end of the session the current branch is merged into master.
+\item I'm sure one can make good use of \emph{branching} to design workflows with “named sessions” (e.\,g.\ for trying out some hacks or to switch working context temporarily).
+\item And of course this widely opens the door for collaborative workflows where for example the musicians can participate by tagging takes while the editor is preparing his editing plan.
+\end{itemize}
 
-Text. Text. Text. Text. Text.
-Text. Text. Text. Text. Text.
+However, this has to be absolutely transparent.
+The ordinary user should not be required to learn \emph{any} Git syntax because such a requirement would be a massive obstacle getting acceptance for the new concept.
+
+\medskip
+Instead of inventing a new plain text file format I suggest using LilyPond%
+\footnote{\url{http://www.lilypond.org}}
+files as storage format.
+We are talking about describing and annotating musical structures, and LilyPond offers a concise input language for just this, which is also very accessible for version control.
+It is highly customizable through it's built-in Scheme extension, so we can for example accomodate the annotation contexts, and we could even use LilyPond itself to “engrave” an editing plan as a score -- with an empty structure (of rests) containing annotations and editing decisions as text elements.
+
+\subsection{Considerations About a User Interface}
+
+Describe how this could be used standalone as a simple tool editing take files and offering a little project management.
+But of course this leads to the idea of a larger-scale GUI application.
+
+\section{The Bigger Picture -- A \textsc{gui} Application}
+
+\subsection{Integration with Other Tools}
+
+Other processes involved but not my main interest:
+
+\begin{itemize}
+\item Recording music
+\item Mixing music
+\item Actual editing
+\item Exporting (e.g. to CD)\\
+	The least would be to export an Ardour project file
+\end{itemize}
 
 \section{Conclusions}
 
-Concluding text.
+State only here that the Arranger Window is completely inappropriate?
+
+\begin{quote}
+
+
+In a classical recording we only need one track at a time.
+Actually we are recording on multiple tracks (each sound source has its own track) -- but only as a means of separating sound sources up to the final mixdown, in general we don't have any interest in acccessing and displaying them separately during the editing process.
+
+Usually the editor uses additional tracks in the Arranger Window as a kind of dashboard to juggle with alternative takes until he's decided which ones to use for the final edit.
+But while this is \emph{possible} it is quite \emph{counterproductive} for the major tasks when preparing a classical recording.
+\end{quote}
 
 \section{Acknowledgements}
 

@@ -20,7 +20,7 @@
 
 \usepackage{xcolor}
 
-\title{New Conceptions of Recording Classical Music}
+\title{A New Concept of Recording Classical Music}
 
 %see lac2012.sty for how to format multiple authors!
 \author
@@ -36,10 +36,10 @@
 
 \begin{abstract}
 \begin{contentsmall}
-This paper reconsiders the “Arranger Window” concept in \textsc{daw} programs from the perspective of recording classical music.
-It presents a new conception for a workflow and outlines a set of tools that might one day turn into a software application.
+This paper reconsiders the “Arranger Window” concept of \textsc{daw} programs from the perspective of recording classical music.
+I will present a new concept of recording classical music with the main concern being the organization of the recorded material and the preparation of an editing plan.
+For this I will outline some ideas of a possible approach to designing a software application.
 
-The main concern of the paper is the organization of recorded material to prepare an editing plan.
 Specific stress is put on plain text storage and the use of version control for project management, offering perspectives for collaborative workflows.
 
 \end{contentsmall}
@@ -54,30 +54,30 @@ Music production, classical music, workflows.
 \section{Introduction}
 
 As a technically inclined musician I have always been interested in recording processes, from pubertal experiments on a four-track tape deck until today where music production on the computer is ubiquitous.
-But in recent years I had the opportunity (as a pianist) to produce a large-scale series of professional recordings for Deutschlandradio Kultur, resulting in six CDs, recorded in 26 days over several years%
-\footnote{Quotation or reference here?}.
-The recording producer entrusted me with the complete recordings along with his notes so I could judge the first edits and very concisely express wishes and suggestions for improvements.
-This way I had around 60 hours of recorded material to digest, which gave me more than enough reason to reflect on the workflows imposed by the usual \textsc{daw} tools.
+But in recent years I had the opportunity (as a pianist) to produce a large-scale series of professional recordings, resulting in eight CDs, recorded in more than 30 studio days over several years.
+The recording producers entrusted me with the complete recordings along with their annotated scores so I could judge the first edits and very concisely express wishes and suggestions for improvements. 
+For some of the recordings I actually did the first edits myself.
+This way I had around 70 hours of recorded material to digest, which gave me more than enough reason to reflect on the workflows imposed by the usual \textsc{daw} tools.
 
-This experience convinced me that the metaphor of a multi-track magnetic tape recorder is quite inappropriate for recording classical music.
+This experience convinced me that the metaphor of a multi-track magnetic tape recorder isn't really appropriate for recording classical music.
 In this paper I'm going to outline a new approach to that task which is based on the initial question: “What if the takes knew about their content instead only about their length?”
 
-I'm going to make suggestions for a possible \textsc{gui} application concept, although I currently don't (or rather can't) have plans to implement any of it.
-However, I probably could be talked into it if there would be enough interest from people with the necessary complementary skills.
-And if this paper would motivate someone to start a project of its own or if it could raise discussion about integrating my ideas into existing software it would have achieved its goal too.
+I'm going to make suggestions for a possible \textsc{gui} application, although I currently don't (or rather can't) have any plans to implement them.
+However, discussing them publicly may generate interesting insights and maybe motivate people to seriously think about making use of them.
+And given enough interest from people with the necessary complementary skills I might even be talked into starting a new project.
 
 \section{Two Recording Paradigms}
 
-Of course there are more shades to the matter  than simply speaking of “pop” and ”classical” music.
+Of course there are more shades to the matter  than simply speaking of “pop” and “classical” music.
 And of course there is a variety of approaches how to produce recordings that don't match the black \& white labeling suggested by such a separation.
 So please bear with me if I'm occasionally over-generalizing things.
 But I think there basically are two main paradigms of recording music, and for simplicity's sake I will call them the \emph{pop} and the \emph{classical} approach in this paper.
 
 \subsection{Recording Pop Music and the Multi-Track Tape Metaphor}
 
-The \emph{pop} approach is built on top of the model of a multi-track magnetic tape, realized through an \emph{Arranger Window} in all \textsc{daw} programs I know of.
+The \emph{pop} approach relies on the metaphor of a multi-track magnetic tape, represented by an \emph{Arranger Window} in virtually all \textsc{daw} programs I know of.
 The tape reel is represented as a preexistent \emph{timeline}, and each new “take” is recorded to its final position on it, adding to anything else that has been already recorded.
-The ability to move takes around or copy, multiply and edit them is an additional feature that doesn't interfere with the discussion at hand.
+That we \emph{can} move takes around or copy, multiply and edit them is an additional feature that doesn't make our approach obsolete.
 Different layers (voices/instruments) of the arrangement can be recorded sequentially as “overdubs” on multiple “tracks” representing those on the vintage tape.
 
 \subsection{Recording Classical Music}

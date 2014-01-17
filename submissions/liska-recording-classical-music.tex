@@ -171,6 +171,10 @@ Instead of “saving” at the end of the session the current branch is merged i
 \item And of course this widely opens the door for \emph{collaborative workflows} where for example the musicians can evaluate takes while the editor is preparing his editing plan.
 \end{itemize}
 
+As we are talking of “atomic” commits the risk of running into merge conflicts at any point is rather small.
+In a local set-up they could only happen when two or more “sessions” (i.\,e.\ branches) are open at the same time.
+When working with remote repositories and multiple participants chances of running into conflicts are higher, but as all changes are written programmatically we know pretty well what is going on and can design simple and clean ways to resolve any conflicts.
+
 However, this has to be absolutely transparent, and the ordinary user should not be required to learn \emph{any} versioning syntax or terminology.
 Such a requirement would significantly reduce acceptance with the main target group.
 
@@ -178,8 +182,9 @@ Such a requirement would significantly reduce acceptance with the main target gr
 Instead of inventing a new plain text file format or using some form of \textsc{xml} I suggest using the LilyPond%
 \footnote{\url{http://www.lilypond.org}}
 input language as the format for take files.
-We are talking about describing and annotating musical structures, and LilyPond offers a concise input language for just this, which is also very suitable for version control.
-It is highly customizable, can be annotated, and we could even use LilyPond itself to “engrave” a final editing plan as a score.
+We are talking about describing musical structures, and LilyPond offers a concise input language for just this.
+It offers a natural way to add annotations through commands at \emph{musical} moments while it's easy to link those to file position through command arguments.
+The LilyPond file format is very suitable for version control -- and we could even use LilyPond itself to “engrave” a final editing plan as a score.
 
 \section{Outlining an Application}
 

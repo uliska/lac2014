@@ -64,7 +64,7 @@ processes, from pubertal experiments on a four-track tape deck until today where
 music production on the computer is ubiquitous.
 But in recent years I had the opportunity and reason to reflect on the workflows
 imposed by the usual \textsc{daw} tools in a more substantial way.
-As a pianist I could produce a consideral number of professional recordings,
+As a pianist I could produce a considerable number of professional recordings,
 totalling in eight CDs, recorded in more than 30 studio days over several years.
 The recording producers entrusted me with the complete recordings along with
 their annotated scores so I could judge the first edits and express my wishes
@@ -131,16 +131,14 @@ creating a seemingly continuous recording.
 
 While this process results in a series of segments on a horizontal timeline too,
 there are significant differences to the previously described set-up.
-In particular the timeline doesn't have a predefined structure but will be the
-\emph{result} of the final arrangement of takes.
-This implies that the absolute position of any given track is only defined at
-the end of the editing process.
-As a result the editor has to ensure that any given edit doesn't have negative
-side-effects on later parts of the production.
-Of course today's tools offer assistance with these problems, but the conceptual
+In particular the absolute position of any given take is only fixed at
+the end of the editing process while it may be moved around until that point.
+This requires the editor has to take precautions that any given modification
+doesn't have negative side-effects on later parts of the production.
+Of course today's tools offer assistance with these problems, but the fundamental
 issue remains.
 
-Another difference is that \emph{conceptually} we don't have a vertical stack of
+Another difference is that \emph{conceptually} we don't need a vertical stack of
 tracks but only one%
 \footnote{Of course the source material will be recorded to discrete tracks on
 disk, but from a user's perspective it's only one track in most situations.}.
@@ -148,7 +146,7 @@ The presence of multiple tracks that \textsc{daw}s offer is actually a waste of
 screen estate for the recording producer of classical music.
 While she usually \emph{does} use these tracks as a kind of stash to experiment
 with alternative takes for a given spot I will show that this task can be
-addresses in a completely different manner.
+addressed in a completely different manner.
 
 Reality proves that it \emph{is} perfectly possible to produce classical
 recordings with tools adhering to the pop paradigm.
@@ -186,16 +184,16 @@ still up to the user.
 So the fundamental idea of my proposed new concept is:
 If we're going to document our material anyway, why don't we simultaneously
 “teach” the takes about themselves?
-In the following sections I'll elaborate on this conceptual layer, leaving out
-ideas for concrete implementations for a later chapter.
+In the following subsections I'll elaborate on this conceptual layer, leaving out
+ideas for concrete implementations for a later section.
 
 \subsection{Takes Know About Their Content}
 
 The core idea of this paper's approach to recording classical music is making
 the takes completely aware of their musical content and the editor's rating.
 In order to achieve this I suggest a switch of perspective and not to deal with
-\emph{Regions} as parts of recorded audio files but rather with \emph{Takes} as
-parts of the composition.
+\emph{Regions} as parts of recorded audio files but rather of \emph{Takes} which
+in turn are conceived as parts of the composition.
 For the whole process of analyzing and evaluating the recorded material we don't
 need the arranger window with its fixed timeline at all.
 By contrast we're only interested in the selection and ordering of takes as well
@@ -227,8 +225,8 @@ or in a (text or spreadsheet) document.
 Instead of this I suggest to implement dedicated \emph{Take} objects that
 contain all relevant information about a take.
 
-The fundamental data a take object has to know is the covered range in musical
-terms, along with a reference to the audio file it is contained in.
+The fundamental data a \emph{Take} object has to contain is the covered range in
+musical terms, along with a reference to the audio file it is contained in.
 This is all the producer has to provide for all takes to get started with a
 project, so the new approach won't actually impose any significant overhead to
 the user.
@@ -273,7 +271,7 @@ implicit session.
 There is no need for “autosave”, because all changes are stored immediately to
 disk, so a program crash doesn't lose \emph{any} information.
 Instead of “saving” at the end of the session the current branch is merged into
-master.
+master, and this isn't even related to shutting down the computer (i.\,e.\ the session can span an arbitrary amount of time).
 \item I'm sure one can make good use of branching to design workflows with
 “named sessions” (e.\,g.\ for trying out some hacks or to switch working context
 temporarily).
@@ -292,8 +290,8 @@ programmatically we know pretty well what is going on and can design simple and
 clean ways to resolve any conflicts.
 
 However, this has to be absolutely transparent, and the ordinary user should not
-be required to learn \emph{any} versioning syntax or terminology.
-Such a requirement would significantly reduce acceptance with the main target
+be required to learn \emph{any} versioning syntax or terminology as
+such a requirement would significantly reduce acceptance with the main target
 group.
 
 \medskip
@@ -319,7 +317,11 @@ were to start it I would go for a PyQt application.
 Having some experience contributing to the Frescobaldi%
 \footnote{\url{http://www.frescobaldi.org}}
 LilyPond editor I think it is a very comfortable platform to work with -- and
-particularly the one I'm familiar with.
+particularly the one I'm familiar with. Maybe it is not the perfect solution
+for developing \textsc{dsp} software, but as my approach is mostly about
+\emph{organizing} stuff and user interface this shouldn't be much of an issue.
+And hopefully there are ways to interact with code performing better for issues
+such as high-precision audio playback.
 
 The main design issue I don't have a clear opinion about is the \emph{scope} of
 an application.
@@ -386,7 +388,7 @@ Another option -- although more restricted than desirable -- would be to use
 \textsc{osc} to remotely control \emph{Ardour}.
 
 There is one thing to note here: Our program conceptually deals with audio
-mainly agnostic of a number of parallel tracks, a take is actually treated like
+mainly independently of the number of parallel tracks, a take is actually treated like
 a monophonic region.
 I'm not sure if the program should really make a stereo mixdown for its working
 files or if it actually should playback a mix of all existing tracks.
@@ -484,7 +486,7 @@ line with its concept and would increase the benefits of the new approach.
 As one key aspect of the new approach is the awareness of the musical context
 it's very natural to make use of that for score viewing too.
 
-The editor can import the score into the project, as a \textsc{pdf} or as a
+The editor can import the (annotated) score into the project, as a \textsc{pdf} or as a
 series of image files.
 In a (very short) editing round she would have to annotate that score, providing
 reference points for system changes, combined with bar numbers.
@@ -554,8 +556,8 @@ editing plan is the \emph{Transition Editor}
 \subsubsection{Transition Editor}
 
 One crucial point when preparing an editing plan is not only to select usable
-takes for a given musical moment or range but also check if any considered
-transition between takes is actually possible.
+takes for a given musical moment or range but also to check if any considered
+transition between takes is actually doable.
 Takes have to be compatible with respect to tempo, dynamics, internal balance
 and “atmosphere” (reverberation or piano pedal trails are particularly tricky)
 -- and this can only be tested by actually listening to a transition.
@@ -650,7 +652,7 @@ While this offers big advantages by itself it can even enable completely new
 collaborative workflows.
 As they are new people aren't used to them so far, and I can foresee recording
 producers expressing reservations against it.
-But I'm sure they can cause improvements as they are in editing scores -- where
+But I'm sure they can cause improvements as they do in editing scores -- where
 reservations are similarly high.
 
 As the file storage is inside a Git repository it's perfectly possible to make
@@ -667,7 +669,7 @@ issue of a concrete application design phase.
 It would be nice if musicians could create (or sketch) possible transitions that
 the recording producer then could use (or decide not to use).
 
-I know such a workflow requires a fair amount of mutual trust an would force the
+I know such a workflow requires a fair amount of mutual trust and would force the
 recording producer to give away a certain level of control.
 But in my experience such collaborative workflows are \emph{very} fruitful and
 enriching%
@@ -676,7 +678,7 @@ enriching%
 
 \section{Conclusions}
 
-TBD
+TBD (after initial review)
 
 
 \section{Acknowledgements}

@@ -236,6 +236,8 @@ Another option -- although more restricted than desirable -- would be to use \te
 There is one thing to note here: Our program conceptually deals with audio mainly agnostic of a number of parallel tracks, a take is actually treated like a monophonic region.
 I'm not sure if the program should really make a stereo mixdown for its working files or if it actually should playback a mix of all existing tracks.
 
+\section{Components of the Application}
+
 \subsection{Annotating a Single Take}
 The core element of our application is an editor for individual takes.
 This is what we'll spend most of our time with, particularly during the initial evaluation of the recorded material.
@@ -284,27 +286,42 @@ We can display the interesting moment as a cursor line and visualize the ratings
 I won't list more ideas here (because that's something for the actual application design), but I'm sure you get the idea how this approach can dramatically increase productivity for the main task a recording producer has for editing classical music: preparing the editing plan.
 
 \subsection{Editing Plan}
-Conceptually an editing plan is a list of pairs with musical sections and references to takes.
-Traditionally takes are only referenced as numbers because that's all we have to refer to.
-But in our application we have significantly more: links from musical moments to positions in the audio files the takes are based on.
-The precision of these links depends on the accuracy of our annotations, but generally one can expect that particularly the points actually interesting for transition between takes have been thoroughly examined.
-Suggesting to add exact links to these points surely isn't much overhead, particularly given the advantage you gain by it.
+Conceptually an editing plan is a list of pairs linking musical sections to takes to be used.
+Traditionally this is reflected by placing cropped takes at the appropriate position in the arranger window.
+There are two issues with this that can be addressed much better in our new application:
+Of course it is much more natural to access the takes based on their musical content than simply referencing their index number and file positions.
+And as mentioned earlier we won't \emph{place} takes on a fixed timeline but rather \emph{chain} them, which makes a huge difference.
+We will also call cropped selections from takes \emph{Regions} but will treat it differently from traditional \textsc{daw}s.
 
-With the knowledge our application has of the material we can easily display a list of takes that have ratings of at least “suggested”.
-But even more interesting is the reversal: a list of musical ranges that \emph{don't} have takes with sufficient rating.
-With these options we always have a clear picture of the progress of our editing plan, we see which parts of the composition still have to be resolved, and for the other parts we can see which alternative takes we may choose from.
+\medskip
+The second main component of our application is the \emph{Editing Plan} window -- which is the replacement for the former \emph{Arranger Window}.
+It is similar in that it displays a timeline and multiple tracks, but both are conceived significantly different.
 
-In addition to a tabular representation this can be presented in a \textsc{ui} element quite similar to an arranger window.
-The horizontal axis represents the timeline but is of course primarily structured musically.
-The topmost “track” is reserved for the final editing plan, then there are tracks (or groups of tracks) for “to be used” or “suggested” takes, followed by a last area for all other takes.
-Takes are presented as blocks (by default without waveform display but colored according to the rating) placed at their position in the piece.
-This way one has a complete overview of the available recorded material, structured by relevance and quality through the assignment to tracks and by the color-coding.
+The timeline is organized by the musical structure of the music instead of a steady timecode.
+There \emph{is} a timecode display, but this is merely the volatile result of the current state of the arrangement.
+The playing position of any given region isn't absolute but relative to the previous region.
+This is what I call \emph{chaining} the regions, and this will ensure that modifications won't have any negative impact on the regions following later in the timeline.
 
-When we're finished with our preparation -- that is the “editing plan” track is seamlessly filled with take fragments -- the editing plan can be exported: As a list with transition points and references to takes and positions in them, and possibly as a score (compiled by LilyPond) displaying the same information.
-Additionally it would be nice to be able to export to \textsc{daw} programs' project files so one could for example open the result in Ardour and have the relevant takes already in the arranger window, ready to be finally edited.
+The topmost track is the \emph{Editing Plan}, and having this completely filled is our ultimate goal.
+Initially it's empty, but the display will already be scaled using the timing information stored in the take files.
+
+Below this is a group of tracks reserved for regions with a certain minimum rating -- this is the \emph{Dashboard} to play around and choose the finally used regions.
+The bottom part of the window will be populated by the remaining takes or regions.
+
+Note that all tracks except the “Editing Plan” are populated automatically based on the rating we have given the individual takes.
+We will have a “Cursor” indicating the editing position in the piece, and whenever this changes the tracks will be updated with the takes that contain this position.
+Takes are presented as blocks and display the rating through coloring.
+This way one always has a complete overview of the available recorded material, structured by relevance and quality through the assignment to tracks and by the color-coding.
+And in particular it is immediately obvious when there are musical sections we haven't found suitable takes for (because the respective parts of the “Dashboard” is empty).
+
+Of course it is always possible to listen to any single take from this window, and whenever a take/region is selected the take is loaded into the \emph{Take Annotation} tool.
+But the tool that is used to trim and fine-tune the regions to be used in the editing plan is the \emph{Transition Editor}
 
 \subsubsection{Transition Editor}
-There is one more topic to consider, which would be more suitable for the final section of this paper but which is necessary to make a usable initial application: a \emph{Transition Editor}.
+
+
+Actually one could consider an editing plan as defined by a series of transitions instead of a series of regions.
+And this is what our application will do.
 
 One crucial point when preparing an editing plan is not only to select usable takes for a given musical moment or range but also check if any considered transition between takes is actually possible.
 Takes have to be compatible with respect to tempo, dynamics, internal balance and “atmosphere” (reverberation trails are particularly tricky) -- and this can only be tested by actually trying a transition.
@@ -323,6 +340,10 @@ The result of such an edit will simply be a usable transition which can be used 
 If we have edited all transitions that are necessary to join the take fragments in the editing plan everything is there to render a preliminary first edit of the recording -- which will in most cases already be usable as a nice reference.
 How this is actually managed and made accessible for a user interface will be a matter of concrete application design.
 
+\subsubsection{Exporting the Editing Plan}
+
+When we're finished with our preparation -- that is the “editing plan” track is seamlessly filled with take fragments -- the editing plan can be exported: As a list with transition points and references to takes and positions in them, and possibly as a score (compiled by LilyPond) displaying the same information.
+Additionally it would be nice to be able to export to \textsc{daw} programs' project files so one could for example open the result in Ardour and have the relevant takes already in the arranger window, ready to be finally edited.
 
 
 \section{Conclusions}

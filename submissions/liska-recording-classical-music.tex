@@ -225,45 +225,57 @@ The simplest way to do so is to manage audio files by incorporating them through
 Combined with file system monitoring this would have the main advantage that the recording producer can use whatever tools she is used to (or has available).
 When a file has been recorded within the other application it is automatically available in the pool of “our” application.
 
+Of course it would be nice to be able to control recording from within our application, and probably it would also be manageable to implement a way to do this, e.\,g.\ using \texttt{arecord} and passing on the responsibility for audio setup to something else.
+Another option -- although more restricted than desirable -- would be to use \textsc{osc} to remotely control \emph{Ardour}.
+
+There is one thing to note here: Our program conceptually deals with audio mainly agnostic of a number of parallel tracks, a take is actually treated like a monophonic region.
+I'm not sure if the program should really make a stereo mixdown for its working files or if it actually should playback a mix of all existing tracks.
 
 \subsection{Annotating a Single Take}
 The core element of our application is an editor for individual takes.
-This is what we'll spend most of our time with, particularly during the initial evaluation of the recorded material but also later at any time.
-Therefore this shouldn't be a dialog but a dockable panel which is permanently visible and simply gets updated when a new take is selected.
-It contains a zoomable graphical representation of the audio in the take, presumably as a waveform or volume graph display, as well as some elements like marker indicators and editors.
-Playback controls should cover the usual range of features like moving forward and backward, listening to ranges, start from marker positions etc.
+This is what we'll spend most of our time with, particularly during the initial evaluation of the recorded material.
+Therefore this shouldn't be a dialog but a dockable panel which is permanently visible and simply gets updated with the currently focused take.
+It contains a zoomable graphical representation of the audio in the take, very much like regions are usually displayed in \textsc{daw}s.
+Playback controls should cover the usual range of features like moving forward and backward, listening to ranges, starting from marker positions etc.
 
-This representation of a take is covered by a “timeline” representing the musical structure, that is it doesn't (primarily) displays a time code but rather barlines rests and time signature, similar to a percussion staff.
-Rehearsal marks, tempo indicators and more might easily be added to this.
-Initially this musical structure consists of evenly spaced measures with a default time signature, but during work the editor can add relevant information such as time signature changes.
-And she can link the musical structure to positions in the audio files with an interface similar to setting markers.
+This representation of a take is covered by a “timeline” which reflects the \emph{musical} structure.
+That is it doesn't (primarily) display a time code but rather barlines, rests and time signatures, similar to a percussion staff.
+Rehearsal marks, tempo indications and more may easily be added to this.
+Initially (when we don't know more than the mere number of measures in the take) this musical structure consists of evenly spaced measures with a default time signature, but during work the editor can add relevant information such as time signature changes.
+And she can set markers linking the musical structure to positions in the audio files.
 Through this the program also gets an inherent understanding of tempo changes allowing it to interpolate positions for playback.
-The timeline should visually distinguish between positions \emph{set explicitely} and \emph{interpolated}.
-
-(There is one little detail I'd like to point out here: By trimming a take to the \emph{usable} range one can effectively kick the useless material out of sight.
-No need anymore to re-listen to false starts or page-turning interruptions etc.)
+The timeline should visually distinguish between \emph{explicitly set} and \emph{interpolated} positions.
 
 Information edited in an individual take will be propagated to the whole project and may be averaged with information from other takes.
 This will deepen the project's knowledge about the musical structure and gradually improve the accuracy of position interpolations.
-This means that if you start to edit a take covering music which was already annotated in another take the program already knows about changes in time signatures and tempo.
+(You will recall that one of our goals is to make it possible to \emph{directly} access specific musical positions in takes.)
+This means that when editing any given take the program will also take all the timing information into account that has been set in other takes covering the same musical range.
 
 But of course the most relevant information added to takes is our evaluation.
-It should be possible to rate any range or spot numerically, with some special values available form marking something as “unusable”, “usable as base material”, “suggested” or ”to be used” and “editing plan”.
-Apart from numerical or tabular display the waveform representation could visualize this through differently colored background or a similar way.
+It should be possible to assign ratings to any range or spot.
+These ratings are given numerically, with some special values available for marking something as “unusable”, “usable as base material”, “suggested” or ”to be used” and “editing plan”.
+Apart from numerical or tabular display the waveform representation could visualize this through differently colored background or similar means.
 Adding ratings should be accessible through right-clicking on the waveform or through keyboard shortcuts while playing back.
 Apart from the ratings one can add arbitrary verbal comments to the take as a whole, specific spots or regions or explicit ratings.
 
+These ratings are stored in the LilyPond files with new appropriately designed commands.
+The \emph{musical} position is defined by the position in the input file, while the position in the audio file is a mandatory argument of the commands.
+This will ensure that the spots that are of particular interest are linked especially thoroughly.
+
 It should be possible (but I'm not sure yet if it's worth the effort) to compile a score fragment with LilyPond, representing the musical structure and displaying the rating and comments in some way.
 
-\subsection{Project Overview}
-The “Project View” of this initial application should be very much list-like.
-Graphical solutions integrating into a “timeline”-like representation of the composition and much more are considerations for the last section of this paper.
-So we start with something like a traditional “Region List”, but with the benefit of having superior information available for sorting, highlighting or filtering items, namely the information on the musical content and our ratings.
+\subsection{Collaborative Workflows}
 
-While in traditional \textsc{daw}s takes are initially sorted by number, that is by their recording order -- which usually is only vaguely related to the musical structure of the recorded piece.
-By default our application should sort takes by their starting point, but we could also sort by overall rating, length of usable ranges or whatever we consider useful.
-Filtering can be applied so we can hide takes based on their content or their rating.
-For example we could -- while editing a single take -- see a list of all alternative takes containing the spot the playback cursor currently is, reversly sorted by rating.
+\textbf{TBD}
+
+\subsection{Take List Overview}
+Our application should have a panel that is quite similar to a \emph{Region List}, but with some unique features.
+While traditional region lists display the project's regions sorted by the takes' original order or maybe by their position in the arrangement we have superior information availabe for this purpose, namely the information about the \emph{musical} content and our ratings.
+
+The default sort order for takes in this list view would be their (musical) starting point, but depending on the current working perspective we can use different parameters for \emph{sorting} and \emph{filtering}.
+For example when we're interested in a given musical moment we can hide all takes that don't cover this moment, and sort the remaining ones by their rating in descending order.
+We can display the interesting moment as a cursor line and visualize the ratings -- this way we have an instant visual idea about the situation and possible alternative takes.
+
 I won't list more ideas here (because that's something for the actual application design), but I'm sure you get the idea how this approach can dramatically increase productivity for the main task a recording producer has for editing classical music: preparing the editing plan.
 
 \subsection{Editing Plan}

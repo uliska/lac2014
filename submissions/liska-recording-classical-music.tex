@@ -59,12 +59,12 @@ Music production, recording, classical music, workflows.
 \section{Introduction}
 
 As a technically inclined musician I have always been interested in recording
-processes, from pubertal experiments on a four-track tape deck until today where
+processes, from adolescent experiments on a four-track tape deck until today, where
 music production on the computer is ubiquitous.
 But in recent years, I had the opportunity and reason to reflect on the workflows
 imposed by the usual \textsc{daw} tools in a more substantial way.
 As a pianist I have produced a considerable number of professional recordings,
-totalling eight CDs, recorded in more than 30 studio days over several years.
+totaling eight CDs, recorded in more than 30 studio days over several years.
 The recording producers entrusted me with the complete recordings along with
 their annotated scores so I could judge the first edits and express my wishes
 and suggestions for improvements very concisely. 
@@ -84,7 +84,7 @@ I'll outline ideas how these new ideas could be reflected in a \textsc{gui}
 application, although I currently don't have (or rather can't afford) any
 implementation plans.
 After such a new method is properly developed one could then consider to which extent such an
-application could/should be aimed at being a \emph{replacement} for existing
+application could OR should be aimed at being a \emph{replacement} for existing
 tools or how it could be \emph{integrated} in an efficient toolchain.
 
 By sharing these ideas publicly interesting insights and
@@ -108,11 +108,11 @@ approach in this paper.
 The \emph{pop} approach is based on the metaphor of a multi-track magnetic tape,
 reflected by an \emph{Arranger Window} in virtually all \textsc{daw} programs I
 know of.
-The tape reel is mapped to a \emph{timeline}, and each new “take” is recorded to
+The tape reel is mapped to a \emph{timeline}, and each new take is recorded to
 an absolute position on it, adding to or replacing anything that has already
 been recorded.
-Different layers (voices/instruments) of the arrangement can be recorded
-sequentially as “overdubs” on multiple “tracks” representing those on the
+Different layers (voices or instruments) of the arrangement can be recorded
+sequentially as “overdubs” on multiple tracks representing those on the
 vintage tape.
 We can move takes around or copy, multiply and edit them, but everything takes
 place in the context of the fixed timeline.
@@ -128,10 +128,10 @@ extracts selections from the takes and glues them together \emph{consecutively},
 creating a seemingly continuous recording.
 
 While this process results in a series of segments on a horizontal timeline too,
-there are significant differences to the previously described set-up.
+there are significant differences from the previously described set-up.
 In particular the absolute position of any given take is only fixed at
 the end of the editing process while it may be moved around until that point.
-This requires the editor has to take precautions that any given modification
+This requires the editor to take precautions that any given modification
 doesn't have negative side-effects on later parts of the production.
 Of course today's tools offer assistance with these problems, but the fundamental
 issue remains.
@@ -143,7 +143,7 @@ disk, but from a user's perspective it's only one track in most situations.}.
 The presence of multiple tracks that \textsc{daw}s offer is actually a waste of
 screen estate for the recording producer of classical music.
 While she usually \emph{does} use these tracks as a kind of stash to experiment
-with alternative takes for a given spot I will show that this task can be
+with alternative takes for a given spot, I will show that this task can be
 addressed in a completely different manner.
 
 Reality proves that it \emph{is} perfectly possible to produce classical
@@ -156,7 +156,7 @@ improvements to the way we conceive this specific task.
 While preparing an editing plan the task of a recording producer boils down to
 keeping track of recorded takes and choosing the best take for each section of
 the composition.
-If the recording session has been complicated this house-keeping can be a
+If the recording session has been complicated, this housekeeping can be a
 tedious and error-prone process.
 Usually the recording session yields an annotated score with entries for take
 starts and usually (but not equally reliably) also where takes end.
@@ -172,7 +172,7 @@ measure from such a score.
 First of all she has to determine \emph{all} takes covering the range in
 question, which can be cumbersome because she has to ensure not to miss anything
 which started earlier.
-Then it's crucial to have the takes evaluated and this evaluation to be
+Then it's crucial to have the takes evaluated and for this evaluation to be
 documented properly -- in order to avoid having to listen to the takes over and
 over again.
 But even this will merely give pointers to the takes as a whole -- while
@@ -236,7 +236,7 @@ with it anymore.
 
 While evaluating a take we can add more information on the musical structure to
 the take object.
-We can add metadata like time signature changes and particularly markers linking
+We can add metadata-like time signature changes and particularly markers linking
 positions in the music (e.\,g.\ measures) to positions in the audio file.
 Each new entry will increase the take's knowledge about the musical structure
 and will improve the interpolation of other positions.
@@ -268,13 +268,13 @@ Commits are also a natural place to store meta information in their messages.
 implicit session.
 There is no need for “autosave”, because all changes are stored immediately to
 disk, so a program crash doesn't lose \emph{any} information.
-Instead of “saving” at the end of the session the current branch is merged into
+Instead of saving at the end of the session the current branch is merged into
 master, and this isn't even related to shutting down the computer (i.\,e.\ the session can span an arbitrary amount of time).
 \item I'm sure one can make good use of branching to design workflows with
 “named sessions” (e.\,g.\ for trying out some hacks or to switch working context
 temporarily).
-\item And of course this widely opens the door for \emph{collaborative
-workflows} where for example the musicians can evaluate takes while the editor
+\item And of course this opens the door wide for \emph{collaborative
+workflows} where, for example, the musicians can evaluate takes while the editor
 is preparing his editing plan.
 \end{itemize}
 
@@ -303,7 +303,7 @@ It offers a natural way to add annotations through commands at \emph{musical}
 moments while it's easy to link those to file position through command
 arguments.
 The LilyPond file format is very suitable for version control -- and we could
-even use LilyPond itself to “engrave” a final editing plan as a score.
+even use LilyPond itself to engrave a final editing plan as a score.
 
 \section{Outlining an Application}
 
@@ -314,22 +314,22 @@ Of course such a project can be realized with a wide range of tools, but if I
 were to start it I would go for a PyQt application.
 Having some experience contributing to the Frescobaldi%
 \footnote{\url{http://www.frescobaldi.org}}
-LilyPond editor I think it is a very comfortable platform to work with -- and
+LilyPond editor, I think it is a very comfortable platform to work with -- and
 particularly the one I'm familiar with. Maybe it is not the perfect solution
 for developing \textsc{dsp} software, but as my approach is mostly about
-\emph{organizing} stuff and user interface this shouldn't be much of an issue.
+\emph{organizing} stuff and the user interface this shouldn't be much of an issue.
 And hopefully there are ways to interact with code performing better for issues
 such as high-precision audio playback.
 
 The main design issue I don't have a clear opinion about is the \emph{scope} of
 an application.
-The only possible target in my eyes would be aiming at a tool that is used by
+The only possible target in my eyes would be a tool that is used by
 professional recording producers -- creating yet another toy \textsc{daw} seems
 waste of time.
 But while it seems fascinating to have a comprehensive \textsc{daw} using my new
 concepts it would probably be grossly negligent to try competing with all the
 existing \textsc{dsp} knowledge that already is on the market.
-I currently see three options how to deal with this situation:
+I currently see three options to deal with this situation:
 
 \begin{itemize*}
 \item Find existing code that can be exploited, either in dedicated libraries or
@@ -349,7 +349,7 @@ conceivable from my position I'll continue this paper with this option.
 \subsection{Intended Scope}
 
 An application should provide a comprehensive set of tools to cover the whole
-process of managing the recorded material and preparing an edition plan.
+process of managing the recorded material and preparing an editing plan.
 There are other parts of the production process that seem too ambitious to
 tackle individually, and these should rather be realized by integrating existing
 tools as seamlessly as possible.
@@ -361,7 +361,7 @@ The tasks our projected application should be able to perform and that I'll
 describe in the following sections are:
 Accessing/importing and managing audio files,
 annotating individual takes and the project structure, and
-preparing and exporting the edition plan.
+preparing and exporting the editing plan.
 
 \subsection{Managing Audio Files}
 
@@ -376,7 +376,7 @@ a symlink.
 Combined with file system monitoring this would have the main advantage that the
 recording producer can use whatever tools she is used to (or has available).
 When a file has been recorded within the other application it is automatically
-available in the pool of “our” application.
+available in the pool of our application.
 
 Of course it would be nice to be able to control recording from within our
 application, and probably it would also be manageable to implement a way to do
@@ -386,7 +386,7 @@ Another option -- although more restricted than desirable -- would be to use
 \textsc{osc} to remotely control \emph{Ardour}.
 
 There is one thing to note here: Our program conceptually deals with audio
-mainly independently of the number of parallel tracks, a take is actually treated like
+mainly independently of the number of parallel tracks -- a take is actually treated like
 a monophonic region.
 I'm not sure if the program should really make a stereo mixdown for its working
 files or if it actually should playback a mix of all existing tracks.
@@ -404,7 +404,7 @@ much like regions are usually displayed in \textsc{daw}s.
 Playback controls should cover the usual range of features like moving forward
 and backward, listening to ranges, starting from marker positions etc.
 
-This representation of a take is covered by a “timeline” which reflects the
+This representation of a take is covered by a timeline which reflects the
 \emph{musical} structure.
 That is it doesn't (primarily) display a time code but rather barlines, rests
 and time signatures, similar to a percussion staff.
@@ -415,7 +415,7 @@ signature, but during work the editor can add relevant information such as time
 signature changes.
 And she can set markers linking the musical structure to positions in the audio
 files.
-Through this the program also gets an inherent understanding of tempo changes
+Through this the program also gets an inherent understanding of tempo changes,
 allowing it to interpolate positions for playback.
 The timeline should visually distinguish between \emph{explicitly set} and
 \emph{interpolated} positions.
@@ -426,7 +426,7 @@ This will deepen the project's knowledge about the musical structure and
 gradually improve the accuracy of position interpolations.
 (You will recall that one of our goals is to make it possible to \emph{directly}
 access specific musical positions in takes.)
-This means that when editing any given take the program will also take all the
+This means that when editing any given take, the program will also take all the
 timing information into account that has been set in other takes covering the
 same musical range.
 
@@ -439,7 +439,7 @@ Apart from numerical or tabular display the waveform representation could
 visualize this through differently colored background or similar means.
 Adding ratings should be accessible through right-clicking on the waveform or
 through keyboard shortcuts while playing back.
-Apart from the ratings one can add arbitrary verbal comments to the take as a
+Apart from the ratings, one can add arbitrary verbal comments to the take as a
 whole, specific spots or regions or explicit ratings.
 
 These ratings are stored in the LilyPond files with new appropriately designed
@@ -458,14 +458,14 @@ displaying the rating and comments in some way.
 Our application should have a panel that is quite similar to a \emph{Region
 List}, but with some unique features.
 While traditional region lists display the project's regions sorted by the
-takes' original order or maybe by their position in the arrangement we have
-superior information availabe for this purpose, namely the information about the
+takes' original order or maybe by their position in the arrangement, we have
+superior information available for this purpose, namely the information about the
 \emph{musical} content and our ratings.
 
 The default sort order for takes in this list view would be their (musical)
 starting point, but depending on the current working perspective we can use
 different parameters for \emph{sorting} and \emph{filtering}.
-For example when we're interested in a given musical moment we can hide all
+For example, when we're interested in a given musical moment we can hide all
 takes that don't cover this moment, and sort the remaining ones by their rating
 in descending order.
 We can display the interesting moment as a cursor line and visualize the ratings
@@ -479,15 +479,15 @@ for editing classical music: preparing the editing plan.
 
 \subsection{[Score Viewer]}
 Optionally our application could contain a \emph{Score Viewer}.
-While this isn't essential for the application to work at all it is very much in
+While this isn't essential for the application to work at all, it is very much in
 line with its concept and would increase the benefits of the new approach.
-As one key aspect of the new approach is the awareness of the musical context
+As one key aspect of the new approach is the awareness of the musical context,
 it's very natural to make use of that for score viewing too.
 
-The editor can import the (annotated) score into the project, as a \textsc{pdf} or as a
+The editor can import the (annotated) score into the project as a \textsc{pdf} or as a
 series of image files.
 In a (very short) editing round she would have to annotate that score, providing
-reference points for system changes, combined with bar numbers.
+reference points for system changes combined with bar numbers.
 That way the Score Viewer can easily display the score fragment corresponding to
 the currently edited take or region.
 
@@ -502,7 +502,7 @@ Of course it is much more natural to access the takes based on their musical
 content than simply referencing their index number and file positions.
 And as mentioned earlier we won't \emph{place} takes on a fixed timeline but
 rather \emph{chain} them, which makes a huge difference.
-We will also call cropped selections from takes \emph{Regions} but will treat it
+We will also call cropped selections from takes \emph{Regions} but will treat them
 differently from traditional \textsc{daw}s.
 
 \medskip
@@ -515,7 +515,7 @@ The timeline is organized by the musical structure of the music instead of a
 steady timecode.
 There \emph{is} a timecode display, but this is merely the volatile result of
 the current state of the arrangement.
-The playing position of any given region isn't absolute but relative to the
+The playing position of any given region isn't absolute, but relative to the
 previous region.
 This is what I call \emph{chaining} the regions, and this will ensure that
 modifications won't have any negative impact on the regions following later in
@@ -527,12 +527,12 @@ Initially it's empty, but the display will already be scaled using the timing
 information stored in the take files.
 
 Below this is a group of tracks reserved for regions with a certain minimum
-rating -- this is the \emph{Dashboard} to play around and choose the finally
+rating -- this is the \emph{Dashboard} in which to play around and choose the finally
 used regions.
 The bottom part of the window will be populated by the remaining takes or
 regions.
 
-Note that all tracks except the “Editing Plan” are populated automatically based
+Note that all tracks except the “Editing Plan” are populated automatically, based
 on the rating we have given the individual takes.
 We will have a “Cursor” indicating the editing position in the piece, and
 whenever this changes the tracks will be updated with the takes that contain
@@ -543,7 +543,7 @@ structured by relevance and quality through the assignment to tracks and by the
 color-coding.
 And in particular it is immediately obvious when there are musical sections we
 haven't found suitable takes for (because the respective parts of the
-“Dashboard” is empty).
+“Dashboard” are empty).
 
 Of course it is always possible to listen to any single take from this window,
 and whenever a take/region is selected the take is loaded into the \emph{Take
@@ -573,9 +573,9 @@ Two regions are placed around a centered cursor representing a musical moment.
 Usually we will consider one of the regions as “given” and look for a matching
 region, but essentially the core of the transition is the musical moment.
 
-The tool will now offer to choose from a list of available takes sorted/filtered
+The tool will now offer to choose from a list of available takes sorted or filtered
 by rating, “available” meaning that they contain the musical moment.
-It should also be possible to see how a take develops, that is how the rating
+It should also be possible to see how a take develops, that is, how the rating
 changes over time.
 This way the editor will be able to determine if a take can be used as a short
 insert only or also as a base take for a longer section.
@@ -583,23 +583,23 @@ insert only or also as a base take for a longer section.
 The tool will of course make use of the timing information stored in the takes,
 so the accuracy of the suggested material will improve over editing time.
 This means that when selecting a take to try a transition it will show
-approximately the right position out-of-the-box!
+approximately the right position out of the box!
 Usually we will now search for the right position, and then we can save this as
-an additional information, increasing the coverage of the whole project.
+additional information, increasing the coverage of the whole project.
 I expect that this will lead to near-instant matches in a very short time.
 
 \paragraph{Note:}
-The \emph{Transition Editor} will provide a cross-fade editor to fine-tune the
+The \emph{Transition Editor} will provide a crossfade editor to fine-tune the
 transition.
 It will be crucial to see to what extent this tool can be made to match
 professional needs.
-If this \emph{is} possible our application could aim at being a solution for the
+If this \emph{is} possible, our application could aim at being a solution for the
 whole process up to the final cut, either exporting directly to CD or routing to
 an external mixing/mastering application.
 In that case I'd suggest an approach that normally treats the musical material
 as \emph{one} conceptual track and offering multitrack access to the transitions
 of individual audio tracks only on special demand.
-If it is \emph{not} possible to head for a professional editing tool we would be
+If it is \emph{not} possible to head for a professional editing tool, we would be
 restricted to \emph{preparing} the editing plan and exporting it to another
 editing application.
 In either case I assume from my experience that a simple crossfade will in most
@@ -623,14 +623,14 @@ arrangements \emph{significantly} easier than it is nowadays.
 \subsubsection{Exporting the Editing Plan}
 
 Once we have edited all necessary transitions to join the take fragments to a
-coherent editing plan everything is there to export, the editing plan as well as
+coherent editing plan, everything is there to export: the editing plan as well as
 a rendering of the edited recording (be it as a draft or as a professional
 result).
 
 The editing plan will be exported in several ways, the most traditional way
-being a written list, e.\,g.\ in PDF, word processor or plain text/Markdown
+being a written list, e.\,g.\ in \textsc{pdf}, word processor or plain text/Markdown
 format.
-This list entries would contain the musical moment, the used take and the file
+This list of entries would contain the musical moment, the used take and the file
 position in that take, making it as straightforward as possible for the
 recording producer to get her stuff together in the editing program of her
 choice.
@@ -638,32 +638,32 @@ Optionally we can use LilyPond to produce the editing plan as a score,
 presumably in form of a percussion-like staff with additional information
 processed in a visually appealing way.
 Finally it would be nice to be able to export to \textsc{daw} programs' project
-files, so one could for example open the result in Ardour and have the relevant
+files, so one could for example open the result in \emph{Ardour} and have the relevant
 takes already in the arranger window, positioned and trimmed ready to be finally
 edited.
 
 \section{Collaborative Workflows}
 
-Earlier I mentioned that I intend to use LilyPond, i.\,e.\ plain text files as
+Earlier I mentioned that I intend to use LilyPond, i.\,e.\ plain text files, as
 the storage format and Git to manage the editing process.
-While this offers big advantages by itself it can even enable completely new
+While this offers big advantages by itself, it can even enable completely new
 collaborative workflows.
-As they are new people aren't used to them so far, and I can foresee recording
-producers expressing reservations against it.
+As they are new, people aren't used to them so far, and I can foresee recording
+producers expressing reservations against them.
 But I'm sure they can result in improvements as they do in editing scores -- where
 reservations are similarly high.
 
 As the file storage is inside a Git repository it's perfectly possible to make
 use of Git's distributed nature to share a project through a central repository
-on a server (or service provider).
+on a server (or with a service provider).
 Probably one would keep the audio material out of that repository and distribute
 it separately, but all the editing can be shared with all of Git's convenience.
-For example musicians can evaluate the raw material and add their ratings to
+For example, musicians can evaluate the raw material and add their ratings to
 takes, adding their opinion and expertise to the process.
 At the same time the recording producer can make preliminary states of editing
 available to the musicians to get their feedback early in the process.
-One would have to create a certain level of role based privileges, but that's an
-issue of a concrete application design phase.
+One would have to create a certain level of role-based privileges, but that's an
+issue for a concrete application design phase.
 It would be nice if musicians could create (or sketch) possible transitions that
 the recording producer then could use (or decide not to use).
 
@@ -671,7 +671,7 @@ I know such a workflow requires a fair amount of mutual trust and would force th
 recording producer to give away a certain level of control.
 But in my experience such collaborative workflows are \emph{very} fruitful and
 enriching%
-\footnote{See \url{http://lilypondblog.org/?p=1380}}
+\footnote{See \url{http://lilypondblog.org/?p=1380}}.
 
 
 \section{Conclusions}
@@ -679,9 +679,9 @@ enriching%
 TBD (after initial review)
 
 
-\section{Acknowledgements}
+\section{Acknowledgments}
 
-Our thanks go to \ldots .
+My thanks go to \ldots .
 
 \end{document}
 

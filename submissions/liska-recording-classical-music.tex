@@ -15,12 +15,13 @@
 \sloppy
 \newenvironment{contentsmall}{\small}
 
-\usepackage{fontspec}
-\usepackage{polyglossia}
-\usepackage{microtype}
+%\usepackage{fontspec}
+%\usepackage{polyglossia}
+%\usepackage{microtype}
 
 \usepackage{xcolor}
 
+\newcommand*{\term}[1]{\textcolor{blue}{\emph{#1}}}
 \title{A New Concept of Recording Classical Music}
 
 %see lac2012.sty for how to format multiple authors!
@@ -37,7 +38,7 @@
 
 \begin{abstract}
 \begin{contentsmall}
-A reconsideration of the “Arranger Window” concept of \textsc{daw} programs
+A reconsideration of the \term{arranger window} concept of \textsc{daw} programs
 from the perspective of recording classical music.
 A new concept of recording classical music with the main concern
 being the organization of the recorded material and the preparation of an
@@ -77,8 +78,8 @@ This experience convinced me that the fundamental concepts of today's
 
 Therefore a new approach to the task of managing
 recorded material from the perspective of recording \emph{classical} music was developed and offered here.
-The central idea is to shift focus from a fixed time-line in an \emph{Arranger
-Window} to the concept of self-contained \emph{Takes} that are aware of their
+The central idea is to shift focus from a fixed time-line in an arranger
+window to the concept of self-contained \term{takes} that are aware of their
 content instead of only their length.
 I'll outline ideas how these new ideas could be reflected in a \textsc{gui}
 application, although I currently don't have (or rather can't afford) any
@@ -100,19 +101,19 @@ And of course there is a variety of approaches how to produce recordings that
 don't match the black \& white labeling suggested by such a separation.
 So please bear with me if I'm occasionally over-generalizing things.
 But I think there basically are two main paradigms of recording music, and for
-simplicity's sake I will call them the \emph{pop} and the \emph{classical}
+simplicity's sake I will call them the \term{pop} and the \term{classical}
 approach in this paper.
 
 \subsection{Recording Pop Music and the Multi-Track Tape Metaphor}
 
 The \emph{pop} approach is based on the metaphor of a multi-track magnetic tape,
-reflected by an \emph{Arranger Window} in virtually all \textsc{daw} programs I
+reflected by an \term{arranger window} in virtually all \textsc{daw} programs I
 know of.
-The tape reel is mapped to a \emph{timeline}, and each new take is recorded to
+The tape reel is mapped to a \term{timeline}, and each new \term{take} is recorded to
 an absolute position on it, adding to or replacing anything that has already
 been recorded.
 Different layers (voices or instruments) of the arrangement can be recorded
-sequentially as “overdubs” on multiple tracks representing those on the
+sequentially as \term{overdubs} on multiple \term{tracks} representing those on the
 vintage tape.
 We can move takes around or copy, multiply and edit them, but everything takes
 place in the context of the fixed timeline.
@@ -190,7 +191,7 @@ ideas for concrete implementations for a later section.
 The core idea of this paper's approach to recording classical music is making
 the takes completely aware of their musical content and the editor's rating.
 In order to achieve this I suggest a switch of perspective and not to deal with
-\emph{Regions} as parts of recorded audio files but rather of \emph{Takes} which
+\term{regions} as parts of recorded audio files but rather of \term{takes} which
 in turn are conceived as parts of the composition.
 For the whole process of analyzing and evaluating the recorded material we don't
 need the arranger window with its fixed timeline at all.
@@ -220,10 +221,10 @@ managing the recorded material.
 \subsection{Annotating Takes}
 Traditionally the producer documents the material in some sort of list, on paper
 or in a (text or spreadsheet) document.
-Instead of this I suggest to implement dedicated \emph{Take} objects that
+Instead of this I suggest to implement dedicated \term{take} objects that
 contain all relevant information about a take.
 
-The fundamental data a \emph{Take} object has to contain is the covered range in
+The fundamental data a \term{take} object has to contain is the covered range in
 musical terms, along with a reference to the audio file it is contained in.
 This is all the producer has to provide for all takes to get started with a
 project, so the new approach won't actually impose any significant overhead to
@@ -250,14 +251,14 @@ respective positions for immediate playback.
 
 \subsection{Storage and Version Control}
 
-I suggest storing the information about the \emph{Take} objects in individual
+I suggest storing the information about the \term{take} objects in individual
 text files, one file for each take.
 An application implementing my concept should transparently use plain text files
 and version control as its storage mechanism, for which I see several
 advantages%
 \footnote{What I've written with regard to scholarly editing of scores
 (\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}) applies
-equally to the current context}:
+equally to the current context.}:
 \begin{itemize}
 \item Undo/redo cannot only be \emph{unlimited} but also completely
 \emph{selective}.
@@ -353,7 +354,7 @@ process of managing the recorded material and preparing an editing plan.
 There are other parts of the production process that seem too ambitious to
 tackle individually, and these should rather be realized by integrating existing
 tools as seamlessly as possible.
-Amongst those are most notably the whole field of Digital Signal Processing,
+Amongst those are most notably the whole field of digital signal processing,
 particularly recording/mixing and crossfade editing.
 However, I will give these aspects some thought at the appropriate places.
 
@@ -372,7 +373,7 @@ implement a complete recording solution, instead we are going to simply
 \emph{use} existing audio material.
 
 The simplest way to do so is to manage audio files by incorporating them through
-a symlink.
+a symbolik link.
 Combined with file system monitoring this would have the main advantage that the
 recording producer can use whatever tools she is used to (or has available).
 When a file has been recorded within the other application it is automatically
@@ -455,8 +456,8 @@ displaying the rating and comments in some way.
 
 
 \subsection{Take List Overview}
-Our application should have a panel that is quite similar to a \emph{Region
-List}, but with some unique features.
+Our application should have a panel that is quite similar to a \term{region
+list}, but with some unique features.
 While traditional region lists display the project's regions sorted by the
 takes' original order or maybe by their position in the arrangement, we have
 superior information available for this purpose, namely the information about the
@@ -478,7 +479,7 @@ dramatically increase productivity for the main task a recording producer has
 for editing classical music: preparing the editing plan.
 
 \subsection{[Score Viewer]}
-Optionally our application could contain a \emph{Score Viewer}.
+Optionally our application could contain a \term{score viewer}.
 While this isn't essential for the application to work at all, it is very much in
 line with its concept and would increase the benefits of the new approach.
 As one key aspect of the new approach is the awareness of the musical context,
@@ -488,7 +489,7 @@ The editor can import the (annotated) score into the project as a \textsc{pdf} o
 series of image files.
 In a (very short) editing round she would have to annotate that score, providing
 reference points for system changes combined with bar numbers.
-That way the Score Viewer can easily display the score fragment corresponding to
+That way the score viewer can easily display the score fragment corresponding to
 the currently edited take or region.
 
 \subsection{Editing Plan}
@@ -502,12 +503,12 @@ Of course it is much more natural to access the takes based on their musical
 content than simply referencing their index number and file positions.
 And as mentioned earlier we won't \emph{place} takes on a fixed timeline but
 rather \emph{chain} them, which makes a huge difference.
-We will also call cropped selections from takes \emph{Regions} but will treat them
+We will also call cropped selections from takes \term{regions} but will treat them
 differently from traditional \textsc{daw}s.
 
 \medskip
-The second main component of our application is the \emph{Editing Plan} window
--- which is the replacement for the former \emph{Arranger Window}.
+The second main component of our application is the \term{editing plan} window
+-- which is the replacement for the former \term{arranger window}.
 It is similar in that it displays a timeline and multiple tracks, but both are
 conceived significantly differently.
 
@@ -521,20 +522,20 @@ This is what I call \emph{chaining} the regions, and this will ensure that
 modifications won't have any negative impact on the regions following later in
 the timeline.
 
-The topmost track is the \emph{Editing Plan}, and having this completely filled
+The topmost track is the \term{editing plan}, and having this completely filled
 is our ultimate goal.
 Initially it's empty, but the display will already be scaled using the timing
 information stored in the take files.
 
 Below this is a group of tracks reserved for regions with a certain minimum
-rating -- this is the \emph{Dashboard} in which to play around and choose the finally
+rating -- this is the \term{dashboard} in which to play around and choose the finally
 used regions.
 The bottom part of the window will be populated by the remaining takes or
 regions.
 
-Note that all tracks except the “Editing Plan” are populated automatically, based
+Note that all tracks except the \term{editing plan} are populated automatically, based
 on the rating we have given the individual takes.
-We will have a “Cursor” indicating the editing position in the piece, and
+We will have a cursor indicating the editing position in the piece, and
 whenever this changes the tracks will be updated with the takes that contain
 this position.
 Takes are presented as blocks and display the rating through coloring.
@@ -543,13 +544,13 @@ structured by relevance and quality through the assignment to tracks and by the
 color-coding.
 And in particular it is immediately obvious when there are musical sections we
 haven't found suitable takes for (because the respective parts of the
-“Dashboard” are empty).
+dashboard are empty).
 
 Of course it is always possible to listen to any single take from this window,
-and whenever a take/region is selected the take is loaded into the \emph{Take
-Annotation} tool.
+and whenever a take/region is selected the take is loaded into the \term{take
+annotation} tool.
 But the tool that is used to trim and fine-tune the regions to be used in the
-editing plan is the \emph{Transition Editor}
+editing plan is the \term{transition editor}
 
 \subsubsection{Transition Editor}
 
@@ -563,9 +564,9 @@ One could even conceive an editing plan as defined by a series of transitions
 instead of a series of regions.
 
 And this is the way our application will “think” like.
-The Editing Plan isn't improved by placing regions on the topmost track but
-rather by applying transitions which have been defined in the \emph{Transition
-Editor}.
+The editing plan isn't improved by placing regions on the topmost track but
+rather by applying transitions which have been defined in the \term{transition
+editor}.
 
 This will be a tool (a modal dialog or a dockable panel) that displays two
 regions where the recording producer can edit the transition between them.
@@ -589,7 +590,7 @@ additional information, increasing the coverage of the whole project.
 I expect that this will lead to near-instant matches in a very short time.
 
 \paragraph{Note:}
-The \emph{Transition Editor} will provide a crossfade editor to fine-tune the
+The \term{transition editor} will provide a crossfade editor to fine-tune the
 transition.
 It will be crucial to see to what extent this tool can be made to match
 professional needs.
@@ -609,7 +610,7 @@ all.
 \medskip
 The key feature of this tool is that it is completely independent of the
 project's timeline but simply considers a relation of two takes.
-The result of such an edit will be a \emph{Transition} object which can be used
+The result of such an edit will be a \term{transition} object which can be used
 in the editing plan.
 Other than in the traditional arranger window these transition objects can be
 stored for later reuse.
@@ -617,7 +618,7 @@ This means that when trying a different transition you don't have to discard any
 previous work -- which you'd have to in the arranger window.
 Instead the project knows which transitions can be applied to any given take.
 Probably it will be possible to simply drag\,\&\,drop a transition on the
-Editing Plan to use it there, making the whole process of juggling with possible
+editing plan to use it there, making the whole process of juggling with possible
 arrangements \emph{significantly} easier than it is nowadays.
 
 \subsubsection{Exporting the Editing Plan}

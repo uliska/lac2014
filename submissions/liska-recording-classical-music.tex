@@ -115,25 +115,36 @@ been recorded.
 Different layers (voices or instruments) of the arrangement can be recorded
 sequentially as \term{overdubs} on multiple \term{tracks} representing those on the
 vintage tape.
-We can move takes around or copy, multiply and edit them, but everything takes
-place in the context of the fixed timeline.
+In the \textsc{daw} implementation of this concept we can move takes around or copy,
+multiply and edit them, but everything still takes place in the context of the
+absolute timeline.
 
 \subsection{Recording Classical Music}
  
-By contrast the \emph{classical} approach imitates a (stereo) magnetic tape
+By contrast the \emph{classical} approach imitates a magnetic tape
 treated with scissors and adhesive tape.
 The complete arrangement is played simultaneously and recorded to one track,
 without overdubs.
-Instead of selecting from the available \emph{parallel} takes the editor
-extracts selections from the takes and glues them together \emph{consecutively},
-creating a seemingly continuous recording.
+Instead of choosing from the available (or re-recording) \emph{parallel} takes
+the editor cuts out sections from the recorded takes and glues them together
+\emph{consecutively}, creating a seemingly continuous recording.
+In analog days such a cutout of a magnetic tape was always treated as a single entity,
+regardless of how many tracks were recorded through discrete recording heads.
 
 While this process results in a series of segments on a horizontal timeline too,
 there are significant differences from the previously described set-up.
-In particular the absolute position of any given take is only fixed at
-the end of the editing process while it may be moved around until that point.
-This requires the editor to take precautions that any given modification
-doesn't have negative side-effects on later parts of the production.
+In particular the absolute position of any given take isn't defined until the
+very end of the editing process when it is finally selected and glued to the
+preceding segment.
+The reference point for any given snippet is \emph{not} relative to the project
+but to the preceding snippet.
+
+Translating this concept to the digital domain by using the \term{arranger window}
+metaphor introduces fundamental issues which current \textsc{daw}s struggle to find
+viable workarounds.
+The discrepancy becomes apparent when a take selection has to be replaced or changed
+so its length is modified: All regions that follow down the timeline have
+to accomodate that change, scrupulously taking care not to break any existing work.
 Of course today's tools offer assistance with these problems, but the fundamental
 issue remains.
 
@@ -142,15 +153,23 @@ tracks but only one%
 \footnote{Of course the source material will be recorded to discrete tracks on
 disk, but from a user's perspective it's only one track in most situations.}.
 The presence of multiple tracks that \textsc{daw}s offer is actually a waste of
-screen estate for the recording producer of classical music.
-While she usually \emph{does} use these tracks as a kind of stash to experiment
-with alternative takes for a given spot, I will show that this task can be
-addressed in a completely different manner.
+screen estate for the recording producer working on classical music.
+Usually she \emph{does} use these tracks as a kind of dashboard in which to
+experiment with alternative takes for a given moment%
+\footnote{Many \textsc{daw}s offer the option to consecutively record multiple
+takes to parallel tracks. But this doesn't avoid the problem that these takes
+are still absolutely positioned on the timeline.}, but it just isn't a really
+natural approach to the task.
 
-Reality proves that it \emph{is} perfectly possible to produce classical
-recordings with tools adhering to the pop paradigm.
-But it just isn't a really natural approach, and there could be fundamental
-improvements to the way we conceive this specific task. 
+Of course reality proves that it \emph{is} perfectly possible to produce classical
+recordings with tools adhering to the pop paradigm. Current tools are very
+smart in dealing with the conceptual flaws.
+But it is possible to design better workflows by developing an application that
+takes the \emph{natural} perspective right from the start.
+Treating takes as entities and referencing takes to each other instead of to a
+timeline are the foundations to which a new approach to managing the recorded
+material will add a convenient interface.
+
 
 \section{A New Approach to Managing Recorded Material}
 

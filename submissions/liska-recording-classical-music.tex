@@ -645,27 +645,58 @@ Probably it will be possible to simply drag\,\&\,drop a transition on the
 editing plan to use it there, making the whole process of juggling with possible
 arrangements \emph{significantly} easier than it is nowadays.
 
-\subsubsection{Exporting the Editing Plan}
+\subsection{Exporting Your Work}
 
 Once we have edited all necessary transitions to join the take fragments to a
-coherent editing plan, everything is there to export: the editing plan as well as
-a rendering of the edited recording (be it as a draft or as a professional
-result).
+coherent editing plan, everything is there to export: the editing plan itself as well
+as a rendered “preview” audio file or even a “production” audio file.
+The possible options will heavily depend on programming capabilities and the scope
+a project may get. This subsection provides some ideas on the different
+possibilities.
 
-The editing plan will be exported in several ways, the most traditional way
-being a written list, e.\,g.\ in \textsc{pdf}, word processor or plain text/Markdown
-format.
-This list of entries would contain the musical moment, the used take and the file
-position in that take, making it as straightforward as possible for the
-recording producer to get her stuff together in the editing program of her
-choice.
-Optionally we can use LilyPond to produce the editing plan as a score,
+One thing that can always be exported is the editing plan itself. This will contain
+a list of transition points (in musical terms), used audio files and sample-accurate
+positions in the files.
+This list can be exported in several formats, the most traditional way being a written
+list, e.\,g.\ in \textsc{pdf}, word processor or plain text/Markdown format.
+Optionally LilyPond can be used to produce the editing plan as a score,
 presumably in form of a percussion-like staff with additional information
 processed in a visually appealing way.
-Finally it would be nice to be able to export to \textsc{daw} programs' project
-files, so one could for example open the result in \emph{Ardour} and have the relevant
-takes already in the arranger window, positioned and trimmed ready to be finally
-edited.
+This will enable the recording producer to import the files into her \textsc{daw} of
+choice and arrange them for editing with the least amount of lookup overhead.
+
+While this would make the choice of tools most independent it surely isn't very
+elegant to require the producer to manually add and arrange regions in a second
+application. Therefore a step to provide a more integrated workflow would be to
+directly export to project files of external \textsc{daw} applications, for example
+\emph{Ardour}. This would add all used take files to the audio pool of the other
+application's project and lay the regions out in a way that they can be edited
+with minimal overhead. This sounds like a very good solution because it offers
+great flexibility by allowing the producer to use all the mixing, mastering and
+automation tools of the other application. The only issue is to propagate any
+post-export changes to the editing plan to the other application. While this
+\emph{may} be possible it can also be very complex, depending on the other
+application's file format.
+
+The same restriction is true for exporting rendered audio files with all transitions
+applied. These could either be saved to disk (as discrete per-track audio files) or
+routed to the output (e.\,g. Jack) to be used in another application. If the new
+application's transition editor can be made professional enough this would be
+the preferred solution for the time being.
+
+It has to be stressed that this limitation isn't actually a limitation of the new
+concept but a limitation that emerges when interfacing with the old concept by
+exporting to applications that use the fixed timeline model. Therefore the
+ultimate solution would be to add all the functionality to the new application
+that a recording producer might need to professionally prepare a recording of
+classical music. Obviously this is a very ambitious idea, and not a really realistic
+one -- because it would basically mean to create a powerful application from scratch
+that can rival tools like \emph{Ardour} or \emph{ProTools} in their native domain.
+Therefore the goal should really be to find original solutions to streamline the
+interface to the lowlevel \textsc{dsp} \emph{processing} tools while keeping the new program on a
+higher, conceptual level of a user interface to \emph{manage} recorded material.
+
+
 
 \section{Collaborative Workflows}
 

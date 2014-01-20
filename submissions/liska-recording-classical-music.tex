@@ -295,16 +295,21 @@ group.
 
 \medskip
 Instead of inventing a new plain text file format or using some form of
-\textsc{xml} I suggest using the LilyPond%
+\textsc{xml} I suggest using LilyPond's%
 \footnote{\url{http://www.lilypond.org}}
-input language as the format for take files.
-We are talking about describing musical structures, and LilyPond offers a
-concise input language for just this.
-It offers a natural way to add annotations through commands at \emph{musical}
-moments while it's easy to link those to file position through command
-arguments.
-The LilyPond file format is very suitable for version control -- and we could
-even use LilyPond itself to engrave a final editing plan as a score.
+file format for storing take files.
+LilyPond is a plain text based score engraving application and offers a
+concise input language for describing musical structures.
+This language is very usable for version control because it has
+significantly less overhead than, say, \textsc{xml} formats.
+It is very straightforward to (programmatically) write a LilyPond file with the
+skeleton timing structure of the composition, while one can insert any
+kind of annotations through commands at \emph{musical} moments.
+These commands can then, for example, link the musical moment to an
+exact file position.
+Another possible application would be to use LilyPond to “engrave” the
+editing plan as a rhythmic score, indicating the used takes, their
+transitions or any additional comments.
 
 \section{Outlining an Application}
 

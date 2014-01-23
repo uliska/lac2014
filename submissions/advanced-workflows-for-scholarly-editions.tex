@@ -133,6 +133,52 @@ goes way beyond any scripting interfaces graphical tools may offer.
 ~\\\textbf{TODO:} Should this be written or left out?
 
 \subsection{Version Control}
+The possibility to maintain plain text files under \emph{version control} is maybe
+their most important aspect, at least in the context of this paper. Using version
+control for engraving and editing music opens a full range of collaborative workflows
+that will be the central topic of this paper.
+
+The following summary is intended to introduce readers to versioning who haven't any
+prior experience with it, but it in no way a beginner's guide. If you want more
+information please refer to Urs' essay or to one of the numerous introductions found
+on the internet.
+
+\subsubsection{Basic Ideas}
+
+\paragraph{Undo/Redo}
+On a very basic level you may understand version control as an infinitely flexible
+implementation of \emph{undo/redo} mechanisms. But different from the tools you will
+know from most programs this isn't restricted to chronologically undoing steps one by
+one. By contrast versioning allows you to inspect, revert or modify \emph{any} change
+individually.
+
+\paragraph{Line-by-line Comparison}
+The foundation of version control is the ability to compare a project directory's (also
+known as \emph{repository}) content \emph{line by line} and detect modifications on line
+level. This is also the reason why versioning only works on plain text files.
+Any modifications done during one editing session are packed as a changeset. An author
+can decide whether such a changeset comprises a day's work, a single modification or
+a coherent series of modifications.
+
+\paragraph{Project History}
+The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
+at any time inspect any changeset, revert or modify it, or she can set the whole project
+to that given state. This way it is easy to retrace the steps a project did to reach
+its current state. For example it's possible (for analysis or demonstration) to retrace
+one's steps and create PDF files from intermediate states.
+
+\paragraph{Branching}
+In a versioned project it is possible to work in \emph{branches}, which can be
+understood as a kind of separate working sessions. In the history of a project the chain
+of changesets branches to separate chains that (usually) are merged again at a later point.
+Work done on one branch doesn't affect work on other branches. For example if I have a
+score where the music is completely entered I'd do the scholarly revision in a separate
+branch so the main branch is never in an inconsistent, mixed state. Or if I start doing
+substantial technical revisions which I don't know they will succeed, I can safely do
+this within a branch without being afraid of messing up the whole project.
+
+\medskip
+But the most important potential of versioning is for collaborative workflows.
 
 \section{Collaboration}
 % Hands-on experiences from the Fried songs edition

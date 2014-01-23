@@ -217,17 +217,57 @@ This and the concept of the history allows multiple editors to work freely witho
 of stepping on each other's toes. For example one editor could proof-read lyrics while
 the engraver fine-tunes page layout.
 
-\subsection{Interaction Between Editor and Engraver}
+\subsection{Editor and Engraver}
 % It is actually a hot topic in scholarly discussion
 % to what extent the editor should also be an engraver.
 % Scholarly editions usually let the editor only provide
 % a model, while an engraver from the publishe prepares the
 % score. By contrast commercial publishers usually require
 % the editor to prepare a near-printable score document.
+Traditionally the tasks of the editor and the engraver were completely separated: the
+editor somehow prepared an \emph{engraver's copy}, the engraver engaved a metal plate,
+the editor did proof-reading, and the engraver finished the plates. In some contexts
+this is still common practice, particularly with scholarly edition institutes, whose
+editors usually don't do any engraving at all. On the other hand many commercial
+publishers expect the editor to deliver (nearly) print-ready files that can be
+finished in-house with minimal effort (and investment). However, all of these workflows
+share the fact that files (or plates) have to be passed around, with strict
+“locking strategies” in order to avoid data loss or conflicting situations. If an editor
+notices a wrong note she can't simply fix it in the score file but has to send the
+engraver an email asking him to apply the fix etc.
 
-\subsubsection{Peer Review}
+In a workflow based on plain text tools and versioning this is \emph{completely} different.
+Everybody works on the same shared data repository and has full access to any file at any
+time%
+\footnote{We don't want to say that role-based privileges aren't useful in many cases
+but want to stress the principal possibility here.}.
+Each collaborator can apply any modification because 
+\mbox{\emph{a)} this} won't compromise or lose data and
+\mbox{\emph{b)} any} modification is meticulously documented in the changesets.
+Particularly the latter aspect is important for the new workflow experience. If someone
+else edits a file I can see precisely what he did and when (so it's possible to say
+“Editor A fixed that pitch on Jan 23”, for example). And if \emph{I} edit files I can
+do this without hesitation, because I know the others can immediately see the changes
+and object to them if necessary.
 
-\subsubsection{Music entry}
+One consequence of these possibilities is that the tasks and responsibilities of
+(scholarly) editor and engraver can and will blur to some extent. If everybody has
+permanent access to the complete data repository tasks don't have to be separated as
+strictly as formerly. This makes a lot of sense because there usually are considerable
+intersections of skillsets. Urs as the scholarly editor \emph{does} have strong sense
+for typography, and Janek as the engraver \emph{does} have a sharp eye on details, so
+he'll notice issues with the musical text too. In a versioned workflow both can do
+as much of the other's task as both like and time allows, improving efficiency but also
+the quality of the result.
+
+When preparing our edition of Oskar Fried's songs this really boosted our work. Being
+able to inspect the other's work, to freely apply edits and not the least to encapsulate
+work in branches made us work much more straightforwardly. While we had to be
+extremely careful when still managing the Dropbox folder we could now just start working
+on any given issue. Sharing ideas and reviewing each other's work proved very inspiring
+and presumably raised the overall quality of our work. We wrote this several times, and
+it may sound like a buzz-phrase, but it's literally true: We can't imagine how we could
+have worked without these tools in our “earlier lives”.
 
 \subsubsection{Proof-reading}
 

@@ -85,6 +85,52 @@ so we can keep the general summaries quite short and concentrate on some specifi
 about our collaborative experiences.
 
 \subsection{Plain Text}
+Tools processing plain text files are fundamentally different from graphical
+\textsc{wysiwyg} programs, particularly regarding their file/document handling.
+Plain text files have characteristics which we consider fundamentally superior to
+binary (and maybe even proprietary) file formats. The key aspects are:
+
+\paragraph{Transparency:}
+Graphical programs using binary files don't give a clue on how they manage your input.
+Looking at an item in a graphical score editor one can't tell if this is placed by the
+automatic layout algorithms or tweaked manually. And \emph{if} it is tweaked manually,
+there is no way to see how the program handles that tweak, to which reference point it
+is bound etc.
+
+In a plain text file every aspect of the document is revealed, each tweak is explicitly
+present as written text. This doesn't only make a document file more transparent but also
+allows the editor to cleanly revert any tweak if she should manage to break anything
+through an inappropriate tweak.
+
+\paragraph{Separation of concerns:}
+A very important aspect of this transparency is the clean separation of content, meaning
+and appearance in plain text files. Through the use of explicit commands the content
+of a document is clearly marked up semantically, so that in an expression like
+\texttt{\textbackslash editorial Dots \{c4. d\}} it is clear that the \emph{content} (dots)
+in the music expression is given a \emph{meaning} (“editorial”), while this is completely
+independent from its graphical representation.
+
+\paragraph{Readability and Stability:}
+Plain text files are human readable, binary files are not. This simple statement has
+considerable implications on the handling of documents. When binary files get damaged
+(for example through disk failure) they are usually unusable completely. In plain text files
+on the other hand any single rescued character can be used to reconstruct the original
+document, even if it is directly read from the disk surface. The same is true for the
+aging and dying of programs and operating systems -- a natural process that plain text
+file formats can survive much better than binary ones.
+
+\paragraph{Editor independence:}
+Plain text tools separate the tasks of editing, processing and displaying documents,
+making it possible to choose different tools for different tasks. Plain text files
+can principally be edited with \emph{any} text editor, which opens a wide array of
+workflow options, for example editing on smartphones or through web interfaces.
+
+An extreme example of an “editor” would be a programming language. Plain text files can
+be edited or generated programmatically, opening up yet more options. This programmability
+goes way beyond any scripting interfaces graphical tools may offer.
+
+\paragraph{Compiling vs. Instant Feedback:}
+~\\\textbf{TODO:} Should this be written or left out?
 
 \subsection{Version Control}
 

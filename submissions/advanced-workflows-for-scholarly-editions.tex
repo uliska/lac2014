@@ -181,8 +181,41 @@ this within a branch without being afraid of messing up the whole project.
 But the most important potential of versioning is for collaborative workflows.
 
 \section{Collaboration}
-% Hands-on experiences from the Fried songs edition
-% This is the core of the paper
+As mentioned earlier we made the step to version control halfway through our edition
+project. Initially we maintained our project in a shared Dropbox folder, which already
+enabled us to edit \emph{shared files} instead of having to exchange them via email --
+which would have been plainly impossible with several hundred files. But this too
+became nearly unmanageable because everybody had to scrupulously take care not to
+overwrite a file that had been in the meantime been modified by someone else. We were
+constantly making backups to prevent any serious data loss by such a mistake. But even
+\emph{if} we were going to recover from a loss through our backups it would be complicated
+to exactly restore everybody's differing work. This is where managing the project with Git%
+\footnote{Git (\url{http://git-scm.com}) is one of many available version control systems.
+As it is the one we used, any terms refer to Git's usage in case of doubt.}
+made our lives \emph{significantly} easier!
+
+\subsection{Distributed Work}
+Git is a \textsl{distributed VCS} (version control system), and as such every collaborator
+has a local copy of the complete repository%
+\footnote{In centralised VCS such as CVS or Subversion there is only one central repository,
+and any collaborator has to \emph{checkout} a given state of the project to work on.}.
+This contains the full project history, and she can work locally without any restrictions.
+Contacting the repository on the server is only necessary to synchronize by downloading
+others' work, merging it with one's own and uploading the result.
+
+It is even possible to have multiple remote repositories and to interact directly
+between collaborators, avoiding the “central“ repository completely. This will be part
+of a later section, for now we'll stick to the concept of one shared repository.
+
+One of the main advantages of version control is the line-based comparison mentioned above.
+This makes it possible to edit files \emph{simultaneously}, without any need for “locking”
+files or similar workflow restrictions. As soon as parallel work is combined Git compares
+the different states line by line and transparently merges everything that doesn't cause
+“conflicts“. If such a conflict occurs, presumably because two editors have modified the
+same line in a file, the system offers straightforward ways to resolve them manually.
+This and the concept of the history allows multiple editors to work freely without the risk
+of stepping on each other's toes. For example one editor could proof-read lyrics while
+the engraver fine-tunes page layout.
 
 \subsection{Interaction Between Editor and Engraver}
 % It is actually a hot topic in scholarly discussion

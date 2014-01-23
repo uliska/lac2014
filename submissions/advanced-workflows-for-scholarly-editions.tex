@@ -3,9 +3,13 @@
 \sloppy
 \newenvironment{contentsmall}{\small}
 
+% This package contains some stylings for the CFP in its submission form.
+% For any further use (e.g. in proceedings) it can safely be commented.
 \usepackage{ulCFPstyles}
 
-\title{Version Controla and Collaborative Workflows for Scholarly Editions}
+\usepackage{hyperref}
+
+\title{Version Control In Scholarly Editions}
 
 %see lac2012.sty for how to format multiple authors!
 \author
@@ -22,14 +26,12 @@
 
 \begin{abstract}
 \begin{contentsmall}
-Plain text based tools and version control offer unique and fundamental advantages over
-graphical approaches when preparing scholarly editions.
-But it is difficult to convince musicologists, engravers and publishers getting their hands
-dirty with source code.
-
-This paper presents our experiences with two complex edition projects and outlines
-how we are striving towards an ideal working environment by extending our favorite tools LilyPond
-and LaTeX with specific solutions.
+A discussion of the role plain text based tools can play in the preparation of
+scholarly editions. This paper is based on the authors' experience with an
+edition prepared with LilyPond and \LaTeX, as well as the prospects with
+another edition currently in preparation.
+Focus is on collaborative workflows powered by version control -- a concept that
+is to our knowledge nearly non-existent in current scholarly work,
 
 \end{contentsmall}
 \end{abstract}

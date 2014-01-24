@@ -258,7 +258,9 @@ intersections of skillsets. Urs as the scholarly editor \emph{does} have strong 
 for typography, and Janek as the engraver \emph{does} have a sharp eye on details, so
 he'll notice issues with the musical text too. In a versioned workflow both can do
 as much of the other's task as both like and time allows, improving efficiency but also
-the quality of the result.
+the quality of the result. We think this option can have significant impact in today's
+discussion of the relation between editor and engraver or editor, edition institute and
+(commercial) publisher.
 
 When preparing our edition of Oskar Fried's songs this really boosted our work. Being
 able to inspect the other's work, to freely apply edits and not the least to encapsulate
@@ -269,6 +271,33 @@ and presumably raised the overall quality of our work. We wrote this several tim
 it may sound like a buzz-phrase, but it's literally true: We can't imagine how we could
 have worked without these tools in our “earlier lives”.
 
+Particularly the last phase of the project was very revealing. We had to do our final
+proof-reading round after the scores were finished from the typographical perspective.
+(Well, this was partly due to suboptimal planning on our part, but one will have this
+situation nearly always to some extent.) Modifying a score that has already been tweaked
+to perfection is a very delicate task because any change of the musical text can
+severly mess up the layout. Fortunately LilyPond performed extremely well in this regard%
+\footnote{\url{http://lilypondblog.org/2013/11/modifying-already-beautified-scores/}},
+but version control made the process less daunting by magnitudes.
+Urs applied fixes to the errors that he and his fellow musicologist found himself (instead
+of having to ask Janek to do so) and wrapped each single edit in an individual \emph{commit}%
+\footnote{“Commit” is Git's term for a changeset.},
+using the commit message as a convenient place to document his opinion on the necessity of
+typographic follow-up fixes. Janek could then inspect the chain of messages so he
+immediately knew where to look particularly carefully. This ensured that no unintended
+side-effect of edits would go unnoticed, making us quite relaxed as soon as we realized
+that it really worked out. This situation even allowed Urs to apply or at least prepare
+typographic fixes himself, knowing he didn't irreversibly mess anything up and that Janek
+could easily identify and revert any change.
+Maybe even more important was the fact that we could wrap all this work in separate branches.
+The edition comprises 26 songs, and as all of them were handled in individual branches
+we could freely work on whichever song was currently convenient, switching context at
+will. Urs created a branch for any given song and added only the relevant commits to it.
+When ready with that he handed the torch to Janek who would then check everything and
+finally merge this branch to the main line again. This way we \emph{always} had the project
+as a whole in a consistent state and were able to juggle our tasks around without and fear
+and hesitation.
+
 \subsection{Maintainability After Publication}
 One more aspect to using plain text tools is also based on the meticulous documentation
 of the project history. If the source code is written decently from the start it is
@@ -277,7 +306,7 @@ As each fix or improvement will be stored in a changeset you can apply any chang
 without messing up anything. There will always be a detailed record about which
 changes have been added since publication, or between any given two prints. This is
 particularly interesting with today's printing-on-demand strategies where new “runs”
-may be released after only a few copies.
+may be “released” after only a few copies.
 
 
 \subsection{Miscellaneous Tools}

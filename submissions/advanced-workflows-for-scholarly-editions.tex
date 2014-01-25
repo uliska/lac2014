@@ -330,13 +330,47 @@ Describe our experience and make some suggestions on \emph{efficiently} making u
 of the different approaches.
 \end{itemize}
 
-\subsection{Crowd Editing}
+\section{Crowd Editing}
+In the previous section we've talked about the positive impact that version control
+has on the conception of collaborative work. While we were actually two people
+working together this concept can easily be extended to more involved people.
+Apart from improving traditional editing workflows this can be used to create a
+completely new approach to editing scores which we'd give the buzz-phrase \emph{crowd
+editing}. If any number of people can participate in a project under version control
+this can easily be exploited to distribute the work among a “crowd” of contributors.
+Different from the concept of having distinct roles that tend to blur through the
+collaborative approach there can be numerous people doing essentially the same kind
+of work in parallel, effectively “clustering” manpower. While we're convinced that
+in most cases it won't make sense to rely completely on the swarm intelligence (so
+you should still have a firm project leadership) and that this won't reduce the
+absolute number of hours spent on a project, it can significantly reduce the overall
+time to deliver by distributing these hours to be done in parallel.
 
-\subsubsection{Music entry}
+\subsection{Music entry}
+Music entry is a field that can straightforwardly be distributed among a large number
+of contributors. You only need a few things to make this a reliable process: a common
+understanding or a set of rules of coding style (e.\,g. indentation, amount of
+comments, of barchecks etc.) and a usable communication infrastructure to keep track
+of who is working on what. Appropriate tools for this are assignments that can be done in
+issue trackers or on card like on a Trello board. This way the whole material can be
+effectively divided through the number of available contributors.
 
-\subsubsection{Peer Review}
+\subsection{Proof-reading and Peer Review}
+Version control encourages peer review workflows on all stages of a project's lifecycle.
+It is not necessary to do peer review on more or less finished work, but it can be an
+integral part of the process. A natural place to hook in is when merging working branches
+into the main line. For example one can require the merge to be done by a different
+collaborator than the one who did the work. For music entry it would for example be
+appropriate to enter a certain amount of music and then ask someone else to review and
+merge it. This ensures that only reviewed material goes into the project right from the
+start. While this won't make a final proof-reading obsolete it will definitely improve
+the overall quality of the result.
 
-\subsubsection{Proof-reading}
+Online services like Github or Bitbucket provide \emph{pull requests} as a very convenient
+tool for this concept. Whenever a branch has changed and differs from others one can
+open a pull request, which will be a publicly visible announcement that would like changes
+to be incorporated into the main line. The pull request can then be inspected, discussed,
+modified and finally merged or rejected.
 
 \subsubsection{Beautification}
 

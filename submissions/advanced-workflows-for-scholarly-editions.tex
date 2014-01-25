@@ -72,52 +72,41 @@ originally made possible by version control. We also wrote a number of blog post
 \footnote{\url{http://lilypondblog.org/category/fried-songs}}
 which you may enjoy as additional reading.
 
-\section{Fundamentals}
+\section{Plain Text Fundamentals}
 Editing plain text source files is a daunting task for people not used to it.
-A majority of musicians, musicologists or music engravers are frightened when
+Many musicians, musicologists or music engravers are frightened when
 confronted with a LilyPond input file, and often they have strong reservations
 against the “nerdy” stuff. They want to \emph{see} what they're doing instead of entering
 markup. However, plain text workflows offer substantial advantages over \textsc{wysiwyg}
 approaches, and this is what we're going to talk about in this paper. Urs has written
 an extensive essay on the subject%
 \footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}
-so we can keep the general summaries quite short and concentrate on some specific stuff
+so we can keep the general summary concise and concentrate on some specific stuff
 about our collaborative experiences.
 
-\subsection{Plain Text}
-Tools processing plain text files are fundamentally different from graphical
-\textsc{wysiwyg} programs, particularly regarding their file/document handling.
-Plain text files have characteristics which we consider fundamentally superior to
-binary (and maybe even proprietary) file formats. The key aspects are:
+\subsection{Plain Text Files}
+Plain text file formats are fundamentally different from binary file formats often
+used by graphical \textsc{wysiwyg} programs. They have characteristics which we consider fundamentally superior. The key aspects are:
 
 \paragraph{Transparency:}
-Graphical programs using binary files don't give a clue on how they manage your input.
-Looking at an item in a graphical score editor one can't tell if this is placed by the
-automatic layout algorithms or tweaked manually. And \emph{if} it is tweaked manually,
-there is no way to see how the program handles that tweak, to which reference point it
-is bound etc.
+Plain text files reveal every aspect of their content, everything is explicitly written
+and readable. Anybody can inspect it and see what has been entered and if and how it is
+manually tweaked. 
 
-In a plain text file every aspect of the document is revealed, each tweak is explicitly
-present as written text. This doesn't only make a document file more transparent but also
-allows the editor to cleanly revert any tweak if she should manage to break anything
-through an inappropriate tweak.
+Binary files are opaque and conceal how they manage your input. They can only be
+interpreted by their original programs or by programs that have specific input filters.
 
 \paragraph{Separation of concerns:}
-A very important aspect of this transparency is the clean separation of content, meaning
-and appearance in plain text files. Through the use of explicit commands the content
-of a document is clearly marked up semantically, so that in an expression like
-\texttt{\textbackslash editorial Dots \{c4. d\}} it is clear that the \emph{content} (dots)
-in the music expression is given a \emph{meaning} (“editorial”), while this is completely
-independent from its graphical representation.
+The explicit nature of plain text files provides a clean separation of content, meaning
+and appearance. Through the use of explicit commands the content
+of a document is clearly marked up semantically while this \emph{meaning} is completely
+independent from its visual \emph{appearance}.
 
 \paragraph{Readability and Stability:}
 Plain text files are human readable, binary files are not. This simple statement has
-considerable implications on the handling of documents. When binary files get damaged
-(for example through disk failure) they are usually unusable completely. In plain text files
-on the other hand any single rescued character can be used to reconstruct the original
-document, even if it is directly read from the disk surface. The same is true for the
-aging and dying of programs and operating systems -- a natural process that plain text
-file formats can survive much better than binary ones.
+considerable implications. Plain text files can be recovered to a much greater extent
+than binary files after being damaged. And they are (at least conceptually) much better
+equipped for evolution of applications and operating systems.
 
 \paragraph{Editor independence:}
 Plain text tools separate the tasks of editing, processing and displaying documents,
@@ -125,23 +114,10 @@ making it possible to choose different tools for different tasks. Plain text fil
 can principally be edited with \emph{any} text editor, which opens a wide array of
 workflow options, for example editing on smartphones or through web interfaces.
 
-An extreme example of an “editor” would be a programming language. Plain text files can
-be edited or generated programmatically, opening up yet more options. This programmability
-goes way beyond any scripting interfaces graphical tools may offer.
-
-\paragraph{Compiling vs. Instant Feedback:}
-~\\\textbf{TODO:} Should this be written or left out?
-
 \subsection{Version Control}
-The possibility to maintain plain text files under \emph{version control} is maybe
-their most important aspect, at least in the context of this paper. Using version
-control for engraving and editing music opens a full range of collaborative workflows
-that will be the central topic of this paper.
-
-The following summary is intended to introduce readers to versioning who haven't any
-prior experience with it, but it in no way a beginner's guide. If you want more
-information please refer to Urs' essay or to one of the numerous introductions found
-on the internet.
+The possibility to maintain plain text files under \emph{version control} is on of
+their most important aspects. Using version control for engraving and editing music
+opens a full range of collaborative workflows.
 
 \subsubsection{Basic Ideas}
 
@@ -149,36 +125,30 @@ on the internet.
 On a very basic level you may understand version control as an infinitely flexible
 implementation of \emph{undo/redo} mechanisms. But different from the tools you will
 know from most programs this isn't restricted to chronologically undoing steps one by
-one. By contrast versioning allows you to inspect, revert or modify \emph{any} change
+one. By contrast versioning allows you to inspect, revert or modify \emph{any} state
 individually.
 
 \paragraph{Line-by-line Comparison}
 The foundation of version control is the ability to compare a project directory's (also
 known as \emph{repository}) content \emph{line by line} and detect modifications on line
 level. This is also the reason why versioning only works on plain text files.
-Any modifications done during one editing session are packed as a changeset. An author
-can decide whether such a changeset comprises a day's work, a single modification or
-a coherent series of modifications.
+Any modifications done during one editing session are packed as a \emph{changeset} and
+can be accessed as a unit.
 
 \paragraph{Project History}
 The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
 at any time inspect any changeset, revert or modify it, or she can set the whole project
-to that given state. This way it is easy to retrace the steps a project did to reach
-its current state. For example it's possible (for analysis or demonstration) to retrace
-one's steps and create PDF files from intermediate states.
+to that given state. This makes it possible to retrace the steps of a project.
 
 \paragraph{Branching}
 In a versioned project it is possible to work in \emph{branches}, which can be
-understood as a kind of separate working sessions. In the history of a project the chain
-of changesets branches to separate chains that (usually) are merged again at a later point.
-Work done on one branch doesn't affect work on other branches. For example if I have a
-score where the music is completely entered I'd do the scholarly revision in a separate
-branch so the main branch is never in an inconsistent, mixed state. Or if I start doing
-substantial technical revisions which I don't know they will succeed, I can safely do
-this within a branch without being afraid of messing up the whole project.
+understood as a kind of separate working sessions. Work done on one branch doesn't affect
+work on other branches. So the main line of the project can always be kept in a consistent
+state.
 
 \medskip
 But the most important potential of versioning is for collaborative workflows.
+
 
 \section{Collaboration}
 As mentioned earlier we made the step to version control halfway through our edition

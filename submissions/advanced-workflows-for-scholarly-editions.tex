@@ -146,23 +146,53 @@ understood as a kind of separate working sessions. Work done on one branch doesn
 work on other branches. So the main line of the project can always be kept in a consistent
 state.
 
-\medskip
-But the most important potential of versioning is for collaborative workflows.
+\section{Structuring the Project}
 
+\subsection{Libraries}
+Plain text file formats provide ways to reference variables or custom
+commands and to store these in files that can be included from the
+main files. This way one can create libraries of project-wide code
+that make the the project consistent. Style sheets and commands are
+maintained on a global level, and any modifications automatically
+affect all documents or scores.
 
-\section{Collaboration}
-As mentioned earlier we made the step to version control halfway through our edition
-project. Initially we maintained our project in a shared Dropbox folder, which already
-enabled us to edit \emph{shared files} instead of having to exchange them via email --
-which would have been plainly impossible with several hundred files. But this too
-became nearly unmanageable because everybody had to scrupulously take care not to
-overwrite a file that had been in the meantime been modified by someone else. We were
-constantly making backups to prevent any serious data loss by such a mistake. But even
-\emph{if} we were going to recover from a loss through our backups it would be complicated
-to exactly restore everybody's differing work. This is where managing the project with Git%
+\subsection{Programming}
+Plain text tools like LilyPond and \LaTeX{} offer a level of programmability that
+goes beyond usual scripting interfaces (like e.\,g. VBA). Commands may simply apply
+some formatting or perform complex operations on multiple arguments.
+Programming is a useful method to enforce, say, typographic consistence, but it can
+also be used to “handle data”.
+
+One interesting use of these possibilities is to create different output for work and for
+publication. Elements can be highlighted through coloring (e.\,g. editorial additions)
+or laid out completely differently (e.\,g. the entries for the critical report) to be
+more practical to use while still in the editing process.
+
+\subsection{Mix Music and Text}
+LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}
+provides several convenient ways of professionally incorporating Scores or music examples,
+by now there is \texttt{lilyglyphs}%
+\footnote{\url{http://ctan.org/pkg/lilyglyphs}}
+available to include \emph{any} notational symbols in continuous text -- and both
+can be maintained under version control.
+
+Using \texttt{make} can be a convenient tool to automatically produce a newly compiled
+volume when individual scores have changed -- or to enforce unit tests before merging
+new work.
+
+\section{Collaboration}\label{sec:collaboration}
+A basic and commonly used way to collaborate on documents is sharing them by email.
+While this may seem convenient it yields severe risks. Other than in former times this
+creates copies of the documents, and avoiding conflicts through simultaneous editing can
+become very complex. Using some shared location on a server is definitely an improvement
+because collaborators edit the same files. Nevertheless this requires careful file locking
+strategies and becomes hardly manageable with three-digit numbers of files and more than
+two collaborators.
+
+This is where managing the project with version control%
 \footnote{Git (\url{http://git-scm.com}) is one of many available version control systems.
-As it is the one we used, any terms refer to Git's usage in case of doubt.}
-made our lives \emph{significantly} easier!
+If in doubt any terms in this paper refer to Git's usage.}
+comes into play
 
 \subsection{Distributed Work}
 Git is a \textsl{distributed VCS} (version control system), and as such every collaborator
@@ -342,12 +372,6 @@ open a pull request, which will be a publicly visible announcement that would li
 to be incorporated into the main line. The pull request can then be inspected, discussed,
 modified and finally merged or rejected.
 
-\subsection{Internal Programmability}
-Plain text tools like LilyPond and \LaTeX{} offer a level of programmability that goes
-beyond anything scripting tools can do for word processors or graphical notation programs.
-This is because it is built in to the core of the tools. A simple
-markup command highlighting text is created the same way as a complex
-command including an image with a caption.
 
 \section{Conclusions}\label{sec:conclusions}
 

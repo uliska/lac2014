@@ -170,7 +170,7 @@ more practical to use while still in the editing process.
 
 \subsection{Mix Music and Text}
 LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}
-provides several convenient ways of professionally incorporating Scores or music examples,
+provides several convenient ways of professionally incorporating scores or music examples,
 by now there is \texttt{lilyglyphs}%
 \footnote{\url{http://ctan.org/pkg/lilyglyphs}}
 available to include \emph{any} notational symbols in continuous text -- and both
@@ -182,8 +182,9 @@ new work.
 
 \section{Collaboration}\label{sec:collaboration}
 A basic and commonly used way to collaborate on documents is sharing them by email.
-While this may seem convenient it yields severe risks. Other than in former times this
-creates copies of the documents, and avoiding conflicts through simultaneous editing can
+While this may seem convenient it yields severe risks. While in former times physical
+copies had been sent around, nowadays you can create numerous virtual copies of
+the documents, and avoiding conflicts through simultaneous editing can
 become very complex. Using some shared location on a server is definitely an improvement
 because collaborators edit the same files. Nevertheless this requires careful file locking
 strategies and becomes hardly manageable with three-digit numbers of files and more than
@@ -195,27 +196,16 @@ If in doubt any terms in this paper refer to Git's usage.}
 comes into play.
 
 \subsection{Distributed Work}
-Git is a \textsl{distributed VCS} (version control system), and as such every collaborator
-has a local copy of the complete repository%
-\footnote{In centralised VCS such as CVS or Subversion there is only one central repository,
-and any collaborator has to \emph{checkout} a given state of the project to work on.}.
-This contains the full project history, and she can work locally without any restrictions.
+In a \textsl{distributed VCS} (version control system), every collaborator
+has a local copy of the complete repository and can work freely on that.
 Contacting the repository on the server is only necessary to synchronize by downloading
 others' work, merging it with one's own and uploading the result.
 
-It is even possible to have multiple remote repositories and to interact directly
-between collaborators, avoiding the “central“ repository completely. This will be part
-of a later section, for now we'll stick to the concept of one shared repository.
-
-One of the main advantages of version control is the line-based comparison mentioned above.
-This makes it possible to edit files \emph{simultaneously}, without any need for “locking”
-files or similar workflow restrictions. As soon as parallel work is combined Git compares
-the different states line by line and transparently merges everything that doesn't cause
-“conflicts“. If such a conflict occurs, presumably because two editors have modified the
-same line in a file, the system offers straightforward ways to resolve them manually.
-This and the concept of the history allows multiple editors to work freely without the risk
-of stepping on each other's toes. For example one editor could proof-read lyrics while
-the engraver fine-tunes page layout.
+As this merging is performed based on line-by-line comparison chances of running into
+conflicting situations are rather small. And \emph{if} they should occur there are
+straightforward ways to recover from the situation. Therefore it is possible to edit files
+\emph{simultaneously}, without any need for “locking” files or similar workflow
+restrictions. This and the concept of the history allows multiple editors to work freely without the risk of stepping on each other's toes. 
 
 \subsection{Editor and Engraver}
 % It is actually a hot topic in scholarly discussion
@@ -225,10 +215,10 @@ the engraver fine-tunes page layout.
 % score. By contrast commercial publishers usually require
 % the editor to prepare a near-printable score document.
 Traditionally the tasks of the editor and the engraver were completely separated: the
-editor somehow prepared an \emph{engraver's copy}, the engraver engaved a metal plate,
+editor somehow prepared an \emph{engraver's copy}, the engraver engraved a metal plate,
 the editor did proof-reading, and the engraver finished the plates. In some contexts
 this is still common practice, particularly with scholarly edition institutes, whose
-editors usually don't do any engraving at all. On the other hand many commercial
+editors often don't do any engraving at all. On the other hand many commercial
 publishers expect the editor to deliver (nearly) print-ready files that can be
 finished in-house with minimal effort (and investment). However, all of these workflows
 share the fact that files (or plates) have to be passed around, with strict
@@ -315,26 +305,47 @@ Actually it doesn't substantially add anything to the collaboration point,
 but of course it adds to the general advantages for creating editions.
 
 \subsection{Miscellaneous Tools}
-In the context of collaborative workflows we also have to discuss further tools that
-can be used to enhance the working experience.
+Apart from version control and plain text based programs there are several tools that
+can be used to enhance the “collaborative experience”.
 
-\begin{itemize}
-\item Github/Bitbucket\\
-particularly pull requests and web interface
-\item issue tracker\\
-particularly when linked to commit messages
-\item Trello\\
-and other list based services
-\item Relation between email/forum/trello/issue tracker communication\\
-Describe our experience and make some suggestions on \emph{efficiently} making use
-of the different approaches.
-\end{itemize}
+\paragraph{Version Control Service Providers}
+While you can run a version control system on your own server there are several online service providers offering useful tools. In addition to plain data exchange they
+provide convenient web interfaces that \emph{can} simplify your life even more.
+
+Of course you will often want to edit your files in dedicated editing environments
+it \emph{is} a very nice feature to apply small edits to files through the web interface
+of a service provider. You can do a quick fix sitting in an internet café etc.
+
+One particularly useful concept in that context are \emph{forks} and \emph{pull requests}.
+They can be used perfectly to organize peer review workflows by allowing work to be
+integrated to the main line only after review through people with appropriate privileges.
+
+\paragraph{Issue Trackers}
+In software development projects it is a matter of course to use \emph{issue trackers.}
+These tools \emph{keep track} of tasks, issues or bugs, helping you not to lose important
+tasks along the way. Of course this is also a good idea for scholarly editions. Issue
+trackers can be used to assign issues to people, or categorize and prioritize tasks.
+They can be very valuable for relentlessly insisting on perfection.
+
+\paragraph{List service providers}
+There are services offering project management through a list metaphor. They use “cards”
+as their interface that are arranged on boards one way or another. Similar to issue trackers
+you can assign items to people, comment on and discuss them and finally mark them as “done”.
+
+In contrast to issue trackers these services are usually more “agile” and easy to use, as
+they usually display many cards at once and offer realtime collaboration with other
+team members. But the drawback of this agility is that it is also volatile. If the project
+requires reliable archiving of past events and issue, list apps usually aren't first choice.
+
+\medskip
+Apart from these tools there are the options to use good old email as a communication channel, mailing lists and forums. Each solution has their merits and problems, very often both are related to the same issues: Documentation and Access
+
 
 \section{Crowd Editing}
 In the previous section we've talked about the positive impact that version control
 has on the conception of collaborative work. While we were actually two people
-working together this concept can easily be extended to more involved people.
-Apart from improving traditional editing workflows this can be used to create a
+working together this concept can easily be extended to a larger number of people
+involved. Apart from improving traditional editing workflows this can be used to create a
 completely new approach to editing scores which we'd give the buzz-phrase \emph{crowd
 editing}. If any number of people can participate in a project under version control
 this can easily be exploited to distribute the work among a “crowd” of contributors.
@@ -344,25 +355,24 @@ of work in parallel, effectively “clustering” manpower. While we're convince
 in most cases it won't make sense to rely completely on the swarm intelligence (so
 you should still have a firm project leadership) and that this won't reduce the
 absolute number of hours spent on a project, it can significantly reduce the overall
-time to deliver by distributing these hours to be done in parallel.
+delivery time by distributing these hours to be done in parallel.
 
 \subsection{Music entry}
 Music entry is a field that can straightforwardly be distributed among a large number
-of contributors. You only need a few things to make this a reliable process: a common
-understanding or a set of rules of coding style (e.\,g. indentation, amount of
-comments, of barchecks etc.) and a usable communication infrastructure to keep track
-of who is working on what. Appropriate tools for this are assignments that can be done in
-issue trackers or on card like on a Trello board. This way the whole material can be
+of contributors. Essentially all you need to make this a reliable process is a usable
+communictaion infrastructre to avoide duplicate work.
+Appropriate tools for this are assignments that can be done in issue trackers or on
+virtual cards like on a Trello board. This way the whole material can be
 effectively divided through the number of available contributors.
 
 \subsection{Proof-reading and Peer Review}
 Version control encourages peer review workflows on all stages of a project's lifecycle.
-It is not necessary to do peer review on more or less finished work, but it can be an
-integral part of the process. A natural place to hook in is when merging working branches
-into the main line. For example one can require the merge to be done by a different
-collaborator than the one who did the work. For music entry it would for example be
-appropriate to enter a certain amount of music and then ask someone else to review and
-merge it. This ensures that only reviewed material goes into the project right from the
+It is not necessary to wait for peer review until work is more or less finished, but it can be an integral part of the process instead. A natural place to hook in is when merging
+working branches into the main line. For example one can require the merge to be done by
+a different collaborator than the one who did the work. For music entry it would for
+example be appropriate to enter a certain amount of music and then ask someone else
+to review and merge it.
+This ensures that only reviewed material goes into the project right from the
 start. While this won't make a final proof-reading obsolete it will definitely improve
 the overall quality of the result.
 

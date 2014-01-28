@@ -188,34 +188,31 @@ together. Urs has written an extensive essay on the subject%
 so we will keep the general summary rather concise.
 
 \subsection{Version Control}
-The possibility to maintain plain text files under \emph{version control} is on of
-their most important aspects. Using version control for engraving and editing music
-opens a full range of collaborative workflows.
+Using version control for engraving and editing music opens a full range of collaborative
+workflows. This is achieved through a number of fundamental concepts.
 
 \paragraph{Undo/Redo}
 On a very basic level you may understand version control as an infinitely flexible
-implementation of \emph{undo/redo} mechanisms. But different from the tools you will
+implementation of \emph{undo/redo} mechanisms. But different from respective tools you will
 know from most programs this isn't restricted to chronologically undoing steps one by
-one. By contrast versioning allows you to inspect, revert or modify \emph{any} state
+one. By contrast versioning allows you to inspect, revert or modify \emph{any} modification
 individually.
-
-\paragraph{Line-by-line Comparison}
-The foundation of version control is the ability to compare a project directory's (also
-known as \emph{repository}) content \emph{line by line} and detect modifications on line
-level. This is also the reason why versioning only works on plain text files.
-Any modifications done during one editing session are packed as a \emph{changeset} and
-can be accessed as a unit.
 
 \paragraph{Project History}
 The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
-at any time inspect any changeset, revert or modify it, or she can set the whole project
-to that given state. This makes it possible to retrace the steps of a project.
+at any time inspect any changeset, revert or modify it, or the whole project can be
+temporarily set to any given state. This makes it possible to fully retrace the steps
+of a project.
 
 \paragraph{Branching}
 In a versioned project it is possible to work in \emph{branches}, which can be
 understood as a kind of separate working sessions. Work done on one branch doesn't affect
-work on other branches. So the main line of the project can always be kept in a consistent
-state.
+work on other branches. So multiple topics can be worked on at the same time, while
+the main line of the project can always be kept in a consistent state.
+
+\paragraph{Line-by-line Comparison}
+The foundation of version control is the ability to compare a project directory's (also
+known as \emph{repository}) content \emph{line by line}. Therefore files don't have to be locked for editing because modifications are detected on line level.
 
 \subsection{Plain Text Files}
 Plain text file formats are fundamentally different from binary file formats often

@@ -5,7 +5,7 @@
 
 % This package contains some stylings for the CFP in its submission form.
 % For any further use (e.g. in proceedings) it can safely be commented.
-\usepackage{ulCFPstyles}
+%\usepackage{ulCFPstyles}
 
 \usepackage{hyperref}
 
@@ -42,7 +42,7 @@ Musical engraving, scholarly editions, version control, workflows.
 \end{contentsmall}
 }
 
-\section{Introduction}
+\section{Introduction -- Our Story}
 Recently we published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
 \footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}.
 It was realized with a small team of only two musicologists (Urs Liska and Alexander
@@ -54,7 +54,9 @@ engraver.
 
 While it was clear right from the start that we'd use Lilypond%
 \footnote{\url{http://www.lilypond.org}} as the notation program we only decided
-halfway through the project to use \emph{versioning} to organize the plain text input
+
+Halfway through the project we decided to start using \emph{versioning} to organize
+the plain text input
 files LilyPond processes. This went along with the decision to use \LaTeX{} to compile
 text and scores to a contigious volume.
 
@@ -71,6 +73,52 @@ originally made possible by version control. We also wrote a number of blog post
 \emph{Scores of Beauty}%
 \footnote{\url{http://lilypondblog.org/category/fried-songs}}
 which you may enjoy as additional reading.
+
+\section{The Problem}
+So, what exactly is wrong with current music editing tools and workflows?  Well, several things:
+
+\subsection{You Have To Be Careful}
+opaqueness of binary files
+easy to miss changes
+safety and cheapness of experimenting
+
+\subsection{There's a Lot on Your Head}
+keeping track of TODOs - was this done or not?
+keeping track of what changed, esp. in bigger projects
+critical notes and TODOs separated from content
+inconsistent states of work  -> branches
+
+\subsection{Your Workflow Isn't Flexible}
+music entry must be done in order
+work must be done in a specific order
+editors cannot make corrections
+you have to wait until some issues are finished to progress
+
+\subsection{Some Things Are Just Pain in the ...}
+not easy to create multiple versions
+
+\subsection{Underlying causes}
+lack of parallelism caused by lack of merges
+
+
+\section{The Solution}
+
+\subsection{Version Control}
+It allows stuff to be done in parallel because it allows to merge worked
+
+\subsection{Plain text}
+Plain text is what makes version control work effectively
+(1-paragraph explanations)
+
+\subsection{Does it really work?}
+
+\paragraph{Before version control:}
+I wrote "never beautify more than 2 songs at once"
+
+\paragraph{After version control:}
+we were working on 26 songs in parallel, no sweat.
+
+In the rest of the paper we explain in detail how all this works.
 
 \section{Plain Text Fundamentals}
 Editing plain text source files is a daunting task for people not used to it.

@@ -136,42 +136,10 @@ an extensive essay on the subject%
 so we can keep the general summary concise and concentrate on some specific stuff
 about our collaborative experiences.
 
-\subsection{Plain Text Files}
-Plain text file formats are fundamentally different from binary file formats often
-used by graphical \textsc{wysiwyg} programs. They have characteristics which we consider fundamentally superior. The key aspects are:
-
-\paragraph{Transparency:}
-Plain text files reveal every aspect of their content, everything is explicitly written
-and readable. Anybody can inspect it and see what has been entered and if and how it is
-manually tweaked. 
-
-Binary files are opaque and conceal how they manage your input. They can only be
-interpreted by their original programs or by programs that have specific input filters.
-
-\paragraph{Separation of concerns:}
-The explicit nature of plain text files provides a clean separation of content, meaning
-and appearance. Through the use of explicit commands the content
-of a document is clearly marked up semantically while this \emph{meaning} is completely
-independent from its visual \emph{appearance}.
-
-\paragraph{Readability and Stability:}
-Plain text files are human readable, binary files are not. This simple statement has
-considerable implications. Plain text files can be recovered to a much greater extent
-than binary files after being damaged. And they are (at least conceptually) much better
-equipped for evolution of applications and operating systems.
-
-\paragraph{Editor independence:}
-Plain text tools separate the tasks of editing, processing and displaying documents,
-making it possible to choose different tools for different tasks. Plain text files
-can principally be edited with \emph{any} text editor, which opens a wide array of
-workflow options, for example editing on smartphones or through web interfaces.
-
 \subsection{Version Control}
 The possibility to maintain plain text files under \emph{version control} is on of
 their most important aspects. Using version control for engraving and editing music
 opens a full range of collaborative workflows.
-
-\subsubsection{Basic Ideas}
 
 \paragraph{Undo/Redo}
 On a very basic level you may understand version control as an infinitely flexible
@@ -197,6 +165,36 @@ In a versioned project it is possible to work in \emph{branches}, which can be
 understood as a kind of separate working sessions. Work done on one branch doesn't affect
 work on other branches. So the main line of the project can always be kept in a consistent
 state.
+
+\subsection{Plain Text Files}
+Plain text file formats are fundamentally different from binary file formats often
+used by graphical \textsc{wysiwyg} programs. They have characteristics which we consider fundamentally superior. The key aspects are:
+
+\paragraph{Transparency:}
+Plain text files reveal every aspect of their content, everything is explicitly written
+and readable. Anybody can inspect it and see what has been entered and if and how it is
+manually tweaked.
+
+Binary files are opaque and conceal how they manage your input. They can only be
+interpreted by their original programs or by programs that have specific input filters.
+
+\paragraph{Separation of concerns:}
+The explicit nature of plain text files provides a clean separation of content, meaning
+and appearance. Through the use of explicit commands the content
+of a document is clearly marked up semantically while this \emph{meaning} is completely
+independent from its visual \emph{appearance}.
+
+\paragraph{Readability and Stability:}
+Plain text files are human readable, binary files are not. This simple statement has
+considerable implications. Plain text files can be recovered to a much greater extent
+than binary files after being damaged. And they are (at least conceptually) much better
+equipped for evolution of applications and operating systems.
+
+\paragraph{Editor independence:}
+Plain text tools separate the tasks of editing, processing and displaying documents,
+making it possible to choose different tools for different tasks. Plain text files
+can principally be edited with \emph{any} text editor, which opens a wide array of
+workflow options, for example editing on smartphones or through web interfaces.
 
 \section{Structuring the Project}
 

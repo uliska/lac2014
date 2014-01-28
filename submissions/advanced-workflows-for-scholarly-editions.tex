@@ -243,11 +243,43 @@ equipped for evolution of applications and operating systems. Plain text file fo
 usually well documented, and if not they can be reverse engineered with significantly
 less expense than binary ones.
 
+\subsection{WYSIWYG vs. Compilation}
+There is another distinction to make, even if it isn't equally crucial to versioning
+as the plain text \emph{storage}: the basic user interface. Many people are used to
+\textsc{wysiwyg} interfaces where you edit documents graphically. By contrast typical
+plain text based tools are \emph{compiled} systems: they take a plain text \emph{input
+file} and compile that to the desired \emph{output file}, typically in
+\textsc{pdf} format.
+
+LilyPond and \LaTeX{} both are programs that compile plain text input files.
+
+\paragraph{User experience:}
+Editing plain text files is something to get used to: writing commands is less intuitive
+than moving items with a mouse to most people. And edits don't have an immediate visual
+result before the document is compiled the next time. But these are rather small drawbacks
+compared to the advantages this approach offers.
+
 \paragraph{Editor independence:}
 Plain text tools separate the tasks of editing, processing and displaying documents,
 making it possible to choose different tools for different tasks. Plain text files
 can principally be edited with \emph{any} text editor, which opens a wide array of
-workflow options, for example editing on smartphones or through web interfaces.
+workflow options, for example editing on smartphones or even through web interfaces.
+
+\paragraph{Out-of-the-box results}
+The fact that modifications of the content don't have to be accomodated in realtime is
+a significant advantage for compiled systems: they can consider many more aspects when
+compiling a document. Modifications that cause the page breaking to change can bring a
+\textsc{wysiwyg} program down to its knees with large documents. In compiled systems the
+next run will simply incorporate the update.
+
+An important side-effect of this is the average quality of the out-of-the-box result
+compiled systems provide. Complex scores created by LilyPond are usually readable by
+default, while you will start to drag around items immediately when working with most
+\textsc{wysiwyg} tools.
+
+Another side-effect is that compiled systems perform much better when asked for providing
+documents with alternative layouts. It is a matter of simply including another stylesheet
+to create scores or text documents with other paper format or for different media altogether.
 
 \section{Structuring the Project}
 

@@ -278,16 +278,20 @@ Another side-effect is that compiled systems perform much better when asked for 
 documents with alternative layouts. It is a matter of simply including another stylesheet
 to create scores or text documents with other paper format or for different media altogether.
 
-\section{Structuring the Project}
+\bigskip
+\hrule
 
+\bigskip
 The rest of this paper is a rather personal report of our experiences with the Fried
 edition, explaining in detail how all this worked for us.  It also contains
 some comments on a project we're currently starting, and which is intended to become
 a reference project for \emph{crowd engraving}, a more or less unknown concept that is
-originally made possible by version control. We also wrote a number of blog posts on
+originarily made possible by version control. We also wrote a number of blog posts on
 \emph{Scores of Beauty}%
 \footnote{\url{http://lilypondblog.org/category/fried-songs}}
 which you may enjoy as additional reading.
+
+\section{Project Structure}
 
 
 \subsection{Libraries}
@@ -297,6 +301,12 @@ main files. This way one can create libraries of project-wide code
 that make the the project consistent. Style sheets and commands are
 maintained on a global level, and any modifications automatically
 affect all documents or scores.
+We split these includes into project specific tools and such of potentially
+common usability. The latter were and are published in a new LilyPond snippet
+repository%
+\footnote{\url{https://github.com/openlilylib/snippets}}
+and as one \LaTeX{} package%
+\footnote{\url{http://ctan.org/pkg/lilyglyphs}}.
 
 \subsection{Programming}
 Plain text tools like LilyPond and \LaTeX{} offer a level of programmability that

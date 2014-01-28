@@ -215,16 +215,16 @@ The foundation of version control is the ability to compare a project directory'
 known as \emph{repository}) content \emph{line by line}. Therefore files don't have to be locked for editing because modifications are detected on line level.
 
 \subsection{Plain Text Files}
-Plain text file formats are fundamentally different from binary file formats often
-used by graphical \textsc{wysiwyg} programs. They have characteristics which we consider fundamentally superior. The key aspects are:
+Plain text file formats are fundamentally different from binary file formats and have superior characteristics.
 
-\paragraph{Mergeability:}
-This is the key property, because it makes version control work.
+\paragraph{Mergeability}
+is the key property of plain text files because -- as mentioned earlier -- this is what
+makes version control work at all.
 
 \paragraph{Transparency:}
 Plain text files reveal every aspect of their content, everything is explicitly written
 and readable. Anybody can inspect it and see what has been entered and if and how it is
-manually tweaked.
+manually tweaked. 
 
 Binary files are opaque and conceal how they manage your input. They can only be
 interpreted by their original programs or by programs that have specific input filters.
@@ -239,7 +239,9 @@ independent from its visual \emph{appearance}.
 Plain text files are human readable, binary files are not. This simple statement has
 considerable implications. Plain text files can be recovered to a much greater extent
 than binary files after being damaged. And they are (at least conceptually) much better
-equipped for evolution of applications and operating systems.
+equipped for evolution of applications and operating systems. Plain text file formats are
+usually well documented, and if not they can be reverse engineered with significantly
+less expense than binary ones.
 
 \paragraph{Editor independence:}
 Plain text tools separate the tasks of editing, processing and displaying documents,

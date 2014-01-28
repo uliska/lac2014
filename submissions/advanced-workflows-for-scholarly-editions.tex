@@ -144,6 +144,13 @@ engraving. Version control keeps track in detail about \emph{all} that is happen
 the development of a project. And in particular it allows an arbitrary number of contributors
 on an arbitrary number of files \emph{at the same time} without problems.
 
+
+\subsection{Plain text}
+Version control performs its work on plain text files because it relies on the 
+line-by-line comparison of files. While this may seem a restriction it is also the
+foundation of the versioning magic -- conflicts may not arise when two people edited the
+same \emph{file} but only when they edited the same \emph{line}!
+
 \subsection{What Do You Need?}
 As mentioned version control works on plain text files. So in order to benefit from versioned
 workflows you need to work with tools processing plain text files%
@@ -155,12 +162,6 @@ using LilyPond for engraving scores and \LaTeX{} for typesetting texts is a perf
 combination because these two also offer superior performance in their respective domains.
 All tools that are needed are available as Open Source software, and most of them can
 be used cross-platform.
-
-\subsection{Plain text}
-Version control performs its work on plain text files because it relies on the 
-line-by-line comparison of files. While this may seem a restriction it is also the
-foundation of the versioning magic -- conflicts may not arise when two people edited the
-same \emph{file} but only when they edited the same \emph{line}!
 
 \subsection{Does it really work?}
 Plain text may be intimidating and seem “nerdy”, 

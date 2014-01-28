@@ -336,19 +336,14 @@ volume when individual scores have changed -- or to enforce unit tests before me
 new work.
 
 \section{Collaboration}\label{sec:collaboration}
-A basic and commonly used way to collaborate on documents is sharing them by email.
-While this may seem convenient it yields severe risks. While in former times physical
-copies had been sent around, nowadays you can create numerous virtual copies of
-the documents, and avoiding conflicts through simultaneous editing can
-become very complex. Using some shared location on a server is definitely an improvement
-because collaborators edit the same files. Nevertheless this requires careful file locking
-strategies and becomes hardly manageable with three-digit numbers of files and more than
-two collaborators.
-
-This is where managing the project with version control%
-\footnote{Git (\url{http://git-scm.com}) is one of many available version control systems.
-If in doubt any terms in this paper refer to Git's usage.}
-comes into play.
+As explained earlier managing collaboration by email or via shared files isn't really
+enjoyable because it seriously blocks workflow options and creates considerable risk
+of messing things up. So version control was the way to go for us from one point on.
+The distributed nature of our versioning tool of choice, Git%
+\footnote{\url{http://git-scm.com}. From now on any term that might be used with use
+Git terminology (which partially differs from that of other version control systems.)}
+made things really comfortable to work with, and the following sections will give you
+an overview of our working experience.
 
 \subsection{Distributed Work}
 In a \textsl{distributed VCS} (version control system), every collaborator

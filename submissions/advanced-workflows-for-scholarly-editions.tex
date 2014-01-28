@@ -137,10 +137,6 @@ which is caused by the fact that your cannot reasonably merge parallel versions.
 
 \section{The Solution}
 
-% Add this somewhere:
-% you can iterate at incredible pace - talk in chat and work on the same document
-% simultaneously, updating your versions every 5 minutes, no sweat!
-
 \subsection{Version Control}
 \emph{Version control} is a bread-and-butter concept for any software developer, but the
 interesting point is that it can be made equally fruitful for scholarly work and music
@@ -149,8 +145,10 @@ the development of a project. And in particular it allows an arbitrary number of
 on an arbitrary number of files \emph{at the same time} without problems.
 
 \subsection{Plain text}
-(a short 1-paragraph high-level explanation should go here)
-Plain text is what makes version control work effectively
+Version control performs its work on plain text files because it relies on the 
+line-by-line comparison of files. While this may seem a restriction it is also the
+foundation of the versioning magic -- conflicts may not arise when two people edited the
+same \emph{file} but only when they edited the same \emph{line}!
 
 \subsection{Does it really work?}
 Plain text may be intimidating and seem “nerdy”, 
@@ -162,6 +160,11 @@ I wrote "never beautify more than 2 songs at once"
 
 \paragraph{After version control:}
 we were working on 26 songs in parallel, no sweat.
+
+% Add this somewhere:
+% you can iterate at incredible pace - talk in chat and work on the same document
+% simultaneously, updating your versions every 5 minutes, no sweat!
+
 
 \medskip
 The rest of this paper is a rather personal report of our experiences with the Fried

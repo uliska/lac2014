@@ -52,41 +52,34 @@ It soon turned out that the project had a larger scale than expected, mainly for
 and the music's complexity was a real challenge for both the notation program and the 
 engraver.
 
-While it was clear right from the start that we'd use Lilypond%
-\footnote{\url{http://www.lilypond.org}} as the notation program we only decided
-
 Halfway through the project we decided to start using \emph{versioning} to organize
-the plain text input
-files LilyPond processes. This went along with the decision to use \LaTeX{} to compile
-text and scores to a contigious volume.
-
-As it turned out this was one of the most influential decisions we took in recent years
-because preparing an edition with version control opens up completely new approaches to
-collaborative work. While this style of working is obvious in software development it
+our files, and to use \LaTeX{} to compile text and scores to a contigious volume.
+This turned out to be one of the most influential decisions we made in recent years,
+because it made us realize that current editing workflows are bad
+and how awesome is using version control for preparing music
+editions, in particular how much it improves collaboration (and makes new workflows
+possible). While this style of working is obvious in software development it
 applies \emph{equally} to scholarly editions and engraving scores.
 
-\medskip
-This paper is a rather personal report of our experiences with this project as well as
-some comments on a project we're currently starting, and which is intended to become
-a reference project for \emph{crowd engraving}, a more or less unknown concept that is
-originally made possible by version control. We also wrote a number of blog posts on
-\emph{Scores of Beauty}%
-\footnote{\url{http://lilypondblog.org/category/fried-songs}}
-which you may enjoy as additional reading.
-
 \section{The Problem}
-So, what exactly is wrong with current music editing tools and workflows?  Well, several things:
+So, what exactly is wrong with current music editing tools and workflows?
+Well, several things:
 
 \subsection{You Have To Be Careful}
+With most of currently used notation software (in particular Finale), it's easy
+to accidentally break something.
 opaqueness of binary files
-easy to miss changes
-safety and cheapness of experimenting
+easy to overlook changes (like changed line thicknesses)
+It's not easy and safe to experiment - you'd better do backup first
+you have to constantly check if you haven't broken something,
+because iff you have, you had to fix it now or never.
+Thesee checks ate SO MUCH time...
 
 \subsection{There's a Lot on Your Head}
 keeping track of TODOs - was this done or not?
 keeping track of what changed, esp. in bigger projects
 critical notes and TODOs separated from content
-inconsistent states of work  -> branches
+Who is doing what?
 
 \subsection{Your Workflow Isn't Flexible}
 music entry must be done in order
@@ -95,7 +88,10 @@ editors cannot make corrections
 you have to wait until some issues are finished to progress
 
 \subsection{Some Things Are Just Pain in the ...}
-not easy to create multiple versions
+not easy to create multiple versions from one source
+and when you want to send some usable version to someone
+(but you're right in the middle of making some change)
+you don't have anything to send.
 
 \subsection{Underlying causes}
 lack of parallelism caused by lack of merges
@@ -118,7 +114,15 @@ I wrote "never beautify more than 2 songs at once"
 \paragraph{After version control:}
 we were working on 26 songs in parallel, no sweat.
 
-In the rest of the paper we explain in detail how all this works.
+\medskip
+The rest of this paper is a rather personal report of our experiences with the Fried
+edition, explaining in detail how all this worksed for us.  It also contains
+some comments on a project we're currently starting, and which is intended to become
+a reference project for \emph{crowd engraving}, a more or less unknown concept that is
+originally made possible by version control. We also wrote a number of blog posts on
+\emph{Scores of Beauty}%
+\footnote{\url{http://lilypondblog.org/category/fried-songs}}
+which you may enjoy as additional reading.
 
 \section{Plain Text Fundamentals}
 Editing plain text source files is a daunting task for people not used to it.

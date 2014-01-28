@@ -462,21 +462,38 @@ effectively divided through the number of available contributors.
 
 \subsection{Proof-reading and Peer Review}
 Version control encourages peer review workflows on all stages of a project's lifecycle.
-It is not necessary to wait for peer review until work is more or less finished, but it can be an integral part of the process instead. A natural place to hook in is when merging
-working branches into the main line. For example one can require the merge to be done by
-a different collaborator than the one who did the work. For music entry it would for
-example be appropriate to enter a certain amount of music and then ask someone else
-to review and merge it.
+It is not necessary to wait for peer review until work is more or less finished, but it
+can be an integral part of the whole development process instead. A natural place to hook
+in is when merging working branches into the main line. For example one can require the
+merge to be done by a different collaborator than the one who did the work. For music entry
+it would for example be appropriate to enter a certain amount of music and then ask someone
+else to review and merge it.
 This ensures that only reviewed material goes into the project right from the
 start. While this won't make a final proof-reading obsolete it will definitely improve
 the overall quality of the result.
 
 Online services like Github or Bitbucket provide \emph{pull requests} as a very convenient
-tool for this concept. Whenever a branch has changed and differs from others one can
-open a pull request, which will be a publicly visible announcement that would like changes
-to be incorporated into the main line. The pull request can then be inspected, discussed,
-modified and finally merged or rejected.
+tool for this concept. Whenever a branch has changed one can open a pull request as a
+publicly visible announcement that would like changes to be incorporated into the main line.
+The pull request can then be inspected, discussed, modified and finally merged or rejected.
 
+\subsection{“Das Trunkne Lied”}
+This year we will prepare performance material for “Das Trunkne Lied” by Oskar Fried%
+\footnote{\url{http://lilypondblog.org/2013/06/das-trunkne-lied/}}.
+This is a really large score for soloists, choir and orchestra, and it will be a
+huge reference project for our new workflow. Of course we intend to document it
+and exploit it from a theoretical perspective too.
+
+One noteworthy concept is that we split the whole score in tiny segments, each comprising
+music from one part, covering the range of one rehearsal mark. Anybody entering or
+reviewing music will be facing a rather small file with only this amount of music.
+Clever programming (on the “admin's” part) generates a little score from this segment, so
+the editor can always work with a very small amount of music. This makes it much more
+manageable than working in the context of a huge score -- and it saves huge amounts of
+compiling time.\\
+On the other hand one can always compile a complete part or the full score, and LilyPond
+will grab all segments that have already been entered and injects them into an otherwise
+complete but empty score.
 
 \section{Conclusions}\label{sec:conclusions}
 

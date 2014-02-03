@@ -343,11 +343,11 @@ new work.
 
 \section{Collaboration}\label{sec:collaboration}
 As explained earlier managing collaboration by email or via shared files isn't really
-enjoyable because it seriously blocks workflow options and creates considerable risk
+enjoyable because it slows the team down, seriously blocks workflow options and creates considerable risk
 of messing things up. So version control was the way to go for us from one point on.
 The distributed nature of our versioning tool of choice, Git%
 \footnote{\url{http://git-scm.com}. From now on any term that might be used with use
-Git terminology (which partially differs from that of other version control systems.)}
+Git terminology (which partially differs from that of other version control systems.)},
 made things really comfortable to work with, and the following sections will give you
 an overview of our working experience.
 
@@ -358,10 +358,14 @@ Contacting the repository on the server is only necessary to synchronize by down
 others' work, merging it with one's own and uploading the result.
 
 As this merging is performed based on line-by-line comparison chances of running into
-conflicting situations are rather small. And \emph{if} they should occur there are
+conflicting situations are rather small.%
+\footnote{During more than a year of collaboration on a 100-page long edition
+consisting of over 300 files (totalling about 30 thousand lines of code), we only had one conflict.}
+And \emph{if} they should occur there are
 straightforward ways to recover from the situation. Therefore it is possible to edit files
 \emph{simultaneously}, without any need for “locking” files or similar workflow
-restrictions. This and the concept of the history allows multiple editors to work freely without the risk of stepping on each other's toes. 
+restrictions. This and the concept of the history allows multiple editors to work freely
+and spontaneously without the risk of stepping on each other's toes.
 
 \subsection{Editor and Engraver}
 % It is actually a hot topic in scholarly discussion
@@ -391,7 +395,10 @@ Each collaborator can apply any modification because
 \mbox{\emph{a)} this} won't compromise or lose data and
 \mbox{\emph{b)} any} modification is meticulously documented in the changesets.
 Particularly the latter aspect is important for the new workflow experience. 
-Every edit can be immediately be seen and reviewed by the others, making it comfortable
+Every edit can be immediately be seen and reviewed by the others%
+\footnote{What's more, information about this edit will remain in the history
+of the project \emph{forever}. Everyone is also able to see what changes
+happened before and after that point of time.}, making it comfortable
 to apply any necessary modification or fix. For example, if Urs fixed a wrong pitch Janek
 realized that he should have a look at that spot and check for potential regressions
 in typography.
@@ -411,11 +418,11 @@ discussion of the relation between editor and engraver or editor, edition instit
 When preparing our edition of Oskar Fried's songs this really boosted our work. Being
 able to inspect each other's work, to freely apply edits and not the least to encapsulate
 work in branches made us work much more straightforwardly. While we had to be
-extremely careful when still managing the Dropbox folder we could now just start working
+extremely careful when we were managing the Dropbox folder, we could now just start working
 on any given issue. Sharing ideas and reviewing each other's work proved very inspiring
 and presumably raised the overall quality of our work. We wrote this several times, and
-it may sound like a buzz-phrase, but it's literally true: We can't imagine how we could
-have worked without these tools in our “earlier lives”.
+it may sound like a buzz-phrase, but it's \emph{literally} true: We can no longer imagine
+how we could have worked without these tools in our “earlier lives”.
 
 Particularly the last phase of the project was very revealing. We had to do our final
 proof-reading round after the scores were finished from the typographical perspective.

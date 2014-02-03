@@ -45,7 +45,7 @@ Musica engraving, music publishing, scholarly editions, version control, workflo
 }
 
 \section{Introduction -- Our Story}
-Recently we published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
+We had recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
 \footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}.
 It was realized with a small team of only two musicologists (Urs Liska and Alexander
 Gurdon) and one music engraver (Janek Warchoł).
@@ -67,9 +67,9 @@ So, what exactly is wrong with current music editing tools and workflows?
 Well, several things:
 
 \subsection{You Have To Be Careful}
-It's easy to accidentally break something. If you're working in a team you may run
-into having multiple parallel versions of files and risking to overwrite good files
-with bad ones.  This problem is magnified by opaqueness of binary files and \textsc{gui}
+It's easy to accidentally break something. If you're working in a team,
+someone can accidentally overwrite good files with bad ones (without you even noticing!).
+This problem is magnified by opaqueness of binary files and \textsc{gui}
 tools: your program is doing something with them, but you cannot see what exactly,
 which makes them hard to control.
 
@@ -99,8 +99,9 @@ it may spoil your work.
 If the deadline is close and you'd like to split the work between several people,
 you're out of luck, because merging their results afterwards is not straightforward
 or outright impossible.
-Maybe you're working in a team and you'd like to do some edits, but you have to wait
-until your colleague finishes his part and “unlocks” the files for you.
+
+If you work in a team, you have to wait until your colleague finishes his part
+and “unlocks” the files before you can edit them yourself.
 
 If you're an editor and have submitted your work to the typesetter, who is now cleaning it up with, say, InDesign, you can no longer do \emph{anything} with
 the document.  For every single typo you spot, you have to ask the typesetter to fix it
@@ -111,13 +112,13 @@ of a score: a verbatim copy of the original manuscript, and a revised edition.
 With current tools, you have to finish the unedited version before starting
 \emph{any} work on the revision -- so, if any interesting ideas occur to you
 while entering the raw material, you can only write them down as \textsc{todo}
-items, instead of incorporating them immediately and just rearranging your work later.
+items.
 
 \subsection{Some Things Are Simply Painful}
 If you have multiple versions of a score (or text), all changes have to be applied
-multiple times.  For example, if you have an urtext and revised edition, each in
-a format suitable for printing and ebook format, and you find a typo, you will
-have to fix it 4 times.
+multiple times.  Imagine that you have an urtext edition and a revised edition,
+and each one is both in A4 and ebook format.  You spot a typo, and\ldots
+have to fix it four times!
 
 If you're in the middle of doing some invasive changes and someone asks you for
 a copy of your file, you have to give him a work-in-progress version -- or you
@@ -125,14 +126,16 @@ have to keep numerous backup copies of the project, labeled `version1`, `version
 etc. which clutter your computer and create confusion.
 
 \subsection{Underlying causes}
-There are two basic causes of this situation:
+There are two basic causes of these problems:
 \begin{itemize*}
-\item it's hard to keep track of your progress and changes,
-\item work cannot be done in parallel and reordered.
+\item keeping track of all changes in a big project is hard,
+\item units of work cannot be done in parallel, nor reordered.
 \end{itemize*}
 
-The second problem is caused mostly by the fact that when you have two different
-copies of a document, there is usually no reasonable way of merging them.
+At the core of the second issue is the fact that when you have two different
+copies of a document, there is usually no reasonable way of merging them
+(i.e. telling the computer to take the changes introduced in one copy
+and apply them on top of the changes from the other copy).
 
 \section{The Solution}
 

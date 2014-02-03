@@ -14,7 +14,7 @@
 
 %see lac2012.sty for how to format multiple authors!
 \author
-{Urs LISKA \and Janek WARCHOŁ
+{Urs LISKA \and Jan WARCHOŁ
 \\ openLilyLib.org / lilypondblog.org
 \\ info@openlilylib.org
 }
@@ -48,7 +48,7 @@ Musica engraving, music publishing, scholarly editions, version control, workflo
 We had recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
 \footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}.
 It was realized with a small team of only two musicologists (Urs Liska and Alexander
-Gurdon) and one music engraver (Janek Warchoł).
+Gurdon) and one music engraver (Jan Warchoł).
 It soon turned out that the project had a larger scale than expected, mainly for two
 -- independent -- reasons: the revision dug up a lot more questions than we had thought of,
 and the music's complexity was a real challenge for both the notation program and the 
@@ -170,7 +170,7 @@ whether it really works and is worth the trouble. We can assure you it \emph{is}
 the investment of time as the versioned workflows offer fundamental advantages.
 We hope to make this obvious in this paper.
 
-Before we switched to version control Janek wrote in a note: \emph{work on one song
+Before we switched to version control Jan wrote in a note: \emph{work on one song
 at a time; \emph{never} beautify more than 2
 songs at once}. This wasn't for any specific theoretical reason -- he simply realized
 that he couln't manage more without risking serious problems and conflicts.
@@ -408,7 +408,7 @@ when you ask Git what changes were introduced in a given edit, you will be told 
 exact name of the file, and the number of the line in which the change was made.
 In fact, Git will also display how this line looked before and after the modification.},
 making it comfortable
-to apply any necessary modification or fix. For example, if Urs fixed a wrong pitch Janek
+to apply any necessary modification or fix. For example, if Urs fixed a wrong pitch Jan
 realized that he should have a look at that spot and check for potential regressions
 in typography.
 
@@ -417,7 +417,7 @@ One consequence of these possibilities is that the tasks and responsibilities of
 permanent access to the complete data, tasks don't have to be separated as
 strictly as formerly; this makes a lot of sense because there usually are considerable
 intersections of skillsets. Urs as the scholarly editor \emph{does} have strong sense
-for typography, and Janek as the engraver \emph{does} have a sharp eye on details, so
+for typography, and Jan as the engraver \emph{does} have a sharp eye on details, so
 he'll notice issues with the musical text too. In a versioned workflow we both can do
 as much of the other's task as we like and time allows, improving efficiency but also
 the quality of the result. We think this can have significant impact in today's
@@ -442,20 +442,20 @@ mess up the layout. Fortunately LilyPond performed very well in this regard%
 \footnote{\url{http://lilypondblog.org/2013/11/modifying-already-beautified-scores/}},
 but version control made the process less daunting by orders of magnitude.
 Urs applied fixes  himself when he and his fellow musicologist found errors (instead
-of having to ask Janek to do so) and wrapped each single edit in an individual \emph{commit}%
+of having to ask Jan to do so) and wrapped each single edit in an individual \emph{commit}%
 \footnote{“Commit” is Git's term for a changeset.},
 using the commit message as a convenient place to document his opinion on the necessity of
-typographic follow-up fixes. Janek could then inspect the chain of messages so he
+typographic follow-up fixes. Jan could then inspect the chain of messages so he
 immediately knew where to look particularly carefully. This ensured that no unintended
 side-effect of edits would go unnoticed, making us quite relaxed as soon as we realized
 that it really worked out. This situation even allowed Urs to apply or at least prepare
-typographic fixes himself, knowing he didn't irreversibly mess anything up and that Janek
+typographic fixes himself, knowing he didn't irreversibly mess anything up and that Jan
 could easily identify and revert any change.
 Maybe even more important was the fact that we could wrap all this work in separate branches.
 The edition comprises 26 songs, and as all of them were handled in individual branches
 we could freely work on whichever song was currently convenient, switching context at
 will. Urs created a branch for any given song and added only the relevant commits to it.
-When ready with that he handed the torch to Janek who would then check everything and
+When ready with that he handed the torch to Jan who would then check everything and
 finally merge this branch to the main line again. This way we \emph{always} had the project
 as a whole in a consistent state and were able to juggle our tasks around without and fear
 and hesitation.

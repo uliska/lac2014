@@ -215,17 +215,19 @@ the main line of the project can always be kept in a consistent state.
 
 \paragraph{Line-by-line Comparison}
 The foundation of version control is the ability to compare a project directory's (also
-known as \emph{repository}) content \emph{line by line}. Therefore files don't have to be locked for editing because modifications are detected on line level.
+known as \emph{repository}) content \emph{line by line}. Therefore files don't have to
+be locked for editing because modifications are detected on line level.
 
 \subsection{Plain Text Files}
 Plain text file formats are fundamentally different from binary formats,
 and have some superior characteristics.
 
-\paragraph{Mergeability}
-is the key property of plain text files.  Computers know how to handle text,
+\paragraph{Mergeability and Diffability}
+are the key properties of plain text files.  Computers know how to handle text,
 can precisely determine the differences between multiple copies of a text file,
 and know exactly what to do to reapply a change made in one version of a file
 on another, slightly different, version of that file.
+They can also display a “diff” that shows these changes in a concise, human-readable way.
 
 \paragraph{Transparency:}
 Plain text files reveal every aspect of their content, everything is explicitly written
@@ -361,6 +363,7 @@ As this merging is performed based on line-by-line comparison chances of running
 conflicting situations are rather small.%
 \footnote{During more than a year of collaboration on a 100-page long edition
 consisting of over 300 files (totalling about 30 thousand lines of code), we only had one conflict.}
+% Urs, did you have any conflicts?
 And \emph{if} they should occur there are
 straightforward ways to recover from the situation. Therefore it is possible to edit files
 \emph{simultaneously}, without any need for “locking” files or similar workflow
@@ -393,12 +396,18 @@ time%
 but want to stress the principal possibility here.}.
 Each collaborator can apply any modification because 
 \mbox{\emph{a)} this} won't compromise or lose data and
-\mbox{\emph{b)} any} modification is meticulously documented in the changesets.
+\mbox{\emph{b)} any} modification is meticulously documented in the changesets.%
+\footnote{What's more, this information will remain in the history
+of the project \emph{forever}. Also, everyone is able to see what changes
+happened before and after each modification.}
 Particularly the latter aspect is important for the new workflow experience. 
 Every edit can be immediately be seen and reviewed by the others%
-\footnote{What's more, information about this edit will remain in the history
-of the project \emph{forever}. Everyone is also able to see what changes
-happened before and after that point of time.}, making it comfortable
+\footnote{It should be stressed that with plain text files examining the changes
+is very straightforward. Even if your project consists of hundreds of thousands of files,
+when you ask Git what changes were introduced in a given edit, you will be told the
+exact name of the file, and the number of the line in which the change was made.
+In fact, Git will also display how this line looked before and after the modification.},
+making it comfortable
 to apply any necessary modification or fix. For example, if Urs fixed a wrong pitch Janek
 realized that he should have a look at that spot and check for potential regressions
 in typography.
@@ -478,12 +487,12 @@ cafe etc.
 One particularly useful concept in that context are \emph{forks} and \emph{pull requests}.
 They can be used perfectly to organize peer review workflows by allowing work to be
 integrated to the main line only after review through people with appropriate privileges.
-Read more about this in \ref{sec:proof-reading-and-peer-review} on page \pageref{sec:proof-reading-and-peer-review}.
+Read more about this in section \ref{sec:proof-reading-and-peer-review} on page \pageref{sec:proof-reading-and-peer-review}.
 
 \paragraph{Issue Trackers}
 In software development projects it is a matter of course to use \emph{issue trackers.}
 These tools \emph{keep track} of tasks, issues or bugs, helping you not to lose important
-tasks along the way. Of course this is also a good idea for scholarly editions. Issue
+\textsc{todo}s along the way. Of course this is also a good idea for scholarly editions. Issue
 trackers can be used to assign issues to people, or categorize and prioritize tasks.
 They can be very valuable for relentlessly insisting on perfection.
 

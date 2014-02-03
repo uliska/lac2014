@@ -93,15 +93,15 @@ time to get back to speed, because you have to recall what you
 \subsection{Your Workflow Isn't Flexible}
 You cannot input music and make layout adjustments in arbitrary order, because
 your notation program may not like it -- and if it doesn't like it,
-it will delete your work.
+it may spoil your work.
 
 If the deadline is close and you'd like to split the work between several people,
-you're out of luck, because merging their results afterwards is not straightforward.
-Or maybe you're working in a team and you'd like to do some edits, but you have to wait
-until your colleague finishes his part.
+you're out of luck, because merging their results afterwards is not straightforward
+or outright impossible.
+Maybe you're working in a team and you'd like to do some edits, but you have to wait
+until your colleague finishes his part and “unlocks” the files for you.
 
-If you're an editor and you have submitted your work to the typesetter, who imported it
-into, say, InDesign and is now cleaning it up, you can no longer do \emph{anything} with
+If you're an editor and have submitted your work to the typesetter, who is now cleaning it up with, say, InDesign, you can no longer do \emph{anything} with
 the document.  For every single typo you spot, you have to ask the typesetter to fix it
 for you.
 
@@ -145,12 +145,12 @@ to work on an arbitrary number of files \emph{at the same time} without problems
 
 \subsection{Plain text}
 Version control performs its work on plain text files because it relies on the 
-line-by-line comparison of files. While this may seem a restriction it is also the
+line-by-line comparison of files. While this may seem a restriction it is the
 foundation of the versioning magic -- conflicts may not arise when two people edited the
-same \emph{file} but only when they edited the same \emph{line}!
+same \emph{file} but only when they edited the same \emph{line!}
 
 \subsection{What Do You Need?}
-As mentioned version control works on plain text files. So in order to benefit from versioned
+In order to benefit from versioned
 workflows you need to work with tools processing plain text files%
 \footnote{Please note that \textsc{xml} file formats \emph{are} plain text files
 but less practical for version control. So while it is possible to use versioning on
@@ -318,12 +318,12 @@ Plain text tools like LilyPond and \LaTeX{} offer a level of programmability tha
 goes beyond usual scripting interfaces (like e.\,g. VBA). Commands may simply apply
 some formatting or perform complex operations on multiple arguments.
 Programming is a useful method to enforce, say, typographic consistence, but it can
-also be used to “handle data”.
+also be used to “process data”.
 
 One interesting use of these possibilities is to create different output for work and for
 publication. Elements can be highlighted through coloring (e.\,g. editorial additions)
-or laid out completely differently (e.\,g. the entries for the critical report) to be
-more practical to use while still in the editing process.
+or laid out in a completely different manner (e.\,g. the entries for the critical report) to 
+be more practical to use while still in the editing process.
 
 \subsection{Mix Music and Text}
 LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}
@@ -405,7 +405,7 @@ discussion of the relation between editor and engraver or editor, edition instit
 (commercial) publisher.
 
 When preparing our edition of Oskar Fried's songs this really boosted our work. Being
-able to inspect the other's work, to freely apply edits and not the least to encapsulate
+able to inspect each other's work, to freely apply edits and not the least to encapsulate
 work in branches made us work much more straightforwardly. While we had to be
 extremely careful when still managing the Dropbox folder we could now just start working
 on any given issue. Sharing ideas and reviewing each other's work proved very inspiring
@@ -420,8 +420,8 @@ situation nearly always to some extent.) Modifying a score that has already been
 to perfection is a very delicate task because any change of the musical text can
 severly mess up the layout. Fortunately LilyPond performed extremely well in this regard%
 \footnote{\url{http://lilypondblog.org/2013/11/modifying-already-beautified-scores/}},
-but version control made the process less daunting by magnitudes.
-Urs applied fixes to the errors that he and his fellow musicologist found himself (instead
+but version control made the process less daunting by orders of magnitude.
+Urs applied fixes  himself when he and his fellow musicologist found errors (instead
 of having to ask Janek to do so) and wrapped each single edit in an individual \emph{commit}%
 \footnote{“Commit” is Git's term for a changeset.},
 using the commit message as a convenient place to document his opinion on the necessity of
@@ -457,11 +457,12 @@ can be used to enhance the “collaborative experience”.
 
 \paragraph{Version Control Service Providers}
 While you can run a version control system on your own server there are several online service providers offering useful tools. In addition to plain data exchange they
-provide convenient web interfaces that \emph{can} simplify your life even more.
+provide convenient web interfaces that can simplify your life even more.
 
 Of course you will often want to edit your files in dedicated editing environments, but
-it \emph{is} a very nice feature to apply small edits to files through the web interface
-of a service provider. You can do a quick fix sitting in an internet cafe etc.
+it \emph{is} a very nice feature to be able to apply small edits to files through the web 
+interface of a service provider. For example you can do a quick fix sitting in an internet
+cafe etc.
 
 One particularly useful concept in that context are \emph{forks} and \emph{pull requests}.
 They can be used perfectly to organize peer review workflows by allowing work to be
@@ -503,7 +504,7 @@ this can easily be exploited to distribute the work among a “crowd” of contr
 Different from the concept of having distinct roles that tend to blur through the
 collaborative approach there can be numerous people doing essentially the same kind
 of work in parallel, effectively “clustering” manpower. While we're convinced that
-in most cases it won't make sense to rely completely on the swarm intelligence (so
+in most cases it won't make sense to rely on the swarm intelligence \emph{completely} (so
 you should still have a firm project leadership) and that this won't reduce the
 absolute number of hours spent on a project, it can significantly reduce the overall
 delivery time by distributing these hours to be done in parallel.
@@ -530,7 +531,7 @@ the overall quality of the result.
 
 Online services like Github or Bitbucket provide \emph{pull requests} as a very convenient
 tool for this concept. Whenever a branch has changed one can open a pull request as a
-publicly visible announcement that would like changes to be incorporated into the main line.
+publicly visible announcement of changes one wants to be incorporated into the main line.
 The pull request can then be inspected, discussed, modified and finally merged or rejected.
 
 \subsection{“Das Trunkne Lied”}

@@ -185,22 +185,21 @@ few minutes. Actually that's how we finished this paper.
 
 
 \section{How does it work?}
-After being introduced to the problem space and having read a few introductory statements 
-on the possible solution you will want to know more about how all this works and fits
-together. Urs has written an extensive essay on the subject%
-\footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}
-so we will keep the general summary rather concise.
+We're not going to describe everything in detail, as this wouldn't fit in the size
+constraints of this paper.  Rather, we will give you a concise summary; if you want
+to learn more we recommend reading an extensive essay on the subject written by Urs%
+\footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}.
 
 \subsection{Version Control}
-Using version control for engraving and editing music opens a full range of collaborative
-workflows. This is achieved through a number of fundamental concepts.
+\ldots is almost like magic.  Here's a table of contents from the spellbook,
+to give you an idea of the basic concepts involved:
 
 \paragraph{Undo/Redo}
 On a very basic level you may understand version control as an infinitely flexible
-implementation of \emph{undo/redo} mechanisms. But different from respective tools you will
-know from most programs this isn't restricted to chronologically undoing steps one by
-one. By contrast versioning allows you to inspect, revert or modify \emph{any} modification
-individually.
+implementation of \emph{undo/redo} mechanisms. However, in contrast to tools you
+know from other programs, this isn't restricted to chronologically undoing steps one by
+one. Versioning allows you to inspect, revert, modify or reorder \emph{any} modification
+individually -- or in groups.
 
 \paragraph{Project History}
 The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
@@ -223,8 +222,10 @@ Plain text file formats are fundamentally different from binary formats,
 and have some superior characteristics.
 
 \paragraph{Mergeability}
-is the key property of plain text files because -- as mentioned earlier -- this is what
-makes version control work at all.
+is the key property of plain text files.  Computers know how to handle text,
+can precisely determine the differences between multiple copies of a text file,
+and know exactly what to do to reapply a change made in one version of a file
+on another, slightly different, version of that file.
 
 \paragraph{Transparency:}
 Plain text files reveal every aspect of their content, everything is explicitly written
@@ -232,7 +233,7 @@ and readable. Anybody can inspect it and see what has been entered and if and ho
 manually tweaked. 
 
 Binary files are opaque and conceal how they manage your input. They can only be
-interpreted by their original programs or by programs that have specific input filters.
+interpreted by the programs that created them, or by programs that have specific input filters.
 
 \paragraph{Separation of concerns:}
 The explicit nature of plain text files provides a clean separation of content, meaning
@@ -261,26 +262,26 @@ LilyPond and \LaTeX{} both are programs that compile plain text input files.
 \paragraph{User experience:}
 Editing plain text files is something to get used to: writing commands is less intuitive
 than moving items with a mouse to most people. And edits don't have an immediate visual
-result before the document is compiled the next time. But these are rather small drawbacks
-compared to the advantages this approach offers.
+result before the document is compiled the next time. But these drawbacks are counterbalanced
+by a few advantages of this approach.
 
 \paragraph{Editor independence:}
 Plain text tools separate the tasks of editing, processing and displaying documents,
 making it possible to choose different tools for different tasks. Plain text files
 can principally be edited with \emph{any} text editor, which opens a wide array of
-workflow options, for example editing on smartphones or even through web interfaces.
+workflow options, for example editing on smartphones or through web interfaces.
 
 \paragraph{Out-of-the-box results}
-The fact that modifications of the content don't have to be accomodated in realtime is
-a significant advantage for compiled systems: they can consider many more aspects when
-compiling a document. Modifications that cause the page breaking to change can bring a
+The fact that modifications of the content don't have to be accomodated in realtime
+allows compiled systems to consider more factors when deciding on a document's layout.
+Modifications that cause the page breaking to change can bring a
 \textsc{wysiwyg} program down to its knees with large documents. In compiled systems the
 next run will simply incorporate the update.
 
 An important side-effect of this is the average quality of the out-of-the-box result
 compiled systems provide. Complex scores created by LilyPond are usually readable by
-default, while you will start to drag around items immediately when working with most
-\textsc{wysiwyg} tools.
+default, while most \textsc{wysiwyg} tools produce output that is often unusable without
+numerous manual corrections.
 
 Another side-effect is that compiled systems perform much better when asked for providing
 documents with alternative layouts. It is a matter of simply including another stylesheet

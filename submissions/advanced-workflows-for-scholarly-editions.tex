@@ -66,13 +66,15 @@ So, what exactly is wrong with current music editing tools and workflows?
 Well, several things:
 
 \subsection{You Have To Be Careful}
-It's easy to accidentally break something, and if you overwrite good files
-with bad ones, you're in trouble.  This problem is magnified by opaqueness
-of binary files: your program is doing something with them,
-but you cannot see what exactly, which makes them hard to control.
+It's easy to accidentally break something. If you're working in a team you may run
+into having multiple parallel versions of files and risking to overwrite good files
+with bad ones.  This problem is magnified by opaqueness of binary files and \textsc{gui}
+tools: your program is doing something with them, but you cannot see what exactly,
+which makes them hard to control.
 
-Usually you can use the "undo" function if something goes wrong,
-but what if the mistake had happened some time ago and was followed by legitimate changes?
+Usually you can use the “undo” function if something goes wrong,
+but what if the mistake was already followed by legitimate changes, perhaps
+by a collaborator?
 
 We used to constantly check if we haven't broken something,
 and it was \emph{extremely} tedious and time consuming.

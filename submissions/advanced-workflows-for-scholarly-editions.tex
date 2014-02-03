@@ -44,7 +44,7 @@ Musica engraving, music publishing, scholarly editions, version control, workflo
 \end{contentsmall}
 }
 
-\section{Introduction -- Our Story}
+\section{Introduction -- our story}
 We had recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
 \footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}.
 It was realized with a small team of only two musicologists (Urs Liska and Alexander
@@ -66,7 +66,7 @@ the door to new \emph{collaborative} workflows.
 So, what exactly is wrong with current music editing tools and workflows?
 Well, several things:
 
-\subsection{You Have To Be Careful}
+\subsection{You have to be careful}
 It's easy to accidentally break something. If you're working in a team,
 someone can accidentally overwrite good files with bad ones (without you even noticing!).
 This problem is magnified by opaqueness of binary files and \textsc{gui}
@@ -80,7 +80,7 @@ by a collaborator?
 We used to constantly check if we haven't broken something,
 and it was \emph{extremely} tedious and time consuming.
 
-\subsection{There's a Lot on Your Head}
+\subsection{There's a lot on your head}
 Keeping track of what changed in the project, who did what,
 and which issues on your (usually long) \textsc{todo} list remain
 unsolved, is tedious -- especially when your notes are separated from
@@ -91,7 +91,7 @@ Also, every time you have a longer break from the project, it takes some
 time to get back to speed, because you have to recall what you
 (and other team members) were doing.
 
-\subsection{Your Workflow Isn't Flexible}
+\subsection{Your workflow isn't flexible}
 You cannot input music and make layout adjustments in arbitrary order, because
 your notation program may not like it -- and if it doesn't like it,
 it may spoil your work.
@@ -114,7 +114,7 @@ With current tools, you have to finish the unedited version before starting
 while entering the raw material, you can only write them down as \textsc{todo}
 items.
 
-\subsection{Some Things Are Simply Painful}
+\subsection{Some things are simply painful}
 If you have multiple versions of a score (or text), all changes have to be applied
 multiple times.  Imagine that you have an urtext edition and a revised edition,
 and each one is both in A4 and ebook format.  You spot a typo, and\ldots
@@ -139,7 +139,7 @@ and apply them on top of the changes from the other copy).
 
 \section{The Solution}
 
-\subsection{Version Control}
+\subsection{Version control}
 \emph{Version control} is a bread-and-butter concept for any software developer, but the
 interesting point is that it can be made equally fruitful for scholarly work and music
 engraving. Version control keeps track about \emph{everything} that is happening during
@@ -152,7 +152,7 @@ line-by-line comparison of files. While this may seem a restriction it is the
 foundation of the versioning magic -- conflicts may not arise when two people edited the
 same \emph{file} but only when they edited the same \emph{line!}
 
-\subsection{What Do You Need?}
+\subsection{What do you need?}
 In order to fully benefit from versioned
 workflows you need to work with tools processing plain text files%
 \footnote{Please note that \textsc{xml} file formats \emph{are} plain text files
@@ -190,7 +190,7 @@ constraints of this paper.  Rather, we will give you a concise summary; if you w
 to learn more we recommend reading an extensive essay on the subject written by Urs%
 \footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}.
 
-\subsection{Version Control}
+\subsection{Version control}
 \ldots is almost like magic.  Here's a table of contents from the spellbook,
 to give you an idea of the basic concepts involved:
 
@@ -201,7 +201,7 @@ know from other programs, this isn't restricted to chronologically undoing steps
 one. Versioning allows you to inspect, revert, modify or reorder \emph{any} modification
 individually -- or in groups.
 
-\paragraph{Project History}
+\paragraph{Project history}
 The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
 at any time inspect any changeset, revert or modify it, or the whole project can be
 temporarily set to any given state. This makes it possible to fully retrace the steps
@@ -213,16 +213,16 @@ understood as a kind of separate working sessions. Work done on one branch doesn
 work on other branches. So multiple topics can be worked on at the same time, while
 the main line of the project can always be kept in a consistent state.
 
-\paragraph{Line-by-line Comparison}
+\paragraph{Line-by-line comparison}
 The foundation of version control is the ability to compare a project directory's (also
 known as \emph{repository}) content \emph{line by line}. Therefore files don't have to
 be locked for editing because modifications are detected on line level.
 
-\subsection{Plain Text Files}
+\subsection{Plain text files}
 Plain text file formats are fundamentally different from binary formats,
 and have some superior characteristics.
 
-\paragraph{Mergeability and Diffability}
+\paragraph{Mergeability and diffability}
 are the key properties of plain text files.  Computers know how to handle text,
 can precisely determine the differences between multiple copies of a text file,
 and know exactly what to do to reapply a change made in one version of a file
@@ -243,7 +243,7 @@ and appearance. Through the use of explicit commands the content
 of a document is clearly marked up semantically while this \emph{meaning} is completely
 independent from its visual \emph{appearance}.
 
-\paragraph{Readability and Stability:}
+\paragraph{Readability and stability:}
 Plain text files are human readable, binary files are not. This simple statement has
 considerable implications. Plain text files can be recovered to a much greater extent
 than binary files after being damaged. And they are (at least conceptually) much better
@@ -251,7 +251,7 @@ equipped for evolution of applications and operating systems. Plain text file fo
 usually well documented, and if not they can be reverse engineered with significantly
 less expense than binary ones.
 
-\subsection{WYSIWYG vs. Compilation}
+\subsection{WYSIWYG vs. compilation}
 There is another distinction to make, even if it isn't equally crucial to versioning
 as the plain text \emph{storage}: the basic user interface. Many people are used to
 \textsc{wysiwyg} interfaces where you edit documents graphically. By contrast typical
@@ -302,8 +302,8 @@ originarily made possible by version control. We also wrote a number of blog pos
 \footnote{\url{http://lilypondblog.org/category/fried-songs}}
 which you may enjoy as additional reading.
 
-\section{Project Structure}
 
+\section{Project structure}
 
 \subsection{Libraries}
 Plain text file formats provide ways to reference variables or custom
@@ -331,7 +331,7 @@ publication. Elements can be highlighted through coloring (e.\,g. editorial addi
 or laid out in a completely different manner (e.\,g. the entries for the critical report) to 
 be more practical to use while still in the editing process.
 
-\subsection{Mix Music and Text}
+\subsection{Mix music and text}
 LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}
 provides several convenient ways of professionally incorporating scores or music examples,
 by now there is \texttt{lilyglyphs}%
@@ -353,7 +353,7 @@ Git terminology (which partially differs from that of other version control syst
 made things really comfortable to work with, and the following sections will give you
 an overview of our working experience.
 
-\subsection{Distributed Work}
+\subsection{Distributed work}
 In a \textsl{distributed VCS} (version control system), every collaborator
 has a local copy of the complete repository and can work freely on that.
 Contacting the repository on the server is only necessary to synchronize by downloading
@@ -370,7 +370,7 @@ straightforward ways to recover from the situation. Therefore it is possible to 
 restrictions. This and the concept of the history allows multiple editors to work freely
 without the risk of stepping on each other's toes.
 
-\subsection{Editor and Engraver}
+\subsection{Editor and engraver}
 % It is actually a hot topic in scholarly discussion
 % to what extent the editor should also be an engraver.
 % Scholarly editions usually let the editor only provide
@@ -460,7 +460,7 @@ finally merge this branch to the main line again. This way we \emph{always} had 
 as a whole in a consistent state and were able to juggle our tasks around without and fear
 and hesitation.
 
-\subsection{Maintainability After Publication}
+\subsection{Maintainability after publication}
 One more aspect to using plain text tools is also based on the meticulous documentation
 of the project history. If the source code is written decently from the start it is
 \emph{very} straightforward to maintain a project even after the initial publication.
@@ -471,11 +471,11 @@ particularly interesting with today's printing-on-demand strategies where new �
 may be “released” after only a few copies.
 
 
-\subsection{Miscellaneous Tools}
+\subsection{Miscellaneous tools}
 Apart from version control and plain text based programs there are several tools that
 can be used to enhance the “collaborative experience”.
 
-\paragraph{Version Control Service Providers}
+\paragraph{Version control service providers}
 While you can run a version control system on your own server there are several online service providers offering useful tools. In addition to plain data exchange they
 provide convenient web interfaces that can simplify your life even more.
 
@@ -489,7 +489,7 @@ They can be used perfectly to organize peer review workflows by allowing work to
 integrated to the main line only after review through people with appropriate privileges.
 Read more about this in section \ref{sec:proof-reading-and-peer-review} on page \pageref{sec:proof-reading-and-peer-review}.
 
-\paragraph{Issue Trackers}
+\paragraph{Issue trackers}
 In software development projects it is a matter of course to use \emph{issue trackers.}
 These tools \emph{keep track} of tasks, issues or bugs, helping you not to lose important
 \textsc{todo}s along the way. Of course this is also a good idea for scholarly editions. Issue
@@ -513,7 +513,7 @@ requires reliable archiving of past events and issue, list apps usually aren't f
 Apart from these tools there are the options to use good old email as a communication channel, mailing lists and forums. Each solution has their merits and problems, very often both are related to the same issues.
 
 
-\section{Crowd Editing}
+\section{Crowd editing}
 In the previous section we've talked about the positive impact that version control
 has on the conception of collaborative work. While we were actually two people
 working together this concept can easily be extended to a larger number of people
@@ -537,7 +537,7 @@ Appropriate tools for this are assignments that can be done in issue trackers or
 virtual cards like on a Trello board. This way the whole material can be
 effectively divided through the number of available contributors.
 
-\subsection{Proof-reading and Peer Review}\label{sec:proof-reading-and-peer-review}
+\subsection{Proof-reading and peer review}\label{sec:proof-reading-and-peer-review}
 Version control encourages peer review workflows on all stages of a project's lifecycle.
 It is not necessary to wait for peer review until work is more or less finished, but it
 can be an integral part of the whole development process instead. A natural place to hook

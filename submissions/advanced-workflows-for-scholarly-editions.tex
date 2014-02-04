@@ -309,8 +309,8 @@ that make the the project consistent. Style sheets and commands are
 maintained on a global level, and any modifications automatically
 affect all documents or scores.
 We split these includes into project specific tools and such of potentially
-common usability. The latter were and are published in a new LilyPond snippet
-repository%
+common usability. The latter were and are published as open source in a new 
+LilyPond snippet repository%
 \footnote{\url{https://github.com/openlilylib/snippets}}
 and as one \LaTeX{} package%
 \footnote{\url{http://ctan.org/pkg/lilyglyphs}}.
@@ -325,7 +325,16 @@ also be used to “process data”.
 One interesting use of these possibilities is to create different output for work and for
 publication. Elements can be highlighted through coloring (e.\,g. editorial additions)
 or laid out in a completely different manner (e.\,g. the entries for the critical report) to 
-be more practical to use while still in the editing process.
+be more practical to use while still in the editing process. In text documents it is
+possible to lay out complex data like the entries for the critical report in a
+user friendly way during development and switch layout to a packed version optimized
+for space for publication.
+
+An additional aspect (which we didn't use for the current edition) is the fact that
+plain text files can be processed by external programs, so it is straightforward to
+write small scripts or extensive tools to perform arbitrary operations on your data.
+This may be similar to using \emph{plugins} in the graphical notation programs but
+can go much deeper into the core of the document files.
 
 \subsection{Mix music and text}
 LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}

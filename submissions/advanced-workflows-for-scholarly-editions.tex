@@ -348,10 +348,8 @@ Using \texttt{make} can be a convenient tool to automatically produce a newly co
 volume when individual scores have changed -- or to enforce unit tests before merging
 new work.
 
-\bigskip
-\hrule
 
-\bigskip
+\section{Collaboration}\label{sec:collaboration}
 The rest of this paper is a rather personal report of our experiences with the Fried
 edition, explaining in detail how all this worked for us.  It also contains
 some comments on a project we're currently starting, and which is intended to become
@@ -361,9 +359,10 @@ originarily made possible by version control. We also wrote a number of blog pos
 \footnote{\url{http://lilypondblog.org/category/fried-songs}}
 which you may enjoy as additional reading.
 
+\bigskip
+\hrule
 
-
-\section{Collaboration}\label{sec:collaboration}
+\bigskip
 As explained earlier managing collaboration by email or via shared files isn't really
 enjoyable because it slows the team down, seriously blocks workflow options and creates considerable risk
 of messing things up. So version control was the way to go for us from one point on.
@@ -377,7 +376,10 @@ an overview of our working experience.
 In a \textsl{distributed VCS} (version control system), every collaborator
 has a local copy of the complete repository and can work freely on that.
 Contacting the repository on the server is only necessary to synchronize by downloading
-others' work, merging it with one's own and uploading the result.
+others' work, merging it with one's own and uploading the result%
+\footnote{This is significantly different from systems like \emph{CVS} or \emph{Subversion},
+where you need to contact the server in order to add an explicit changeset.}
+.
 
 As this merging is performed based on line-by-line comparison chances of running into
 conflicting situations are rather small.%
@@ -447,11 +449,11 @@ discussion of the relation between editor and engraver or editor, edition instit
 When preparing our edition of Oskar Fried's songs this really boosted our work. Being
 able to inspect each other's work, to freely apply edits and not the least to encapsulate
 work in branches made us work much more straightforwardly. While we had to be
-extremely careful when we were managing the Dropbox folder, we could now just start working
-on any given issue. Sharing ideas and reviewing each other's work proved very inspiring
-and presumably raised the overall quality of our work. We wrote this several times, and
-it may sound like a buzz-phrase, but it's \emph{literally} true: We can no longer imagine
-how we could have worked without these tools in our “earlier lives”.
+extremely careful when we were still maintaining the Dropbox folder, we could now just
+start working on any given issue. Sharing ideas and reviewing each other's work proved
+very inspiring and presumably raised the overall quality of our work. We wrote this
+several times, and it may sound like a buzz-phrase, but it's \emph{literally} true:
+We can no longer imagine how we could have worked without these tools in our “earlier lives”.
 
 Particularly the last phase of the project was very revealing. We had to do our final
 proof-reading round after the scores were finished from the typographical perspective.
@@ -488,7 +490,8 @@ As each fix or improvement will be stored in a changeset you can apply any chang
 without messing up anything. There will always be a detailed record about which
 changes have been added since publication, or between any given two prints. This is
 particularly interesting with today's printing-on-demand strategies where new “runs”
-may be “released” after only a few copies.
+may be “released” after only a few copies or where you might always download the ”latest
+version”.
 
 
 \subsection{Miscellaneous tools}
@@ -509,6 +512,13 @@ They can be used perfectly to organize peer review workflows by allowing work to
 integrated to the main line only after review through people with appropriate privileges.
 Read more about this in section \ref{sec:proof-reading-and-peer-review} on page \pageref{sec:proof-reading-and-peer-review}.
 
+There is one aspect to consider, though: you may not want to give your data to an external
+company. If you want to benefit from web interface features you can install open source
+tools on your personal or institution's server%
+\footnote{See \url{https://git.wiki.kernel.org/index.php/Interfaces,\_frontends,\_and\_tools\#Web\_Interfaces} for a list of web interfaces to Git},
+maybe missing some of the convenience of the commercial providers but instead having complete
+control.
+
 \paragraph{Issue trackers}
 In software development projects it is a matter of course to use \emph{issue trackers.}
 These tools \emph{keep track} of tasks, issues or bugs, helping you not to lose important
@@ -526,8 +536,10 @@ finally mark them as “done”.
 
 In contrast to issue trackers these services are usually more “agile” and easy to use, as
 they usually display many cards at once and offer realtime collaboration with other
-team members. But the drawback of this agility is that it is also volatile. If the project
-requires reliable archiving of past events and issue, list apps usually aren't first choice.
+team members, powered by modern web technologies that allow to exchange data without
+reloading pages. But the drawback of this agility is that it is also volatile.
+If the project requires reliable archiving of past events and issue, list apps usually
+aren't first or at least single choice.
 
 \medskip
 Apart from these tools there are the options to use good old email as a communication channel, mailing lists and forums. Each solution has their merits and problems, very often both are related to the same issues.
@@ -547,15 +559,18 @@ of work in parallel, effectively “clustering” manpower. While we're convince
 in most cases it won't make sense to rely on the swarm intelligence \emph{completely} (so
 you should still have a firm project leadership) and that this won't reduce the
 absolute number of hours spent on a project, it can significantly reduce the overall
-delivery time by distributing these hours to be done in parallel.
+delivery time by distributing these hours to be done in parallel. We think this can
+be a serious boost for many kinds of editing projects where meeting tight deadlines
+is one of the main challenges.
 
 \subsection{Music entry}
 Music entry is a field that can straightforwardly be distributed among a large number
 of contributors. Essentially all you need to make this a reliable process is a usable
-communictaion infrastructre to avoide duplicate work.
+communictaion infrastructre to avoid duplicate work.
 Appropriate tools for this are assignments that can be done in issue trackers or on
-virtual cards like on a Trello board. This way the whole material can be
-effectively divided through the number of available contributors.
+virtual cards like on a Trello board -- email is \emph{very} impractical for this kind
+of organization. This way the whole material can be effectively divided through the number
+of available contributors.
 
 \subsection{Proof-reading and peer review}\label{sec:proof-reading-and-peer-review}
 Version control encourages peer review workflows on all stages of a project's lifecycle.
@@ -587,10 +602,13 @@ reviewing music will be facing a rather small file with only this amount of musi
 Clever programming (on the “admin's” part) generates a little score from this segment, so
 the editor can always work with a very small amount of music. This makes it much more
 manageable than working in the context of a huge score -- and it saves huge amounts of
-compiling time.\\
+compilation time.
 On the other hand one can always compile a complete part or the full score, and LilyPond
 will grab all segments that have already been entered and injects them into an otherwise
 complete but empty score.
+
+This working evnironment was realized with a combination of programming within LilyPond files (using the built-in extension languag Scheme) as well as programming Python scripts
+that for example generate empty stub files for a whole new instrumental part.
 
 \section{Conclusions}\label{sec:conclusions}
 

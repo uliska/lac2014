@@ -51,8 +51,9 @@ Music engraving, music publishing, scholarly editions, version control, workflow
 }
 
 \section{Introduction -- our story}
-We had recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
-\footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}.
+We recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
+\footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}
+\footnote{\url{http://www.sound-rel.de}}.
 It was realized with a small team of only two musicologists (Urs Liska and Alexander
 Gurdon) and one music engraver (Jan Warchoł).
 It soon turned out that the project had a larger scale than expected, mainly for two
@@ -69,13 +70,13 @@ improved. While using version control is obvious in software development it appl
 the door to new \emph{collaborative} workflows.
 
 \section{The Problem}
-So, what exactly is wrong with current music editing tools and workflows?
+So, what exactly is wrong with current music editing tools and workflows?\\
 Well, several things:
 
 \subsection{You have to be careful}
 It's easy to accidentally break something. If you're working in a team,
 someone can accidentally overwrite good files with bad ones (without you even noticing!).
-This problem is magnified by opaqueness of binary files and \textsc{gui}
+This problem is magnified by the opaqueness of binary files and \textsc{gui}
 tools: your program is doing something with them, but you cannot see what exactly,
 which makes them hard to control.
 
@@ -102,15 +103,16 @@ You cannot input music and make layout adjustments in arbitrary order, because
 your notation program may not like it -- and if it doesn't like it,
 it may spoil your work.
 
-If the deadline is close and you'd like to split the work between several people,
+If the deadline is close and you'd like to distribute work between several people,
 you're out of luck, because merging their results afterwards is not straightforward
 or outright impossible.
 
 If you work in a team, you have to wait until your colleague finishes his part
 and “unlocks” the files before you can edit them yourself.
 
-If you're an editor and have submitted your work to the typesetter, who is now cleaning it up with, say, InDesign, you can no longer do \emph{anything} with
-the document.  For every single typo you spot, you have to ask the typesetter to fix it
+If you're an editor and have submitted your work to the typesetter, who is now cleaning
+it up, possibly with a different \textsc{dtp} program, you can no longer do \emph{anything}
+with the document.  For every single typo you spot, you have to ask the typesetter to fix it
 for you.
 
 Or maybe you are working on a critical edition and you'd like to create two versions
@@ -122,7 +124,8 @@ items.
 
 \subsection{Some things are simply painful}
 If you have multiple versions of a score (or text), all changes have to be applied
-multiple times.  Imagine that you have an urtext edition and a revised edition,
+multiple times.  Imagine that you have an urtext edition and a revised edition, or
+one score in original and one in a transposed key,
 and each one is both in A4 and ebook format.  You spot a typo, and\ldots
 have to fix it four times!
 
@@ -134,8 +137,8 @@ etc. which clutter your computer and create confusion.
 \subsection{Underlying causes}
 There are two basic causes of these problems:
 \begin{itemize*}
-\item keeping track of all changes in a big project is hard,
-\item units of work cannot be done in parallel, nor reordered.
+\item it's hard to keep track of all changes in a project,
+\item units of work cannot be done in parallel, nor be reordered afterwards.
 \end{itemize*}
 
 At the core of the second issue is the fact that when you have two different
@@ -148,15 +151,15 @@ and apply them on top of the changes from the other copy).
 \subsection{Version control}
 \emph{Version control} is a bread-and-butter concept for any software developer, but the
 interesting point is that it can be made equally fruitful for scholarly work and music
-engraving. Version control keeps track about \emph{everything} that is happening during
+engraving. Version control keeps track of \emph{everything} that is happening during
 the development of a project. And in particular it allows an arbitrary number of contributors
 to work on an arbitrary number of files \emph{at the same time} without problems.
 
 \subsection{Plain text}
 Version control performs its work on plain text files because it relies on the 
-line-by-line comparison of files. While this may seem a restriction it is the
-foundation of the versioning magic -- conflicts may not arise when two people edited the
-same \emph{file} but only when they edited the same \emph{line!}
+line-by-line comparison of files. This restricts the choice of tools, but is also the
+foundation of the versioning magic -- conflicts may not arise when two people have edited
+the same \emph{file} but only when they have edited the same \emph{line!}
 
 \subsection{What do you need?}
 In order to fully benefit from versioned
@@ -167,19 +170,19 @@ OpenOffice or MS Office \textsc{xml} files it isn't very useful in our opinion.}
 . From our experience
 using LilyPond for engraving scores and \LaTeX{} for typesetting texts is a perfect
 combination because these two also offer excellent performance in their respective domains.
-All tools that are needed are available as Open Source software, and most of them can
+All needed tools are available as Open Source software, and most of them can
 be used on any operating system.
 
 \subsection{Does it really work?}
 Editing plain text files may seem daunting and “nerdy”, so it's a valid question
 whether it really works and is worth the trouble. We can assure you it \emph{is} worth
-the investment of time as the versioned workflows offer fundamental advantages.
+any investment of time because the advantages offered by versioned workflows are fundamental.
 We hope to make this obvious in this paper.
 
 Before we switched to version control Jan wrote in a note: \emph{work on one song
 at a time; \emph{never} beautify more than 2
 songs at once}. This wasn't for any specific theoretical reason -- he simply realized
-that he couln't manage more without risking serious problems and conflicts.
+that he couldn't handle more at once without risking serious problems and conflicts.
 
 After the switch we were working on up to 26 songs in parallel and at different topics
 (e.\,g. proof-reading and “beautification”) while being completely confident not to
@@ -192,8 +195,9 @@ few minutes. Actually that's how we finished this paper.
 
 \section{How does it work?}
 We're not going to describe everything in detail, as this wouldn't fit in the size
-constraints of this paper.  Rather, we will give you a concise summary; if you want
-to learn more we recommend reading an extensive essay on the subject written by Urs%
+constraints of the current submission.  Rather, we will give you a concise summary;
+if you want to learn more about the subject we recommend reading an extensive essay
+written by Urs%
 \footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}.
 
 \subsection{Version control}
@@ -271,7 +275,7 @@ LilyPond and \LaTeX{} both are programs that compile plain text input files.
 Editing plain text files is something to get used to: writing commands is less intuitive
 than moving items with a mouse to most people. And edits don't have an immediate visual
 result before the document is compiled the next time. But these drawbacks are counterbalanced
-by a few advantages of this approach.
+by the advantages of this approach.
 
 \paragraph{Editor independence:}
 Plain text tools separate the tasks of editing, processing and displaying documents,

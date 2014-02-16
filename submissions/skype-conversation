@@ -1,0 +1,144 @@
+Sonntag, 26. Januar 2014
+[23:12:26] Urs Liska: To "our" paper: I'm probably simply confused. We do have so much material and - as I think - so good arguments and concepts, I don't really understand why it is so complicated to write this silly paper :-(
+[23:12:41] Jan Warchoł: yeah, i know
+[23:12:55] Jan Warchoł: i had the same feeling when rewriting Challenges' instructions
+[23:12:57] Jan Warchoł: however
+[23:13:05] Jan Warchoł: i think i realized something
+[23:13:35] Jan Warchoł: what we lack is an introduction to the *problems* we claim version control solves
+[23:14:51] Urs Liska: You did. And you were under pressure too. I think my problem is that I a) have a tight deadline, b) another issue to solve (Webern) with a tight deadline and c) so little time recently. I'm hardly able to work for more than one or 1 1/2 hours at a time, except for late in the evening - when I'm too tired for concentrated work ...
+[23:15:11] Jan Warchoł: :(
+[23:15:12] Urs Liska: Ah, your comment makes sense (although it doesn't immediately trigger a solution)
+[23:15:29] Jan Warchoł: i think that what we should have is:
+[23:16:09] Jan Warchoł: after the introduction (which is quite good; it should provide a 'a background story' without concrete arguments)
+[23:16:35] Jan Warchoł: there should be a not-overly-long section "what is wrong with music editing now"
+[23:16:53] Jan Warchoł: which should enumerate all the little&big annoyances
+[23:16:57] Jan Warchoł: (with examples)
+[23:17:32] Jan Warchoł: (sometimes it will be necessary to convince the reader that something is an annoyance, since he may think there's no problem -
+[23:17:43] Jan Warchoł: that's why examples will be very important here)
+[23:18:07] Jan Warchoł: and then there should be "*why* this is wrong"
+[23:18:27] Jan Warchoł: where we explain why the things that are wrong are wrong (obviously :P)
+[23:18:42] Jan Warchoł: for example:
+[23:19:15] Jan Warchoł: what is wrong: it's annoying that the editor cannot make a fix after engraving but has to ask the engraver
+[23:19:36] Jan Warchoł: why it's wrong: because the editor shouldn't mess with engraver's work
+[23:19:57] Jan Warchoł: why this is wrong: because there are no ways to reasonably merge and compare files
+[23:20:37] Jan Warchoł: this should prepare the reader for the next section(s), which should describe our experiences
+[23:20:59] Jan Warchoł: (i'm not yet sure where the "plain text fundametnals" should be)
+[23:21:22] Urs Liska: This sounds all very convincing.
+[23:21:32] Jan Warchoł: :)
+[23:21:44] Urs Liska: Question is how we should manage to finish that until Tuesday 11.59
+[23:22:25] Urs Liska: Particularly since you're working at daytime and I'll have to go to Basel tomorrow, with a presentation that I still have to finish tonight...
+[23:22:56] Jan Warchoł: ...we'll need a lot of coffee tomorro.w
+[23:22:58] Jan Warchoł: :P
+[23:23:58] Urs Liska: Sounds interesting. Unfortunately my average caffeine level is already where a considerable raise wouldn't have the desired effect ;-)
+[23:24:10] Jan Warchoł: you know, i think that what you've already written is good - doesn't need rewriting, just a bit restrcucturing
+[23:24:20] Jan Warchoł: bad luck!
+[23:25:07] Urs Liska: You still haven't a working LaTeX installation? Touching latex files on Github is quite convenient, but significant editing or writing isn't that practical (particular as you can't test for errors.
+[23:26:07] Jan Warchoł: well, i haven't installed LaTeX at all (apart from what lily dependencies installed)
+[23:26:55] Jan Warchoł: but my system is ok now, so i can try to install what is necessary
+[23:27:05] Urs Liska: Ah, but then you could try to run lualatex on the paper. I _think_ lily dependencies are quite extensive ;-)
+[23:28:06] Urs Liska: I'm asking because that might make sense, so we could work in parallel, maybe tomorrow evening. Assing sections or the like.
+[23:29:14] Jan Warchoł: i should run 'lualatex liska-recording-classical-music.tex'?
+[23:29:23] Urs Liska: I think we should stop soon. I will have to do something for the Webern presentation (OMG, I don't even know if that's an important meeting tomorrow or not ...). Then I could reread your comments from above one by one along the existing paper and see how far I'll get tonight more or less by restructuring existing stuff.
+[23:29:56] Urs Liska: No. First checkout the 'plaintext' branch and then run lulatex advanced-workflows...
+[23:30:07] Urs Liska: lualatex
+[23:30:40] Jan Warchoł: lualatex advanced-workflows-for-scholarly-editions.tex says
+[23:30:47] Jan Warchoł: This is LuaTeX, Version beta-0.70.1-2011120612 
+(./advanced-workflows-for-scholarly-editions.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, bulgarian, ukrainian, russian, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo)) (./lac2014.sty
+
+LAC2014 Proceedings style -- October 2013
+
+ !! Using ISO-A4 paper) (./ulCFPstyles.sty
+
+! LaTeX Error: File `fontspec.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name:
+[23:31:50] Urs Liska: OK. This means more latex packages. But you can try commenting out line 8 of the file. This includes my personal style file. Without this you should also be able to run pdflatex.
+[23:33:09] Jan Warchoł: works!
+[23:34:13] Urs Liska: OK, then we can work that way. This only adds some typographic sugar that I'd like to have in the submitted PDF. For their printed proceedings they would also take that package out.
+[23:34:30] Jan Warchoł: ok
+[23:35:04] Jan Warchoł: so, before i go to starting challenges' discussion on Phil submission
+[23:35:13] Jan Warchoł: i may give you some more ideas
+[23:35:18] Jan Warchoł: if you'd liek
+[23:35:20] Jan Warchoł: *like
+[23:35:40] Urs Liska: OK, I'd like :-)
+[23:36:32] Jan Warchoł: example for the "sequential editing" in traditional approach: what i wrote at some moment before starting to use git - 'never beautify more than 1 song'
+[23:36:54] Jan Warchoł: and then we have version control that gives us parallel processing of 26 songs
+[23:37:30] Jan Warchoł: as for crowd engraving, you wrote:
+[23:37:38] Jan Warchoł: You only need a few things to make this
+a reliable process: a common understanding or
+a set of rules of coding style (e. g. indentation,
+amount of comments, of barchecks etc.) and
+a usable communication infrastructure to keep
+track of who is working on what.
+[23:37:54] Jan Warchoł: i think that coding style is completely irrelevant for this paper
+[23:37:59] Jan Warchoł: 2ndly,
+[23:38:25] Jan Warchoł: i think you actually don't need to know who is doing what - that's the magic of version control
+[23:38:53] Urs Liska: I wanted to say we should take care that two people don't do the same work
+[23:38:59] Jan Warchoł: the only thing that is needed is to ensure that more than one man won't work on one fragment, but that's only because we doon't want to waste work
+[23:39:03] Jan Warchoł: :))
+[23:39:10] Jan Warchoł: exactly
+[23:39:35] Jan Warchoł: but this is not because version control wouldn't manage it - it's because it would be a waste
+[23:41:16] Jan Warchoł: ah, and another exampple
+[23:41:45] Jan Warchoł: you can mention that situation when you accidentally reverted some of my beautifications, and i spotted it
+[23:41:59] Jan Warchoł: that's a good example of how versioning and plain text helps
+[23:42:07] Jan Warchoł: :)
+[23:42:53] Jan Warchoł: hmm, i think that's all that comes to my mind now
+[23:43:30] Jan Warchoł: you'll know best what editing chores to list :)
+[23:45:09] Urs Liska: OK, thanks. Unfortunately I can't convincingly narrate about the Finale hell anymore ;-/
+[23:45:18] Jan Warchoł: heh
+[23:45:38] Jan Warchoł: you may point people to the Challenges :P
+[23:46:12] Jan Warchoł: (i'm stunned by how hard Finale fails with Estrella - i didn't expect these horrible accent-rest collisions!)
+[23:46:21] Jan Warchoł: oh!
+[23:46:23] Jan Warchoł: i know!
+[23:47:15] Urs Liska: Actually what I'm going to do tomorrow is fix one of the typography issues I entered for the Fried songs. I think this is a good demonstration: Issue - fix - commit - close issue via commit - push - see on bitbucket, see diff on bitbucket.
+[23:47:46] Jan Warchoł: yeah - it might be a good idea to include a picture
+[23:48:07] Urs Liska: We don't have too much space in the paper. 8 pages in total
+[23:48:11] Jan Warchoł: (make sure to choose an extremely simple example for that, probably a wrong pitch)
+[23:49:26] Urs Liska: The problem is that the one wrong pitch I noticed is already fixed. I will show that (for the topic of post-publication maintainability), so I need on of the other issues. Of course I will 'rehearse' the fix before ;-)
+[23:49:43] Jan Warchoł: :)
+[23:49:47] * Jan Warchoł hat die Datei finale undo problem.png gesendet.
+[23:50:07] Jan Warchoł: this is an exampple of Finale hell :)
+[23:50:35] Jan Warchoł: (not sure if it works like this in 2014 version, but it's a pretty recent one - 2011 i think)
+[23:50:58] Urs Liska: But I don't think it's suitable for our paper. This is a case of bad software, but it isn't related to plain text or versioning.
+[23:51:10] Jan Warchoł: but it is!
+[23:51:25] Jan Warchoł: something happens inside a file without you knowing
+[23:51:45] Jan Warchoł: and you cannot go back to the previous state except for the undo function
+[23:51:59] Jan Warchoł: imagine this:
+[23:52:05] Jan Warchoł: you had a good file
+[23:52:31] Jan Warchoł: than you changed something like this, saved and exited (because it appeared to be the right thing to do)
+[23:52:46] Jan Warchoł: but then you realize you don't want it - try to go back and boom!
+[23:53:01] Jan Warchoł: you cannot use undo
+[23:53:23] Jan Warchoł: you don't see *why* his is exploding and how exactly it goes wrong
+[23:53:35] Urs Liska: I think Sibelius offers undo beyond saved states.
+[23:54:12] Jan Warchoł: but then you wouldn't be able to cherry-pick and undo just one part of a modification, would you?
+[23:54:30] Urs Liska: But otherwise your descriptions are convincing. Maybe it's difficult to write this concisely enough for our paper. These columns are very narrow ...
+[23:54:36] Jan Warchoł: (i.e. if together with this uglyfying change you made a legitimate one)
+[23:54:48] Urs Liska: No, of course Sibelius' undo is surely one-dimensional
+[23:54:51] Jan Warchoł: you'll manage, i believe in you :)
+[23:54:58] Jan Warchoł: :D:D
+[23:55:35] Urs Liska: Nice goodnight words ;-) I think we should shut down now and stop talking about what we would do if we wouldn't talk right now about what we would do ...
+[23:55:54] Jan Warchoł: ok
+[23:56:05] Urs Liska: Good night, see you tomorrow ...
+[23:56:14] Jan Warchoł: (but if you run out of inspiration, i can send you 2 more exampples :P)
+[23:56:24] Jan Warchoł: did you make me admin of the forum?
+[23:56:42] Urs Liska: Not yet, but I'll do that tonight.
+[23:56:49] Jan Warchoł: good!
+[23:56:56] Jan Warchoł: i'd like to sort this out now
+[23:57:02] Urs Liska: And yes, I love these examples (but rather send it by email.)
+[23:57:10] Urs Liska: OK, wait a minute.
+[23:57:22] Jan Warchoł: (ok, will email next time)
+Montag, 27. Januar 2014
+[00:00:25] Urs Liska: now you should be "full admin"
+[00:01:15] Jan Warchoł: great, thanks!
+[00:02:07] Jan Warchoł: good night, and sleep well :)
+[00:03:03] Urs Liska: Rather: Don't sleep too early ;-) Unfortunately my alarm will start at 6:30 (school, we should train them to do it alone, haha)
+[00:03:08] Urs Liska: Good night!

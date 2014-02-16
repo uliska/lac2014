@@ -1,0 +1,673 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{lac2014}
+\sloppy
+\newenvironment{contentsmall}{\small}
+
+% This package contains some stylings for the CFP in its submission form.
+% For any further use (e.g. in proceedings) it can safely be commented.
+%
+% NOTE: This document was written using special characters in their
+% unescaped form, which is enabled by default when using fontspec.
+% If the document is to be compiled differently, someone should make sure
+% that special characters are handled correctly (see e.g. the name of author 2).
+
+\usepackage{ulCFPstyles}
+
+\usepackage{mdwlist}
+\usepackage{hyperref}
+
+\title{Version Control In Scholarly Editions}
+
+%see lac2012.sty for how to format multiple authors!
+\author
+{Urs LISKA \and Jan WARCHOŁ
+\\ openLilyLib.org / lilypondblog.org
+\\ info@openlilylib.org
+}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+\begin{contentsmall}
+Plaintext-based tools and version control enable scholars to use very efficient
+collaborative workflows, solving many inconveniences that currently appear in
+the preparation of scholarly editions and allowing a completely new approach to music
+publishing.
+This paper is based on the authors' experience with an
+edition prepared with LilyPond and \LaTeX, as well as the prospects with
+another edition currently in preparation.
+
+\end{contentsmall}
+\end{abstract}
+
+\keywords{
+\begin{contentsmall}
+Music engraving, music publishing, scholarly editions, version control, workflows.
+\end{contentsmall}
+}
+
+\section{Introduction -- our story}
+We recently published a revised edition of the songs of Oskar Fried (1871\,--\,1941)%
+\footnote{\url{http://en.wikipedia.org/wiki/Oskar\_Fried}}
+\footnote{\url{http://www.sound-rel.de}}.
+It was realized with a small team of only two musicologists (Urs Liska and Alexander
+Gurdon) and one music engraver (Jan Warchoł).
+It soon turned out that the project had a larger scale than expected, mainly for two
+-- independent -- reasons: the revision dug up a lot more questions than we had thought of,
+and the music's complexity was a real challenge for both the notation program and the 
+engraver.
+
+Halfway through the project we decided to start using \emph{versioning} to organize
+our files, and to use \LaTeX{} to compile text and scores to a contigious volume.
+This turned out to be one of the most influential decisions we made in recent years,
+because it made us realize to what extent traditional scholarly workflows can be
+improved. While using version control is obvious in software development it applies
+\emph{equally} to scholarly editions and engraving scores, and in particular it opens
+the door to new \emph{collaborative} workflows.
+
+\section{The Problem}
+So, what exactly is wrong with current music editing tools and workflows?\\
+Well, several things:
+
+\subsection{You have to be careful}
+It's easy to accidentally break something. If you're working in a team,
+someone can accidentally overwrite good files with bad ones (without you even noticing!).
+This problem is magnified by the opaqueness of binary files and \textsc{gui}
+tools: your program is doing something with them, but you cannot see what exactly,
+which makes them hard to control.
+
+Usually you can use the “undo” function if something goes wrong,
+but what if the mistake was already followed by legitimate changes, perhaps
+by a collaborator?
+
+We used to constantly check if we haven't broken something,
+and it was \emph{extremely} tedious and time consuming.
+
+\subsection{There's a lot on your head}
+Keeping track of what changed in the project, who did what,
+and which issues on your (usually long) \textsc{todo} list remain
+unsolved, is tedious -- especially when your notes are separated from
+the actual content, and you have to jump between files to find
+what they refer to.
+
+Also, every time you have a longer break from the project, it takes some
+time to get back to speed, because you have to recall what you
+(and other team members) were doing.
+
+\subsection{Your workflow isn't flexible}
+You cannot input music and make layout adjustments in arbitrary order, because
+your notation program may not like it -- and if it doesn't like it,
+it may spoil your work.
+
+If the deadline is close and you'd like to distribute work between several people,
+you're out of luck, because merging their results afterwards is not straightforward
+or outright impossible.
+
+If you work in a team, you have to wait until your colleague finishes his part
+and “unlocks” the files before you can edit them yourself.
+
+If you're an editor and have submitted your work to the typesetter, who is now cleaning
+it up, possibly with a different \textsc{dtp} program, you can no longer do \emph{anything}
+with the document.  For every single typo you spot, you have to ask the typesetter to fix it
+for you.
+
+Or maybe you are working on a critical edition and you'd like to create two versions
+of a score: a verbatim copy of the original manuscript, and a revised edition.
+With current tools, you have to finish the unedited version before starting
+\emph{any} work on the revision -- so, if any interesting ideas occur to you
+while entering the raw material, you can only write them down as \textsc{todo}
+items.
+
+\subsection{Some things are simply painful}
+If you have multiple versions of a score (or text), all changes have to be applied
+multiple times.  Imagine that you have an urtext edition and a revised edition, or
+one score in original and one in a transposed key,
+and each one is both in A4 and ebook format.  You spot a typo, and\ldots
+have to fix it four times!
+
+If you're in the middle of doing some invasive changes and someone asks you for
+a copy of your file, you have to give him a work-in-progress version -- or you
+have to keep numerous backup copies of the project, labeled `version1`, `version2`
+etc. which clutter your computer and create confusion.
+
+\subsection{Underlying causes}
+There are two basic causes of these problems:
+\begin{itemize*}
+\item it's hard to keep track of all changes in a project,
+\item units of work cannot be done in parallel, nor be reordered afterwards.
+\end{itemize*}
+
+At the core of the second issue is the fact that when you have two different
+copies of a document, there is usually no reasonable way of merging them
+(i.e. telling the computer to take the changes introduced in one copy
+and apply them on top of the changes from the other copy).
+
+\section{The Solution}
+
+\subsection{Version control}
+\emph{Version control} is a bread-and-butter concept for any software developer, but the
+interesting point is that it can be made equally fruitful for scholarly work and music
+engraving. Version control keeps track of \emph{everything} that is happening during
+the development of a project. And in particular it allows an arbitrary number of contributors
+to work on an arbitrary number of files \emph{at the same time} without problems.
+
+\subsection{Plain text}
+Version control performs its work on plain text files because it relies on the 
+line-by-line comparison of files. This restricts the choice of tools, but is also the
+foundation of the versioning magic -- conflicts may not arise when two people have edited
+the same \emph{file} but only when they have edited the same \emph{line!}
+
+\subsection{What do you need?}
+In order to fully benefit from versioned
+workflows you need to work with tools processing plain text files%
+\footnote{Please note that \textsc{xml} file formats \emph{are} plain text files
+but less practical for version control. So while it is possible to use versioning on
+OpenOffice or MS Office \textsc{xml} files it isn't very useful in our opinion.}
+. From our experience
+using LilyPond for engraving scores and \LaTeX{} for typesetting texts is a perfect
+combination because these two also offer excellent performance in their respective domains.
+All needed tools are available as Open Source software, and most of them can
+be used on any operating system.
+
+\subsection{Does it really work?}
+Editing plain text files may seem daunting and “nerdy”, so it's a valid question
+whether it really works and is worth the trouble. We can assure you it \emph{is} worth
+any investment of time because the advantages offered by versioned workflows are fundamental.
+We hope to make this obvious in this paper.
+
+Before we switched to version control Jan wrote in a note: \emph{work on one song
+at a time; \emph{never} beautify more than 2
+songs at once}. This wasn't for any specific theoretical reason -- he simply realized
+that he couldn't handle more at once without risking serious problems and conflicts.
+
+After the switch we were working on up to 26 songs in parallel and at different topics
+(e.\,g. proof-reading and “beautification”) while being completely confident not to
+mess up anything.
+
+Versioning enables collaboration at an incredible pace -- you can work on one document
+simultaneously, chat in parallel and update your versions every
+few minutes. Actually that's how we finished this paper.
+
+
+\section{How does it work?}
+We're not going to describe everything in detail, as this wouldn't fit in the size
+constraints of the current submission.  Rather, we will give you a concise summary;
+if you want to learn more about the subject we recommend reading an extensive essay
+written by Urs%
+\footnote{\url{http://lilypondblog.org/2013/07/plain-text-files-in-music/}}.
+
+\subsection{Version control}
+\ldots is almost like magic.  Here's a table of contents from the spellbook,
+to give you an idea of the basic concepts involved:
+
+\paragraph{Undo/Redo}
+On a very basic level you may understand version control as an infinitely flexible
+implementation of \emph{undo/redo} mechanisms. However, in contrast to tools you
+know from other programs, this isn't restricted to chronologically undoing steps one by
+one. Versioning allows you to inspect, revert, modify or reorder \emph{any} modification
+individually -- or in groups.
+
+\paragraph{Project history}
+The sum or chain of all changesets in a repository forms its \emph{history}. A user can 
+at any time inspect any changeset, revert or modify it, or the whole project can be
+temporarily set to any given state. This makes it possible to fully retrace the steps
+of a project.
+
+\paragraph{Branching}
+In a versioned project it is possible to work in \emph{branches}, which can be
+understood as a kind of separate working sessions. Work done on one branch doesn't affect
+work on other branches. So multiple topics can be worked on at the same time, while
+the main line of the project can always be kept in a consistent state.
+
+\paragraph{Line-by-line comparison}
+The foundation of version control is the ability to compare a project directory's (also
+known as \emph{repository}) content \emph{line by line}. Therefore files don't have to
+be locked for editing because modifications are detected on line level.
+
+\subsection{Plain text files}
+Plain text file formats are fundamentally different from binary formats,
+and have some superior characteristics.
+
+\paragraph{Mergeability and diffability}
+are the key properties of plain text files.  Computers know how to handle text,
+can precisely determine the differences between multiple copies of a text file,
+and know exactly what to do to reapply a change made in one version of a file
+on another, slightly different, version of that file.
+They can also display a “diff” that shows these changes in a concise, human-readable way.
+
+\paragraph{Transparency:}
+Plain text files reveal every aspect of their content, everything is explicitly written
+and readable. Anybody can inspect it and see what has been entered and if and how it is
+manually tweaked. 
+
+Binary files are opaque and conceal how they manage your input. They can only be
+interpreted by the programs that created them, or by programs that have specific input filters.
+
+\paragraph{Separation of concerns:}
+The explicit nature of plain text files provides a clean separation of content, meaning
+and appearance. Through the use of explicit commands the content
+of a document is clearly marked up semantically while this \emph{meaning} is completely
+independent from its visual \emph{appearance}.
+
+\paragraph{Readability and stability:}
+Plain text files are human readable, binary files are not. This simple statement has
+considerable implications. Plain text files can be recovered to a much greater extent
+than binary files after being damaged. And they are (at least conceptually) much better
+equipped for evolution of applications and operating systems. Plain text file formats are
+usually well documented, and if not they can be reverse engineered with significantly
+less expense than binary ones.
+
+\subsection{WYSIWYG vs. compilation}
+There is another distinction to make, even if it isn't equally crucial to versioning
+as the plain text \emph{storage}: the basic user interface. Many people are used to
+\textsc{wysiwyg} interfaces where you edit documents graphically. By contrast typical
+plain text based tools are \emph{compiled} systems: they take a plain text \emph{input
+file} and compile that to the desired \emph{output file}, typically in
+\textsc{pdf} format.
+
+LilyPond and \LaTeX{} both are programs that compile plain text input files.
+
+\paragraph{User experience:}
+Editing plain text files is something to get used to: writing commands is less intuitive
+than moving items with a mouse to most people. And edits don't have an immediate visual
+result before the document is compiled the next time. But these drawbacks are counterbalanced
+by the advantages of this approach.
+
+\paragraph{Editor independence:}
+Plain text tools separate the tasks of editing, processing and displaying documents,
+making it possible to choose different tools for different tasks. Plain text files
+can principally be edited with \emph{any} text editor, which opens a wide array of
+workflow options, for example editing on smartphones or through web interfaces.
+
+\paragraph{Out-of-the-box results}
+The fact that modifications of the content don't have to be accomodated in realtime
+allows compiled systems to consider more factors when deciding on a document's layout.
+Modifications that cause the page breaking to change can bring a
+\textsc{wysiwyg} program down to its knees with large documents. In compiled systems the
+next run will simply incorporate the update.
+
+An important side-effect of this is the average quality of the out-of-the-box result
+compiled systems provide. Complex scores created by LilyPond are usually readable by
+default, while most \textsc{wysiwyg} tools produce output that is often unusable without
+numerous manual corrections.
+
+Another side-effect is that compiled systems perform much better when asked for providing
+documents with alternative layouts. It is a matter of simply including another stylesheet
+to create scores or text documents with other paper format or for different media altogether.
+
+\section{Project structure}
+
+\subsection{Libraries}
+Plain text file formats provide ways to reference variables or custom
+commands and to store these in files that can be included from the
+main files. This way one can create libraries of project-wide code
+that make the the project consistent. Style sheets and commands are
+maintained on a global level, and any modifications automatically
+affect all documents or scores.
+We split these includes into project specific tools and such of potentially
+common usability. The latter were and are published as open source in a new 
+LilyPond snippet repository%
+\footnote{\url{https://github.com/openlilylib/snippets}}
+and as one \LaTeX{} package%
+\footnote{\url{http://ctan.org/pkg/lilyglyphs}}.
+
+\subsection{Programming}
+Plain text tools like LilyPond and \LaTeX{} offer a level of programmability that
+goes beyond usual scripting interfaces (like e.\,g. VBA). Commands may simply apply
+some formatting or perform complex operations on multiple arguments.
+Programming is a useful method to enforce, say, typographic consistence, but it can
+also be used to “process data”.
+
+One interesting use of these possibilities is to create different output for work and for
+publication. Elements can be highlighted through coloring (e.\,g. editorial additions)
+or laid out in a completely different manner (e.\,g. the entries for the critical report) to 
+be more practical to use while still in the editing process. In text documents it is
+possible to lay out complex data like the entries for the critical report in a
+user friendly way during development and switch layout to a packed version optimized
+for space for publication.
+
+An additional aspect (which we didn't use for the current edition) is the fact that
+plain text files can be processed by external programs, so it is straightforward to
+write small scripts or extensive tools to perform arbitrary operations on your data.
+This may be similar to using \emph{plugins} in the graphical notation programs but
+can go much deeper into the core of the document files.
+
+\subsection{Mix music and text}
+LilyPond and \LaTeX{} are a perfect match for creating scholarly editions. \LaTeX{}
+provides several convenient ways of professionally incorporating scores or music examples,
+by now there is \texttt{lilyglyphs}%
+\footnote{\url{http://ctan.org/pkg/lilyglyphs}}
+available to include \emph{any} notational symbols in continuous text -- and both
+can be maintained under version control.
+
+Using \texttt{make} can be a convenient tool to automatically produce a newly compiled
+volume when individual scores have changed -- or to enforce unit tests before merging
+new work.
+
+
+\section{Collaboration}\label{sec:collaboration}
+The rest of this paper is a rather personal report of our experiences with the Fried
+edition, explaining in detail how all this worked for us.  It also contains
+some comments on a project we're currently starting, and which is intended to become
+a reference project for \emph{crowd engraving}, a more or less unknown concept that is
+originarily made possible by version control. We also wrote a number of blog posts on
+\emph{Scores of Beauty}%
+\footnote{\url{http://lilypondblog.org/category/fried-songs}}
+which you may enjoy as additional reading.
+
+\bigskip
+\hrule
+
+\bigskip
+As explained earlier managing collaboration by email or via shared files isn't really
+enjoyable because it slows the team down, seriously blocks workflow options and creates considerable risk
+of messing things up. So version control was the way to go for us from one point on.
+The distributed nature of our versioning tool of choice, Git%
+\footnote{\url{http://git-scm.com}. From now on any term that might be used with use
+Git terminology (which partially differs from that of other version control systems.)},
+made things really comfortable to work with, and the following sections will give you
+an overview of our working experience.
+
+\subsection{Distributed work}
+In a \textsl{distributed VCS} (version control system), every collaborator
+has a local copy of the complete repository and can work freely on that.
+Contacting the repository on the server is only necessary to synchronize by downloading
+others' work, merging it with one's own and uploading the result%
+\footnote{This is significantly different from systems like \emph{CVS} or \emph{Subversion},
+where you need to contact the server in order to add an explicit changeset.}
+.
+
+As this merging is performed based on line-by-line comparison chances of running into
+conflicting situations are rather small.%
+\footnote{During more than a year of collaboration on a 100-page long edition
+consisting of over 300 files (totalling about 30 thousand lines of code), we only had one conflict.}
+% Urs, did you have any conflicts?
+And \emph{if} they should occur there are
+straightforward ways to recover from the situation. Therefore it is possible to edit files
+\emph{simultaneously}, without any need for “locking” files or similar workflow
+restrictions. This and the concept of the history allows multiple editors to work freely
+without the risk of stepping on each other's toes.
+
+\subsection{Editor and engraver}
+% It is actually a hot topic in scholarly discussion
+% to what extent the editor should also be an engraver.
+% Scholarly editions usually let the editor only provide
+% a model, while an engraver from the publishe prepares the
+% score. By contrast commercial publishers usually require
+% the editor to prepare a near-printable score document.
+Traditionally the tasks of the editor and the engraver were completely separated: the
+editor somehow prepared an \emph{engraver's copy}, the engraver engraved a metal plate,
+the editor did proof-reading, and the engraver finished the plates. In some contexts
+this is still common practice, particularly with scholarly edition institutes, whose
+editors often don't do any engraving at all. On the other hand many commercial
+publishers expect the editor to deliver (nearly) print-ready files that can be
+finished in-house with minimal effort (and investment). However, all of these workflows
+share the fact that files (or plates) have to be passed around, with strict
+“locking strategies” in order to avoid data loss or conflicting situations. If an editor
+notices a wrong note this can't simply be fixed in the score file but instead it requires
+an email to the engraver asking him to apply the fix etc.
+
+In our plain text based workflow with versioning this is \emph{completely} different.
+Everybody works on the same shared data repository and has full access to any file at any
+time%
+\footnote{We don't want to say that role-based privileges aren't useful in many cases
+but want to stress the principal possibility here.}.
+Each collaborator can apply any modification because 
+\mbox{\emph{a)} this} won't compromise or lose data and
+\mbox{\emph{b)} any} modification is meticulously documented in the changesets.%
+\footnote{What's more, this information will remain in the history
+of the project \emph{forever}. Also, everyone is able to see what changes
+happened before and after each modification.}
+Particularly the latter aspect is important for the new workflow experience. 
+Every edit can be immediately be seen and reviewed by the others%
+\footnote{It should be stressed that with plain text files examining the changes
+is very straightforward. Even if your project consists of hundreds of thousands of files,
+when you ask Git what changes were introduced in a given edit, you will be told the
+exact name of the file, and the number of the line in which the change was made.
+In fact, Git will also display how this line looked before and after the modification.},
+making it comfortable
+to apply any necessary modification or fix. For example, if Urs fixed a wrong pitch Jan
+realized that he should have a look at that spot and check for potential regressions
+in typography.
+
+One consequence of these possibilities is that the tasks and responsibilities of
+(scholarly) editor and engraver can and will blur to some extent. If everybody has
+permanent access to the complete data, tasks don't have to be separated as
+strictly as formerly; this makes a lot of sense because there usually are considerable
+intersections of skillsets. Urs as the scholarly editor \emph{does} have strong sense
+for typography, and Jan as the engraver \emph{does} have a sharp eye on details, so
+he'll notice issues with the musical text too. In a versioned workflow we both can do
+as much of the other's task as we like and time allows, improving efficiency but also
+the quality of the result. We think this can have significant impact in today's
+discussion of the relation between editor and engraver or editor, edition institute and
+(commercial) publisher.
+
+When preparing our edition of Oskar Fried's songs this really boosted our work. Being
+able to inspect each other's work, to freely apply edits and not the least to encapsulate
+work in branches made us work much more straightforwardly. While we had to be
+extremely careful when we were still maintaining the Dropbox folder, we could now just
+start working on any given issue. Sharing ideas and reviewing each other's work proved
+very inspiring and presumably raised the overall quality of our work. We wrote this
+several times, and it may sound like a buzz-phrase, but it's \emph{literally} true:
+We can no longer imagine how we could have worked without these tools in our “earlier lives”.
+
+Particularly the last phase of the project was very revealing. We had to do our final
+proof-reading round after the scores were finished from the typographical perspective.
+(Well, this was partly due to suboptimal planning on our part, but one will have this
+situation nearly always to some extent.) Modifying a score that has already been
+“beautified” is a very delicate task because any change of the musical text can
+mess up the layout. Fortunately LilyPond performed very well in this regard%
+\footnote{\url{http://lilypondblog.org/2013/11/modifying-already-beautified-scores/}},
+but version control made the process less daunting by orders of magnitude.
+Urs applied fixes  himself when he and his fellow musicologist found errors (instead
+of having to ask Jan to do so) and wrapped each single edit in an individual \emph{commit}%
+\footnote{“Commit” is Git's term for a changeset.},
+using the commit message as a convenient place to document his opinion on the necessity of
+typographic follow-up fixes. Jan could then inspect the chain of messages so he
+immediately knew where to look particularly carefully. This ensured that no unintended
+side-effect of edits would go unnoticed, making us quite relaxed as soon as we realized
+that it really worked out. This situation even allowed Urs to apply or at least prepare
+typographic fixes himself, knowing he didn't irreversibly mess anything up and that Jan
+could easily identify and revert any change.
+Maybe even more important was the fact that we could wrap all this work in separate branches.
+The edition comprises 26 songs, and as all of them were handled in individual branches
+we could freely work on whichever song was currently convenient, switching context at
+will. Urs created a branch for any given song and added only the relevant commits to it.
+When ready with that he handed the torch to Jan who would then check everything and
+finally merge this branch to the main line again. This way we \emph{always} had the project
+as a whole in a consistent state and were able to juggle our tasks around without and fear
+and hesitation.
+
+\subsection{Maintainability after publication}
+One more aspect to using plain text tools is also based on the meticulous documentation
+of the project history. If the source code is written decently from the start it is
+\emph{very} straightforward to maintain a project even after the initial publication.
+As each fix or improvement will be stored in a changeset you can apply any changes
+without messing up anything. There will always be a detailed record about which
+changes have been added since publication, or between any given two prints. This is
+particularly interesting with today's printing-on-demand strategies where new “runs”
+may be “released” after only a few copies or where you might always download the ”latest
+version”.
+
+
+\subsection{Miscellaneous tools}
+Apart from version control and plain text based programs there are several tools that
+can be used to enhance the “collaborative experience”.
+
+\paragraph{Version control service providers}
+While you can run a version control system on your own server there are several online service providers offering useful tools. In addition to plain data exchange they
+provide convenient web interfaces that can simplify your life even more.
+
+Of course you will often want to edit your files in dedicated editing environments, but
+it \emph{is} a very nice feature to be able to apply small edits to files through the web 
+interface of a service provider. For example you can do a quick fix sitting in an internet
+cafe etc.
+
+One particularly useful concept in that context are \emph{forks} and \emph{pull requests}.
+They can be used perfectly to organize peer review workflows by allowing work to be
+integrated to the main line only after review through people with appropriate privileges.
+Read more about this in section \ref{sec:proof-reading-and-peer-review} on page \pageref{sec:proof-reading-and-peer-review}.
+
+There is one aspect to consider, though: you may not want to give your data to an external
+company. If you want to benefit from web interface features you can install open source
+tools on your personal or institution's server%
+\footnote{See \url{https://git.wiki.kernel.org/index.php/Interfaces,\_frontends,\_and\_tools\#Web\_Interfaces} for a list of web interfaces to Git},
+maybe missing some of the convenience of the commercial providers but instead having complete
+control.
+
+\paragraph{Issue trackers}
+In software development projects it is a matter of course to use \emph{issue trackers.}
+These tools \emph{keep track} of tasks, issues or bugs, helping you not to lose important
+\textsc{todo}s along the way. Of course this is also a good idea for scholarly editions. Issue
+trackers can be used to assign issues to people, or categorize and prioritize tasks.
+They can be very valuable for relentlessly insisting on perfection.
+
+\paragraph{List service providers}
+There are services offering project management through a list metaphor%
+\footnote{There are many different providers and concepts, so we only mention the one
+\emph{we} used: \url{https://trello.com}}.
+They use “cards” as their interface that are arranged on boards one way or another.
+Similar to issue trackers you can assign items to people, comment on and discuss them and
+finally mark them as “done”.
+
+In contrast to issue trackers these services are usually more “agile” and easy to use, as
+they usually display many cards at once and offer realtime collaboration with other
+team members, powered by modern web technologies that allow to exchange data without
+reloading pages. But the drawback of this agility is that it is also volatile.
+If the project requires reliable archiving of past events and issue, list apps usually
+aren't first or at least single choice.
+
+\medskip
+Apart from these tools there are the options to use good old email as a communication channel, mailing lists and forums. Each solution has their merits and problems, very often both are related to the same issues.
+
+
+\section{Crowd editing}
+In the previous section we've talked about the positive impact that version control
+has on the conception of collaborative work. While we were actually two people
+working together this concept can easily be extended to a larger number of people
+involved. Apart from improving traditional editing workflows this can be used to create a
+completely new approach to editing scores which we'd give the buzz-phrase \emph{crowd
+editing}. If any number of people can participate in a project under version control
+this can easily be exploited to distribute the work among a “crowd” of contributors.
+Different from the concept of having distinct roles that tend to blur through the
+collaborative approach there can be numerous people doing essentially the same kind
+of work in parallel, effectively “clustering” manpower. While we're convinced that
+in most cases it won't make sense to rely on the swarm intelligence \emph{completely} (so
+you should still have a firm project leadership) and that this won't reduce the
+absolute number of hours spent on a project, it can significantly reduce the overall
+delivery time by distributing these hours to be done in parallel. We think this can
+be a serious boost for many kinds of editing projects where meeting tight deadlines
+is one of the main challenges.
+
+\subsection{Music entry}
+Music entry is a field that can straightforwardly be distributed among a large number
+of contributors. Essentially all you need to make this a reliable process is a usable
+communictaion infrastructre to avoid duplicate work.
+Appropriate tools for this are assignments that can be done in issue trackers or on
+virtual cards like on a Trello board -- email is \emph{very} impractical for this kind
+of organization. This way the whole material can be effectively divided through the number
+of available contributors.
+
+\subsection{Proof-reading and peer review}\label{sec:proof-reading-and-peer-review}
+Version control encourages peer review workflows on all stages of a project's lifecycle.
+It is not necessary to wait for peer review until work is more or less finished, but it
+can be an integral part of the whole development process instead. A natural place to hook
+in is when merging working branches into the main line. For example one can require the
+merge to be done by a different collaborator than the one who did the work. For music entry
+it would for example be appropriate to enter a certain amount of music and then ask someone
+else to review and merge it.
+This ensures that only reviewed material goes into the project right from the
+start. While this won't make a final proof-reading obsolete it will definitely improve
+the overall quality of the result.
+
+Online services like Github or Bitbucket provide \emph{pull requests} as a very convenient
+tool for this concept. Whenever a branch has changed one can open a pull request as a
+publicly visible announcement of changes one wants to be incorporated into the main line.
+The pull request can then be inspected, discussed, modified and finally merged or rejected.
+
+\subsection{“Das Trunkne Lied”}
+This year we will prepare performance material for “Das Trunkne Lied” by Oskar Fried%
+\footnote{\url{http://lilypondblog.org/2013/06/das-trunkne-lied/}}.
+This is a really large score for soloists, choir and orchestra, and it will be a
+huge reference project for our new workflow. Of course we intend to document it
+and exploit it from a theoretical perspective too.
+
+One noteworthy concept is that we split the whole score in tiny segments, each comprising
+music from one part, covering the range of one rehearsal mark. Anybody entering or
+reviewing music will be facing a rather small file with only this amount of music.
+Clever programming (on the “admin's” part) generates a little score from this segment, so
+the editor can always work with a very small amount of music. This makes it much more
+manageable than working in the context of a huge score -- and it saves huge amounts of
+compilation time.
+On the other hand one can always compile a complete part or the full score, and LilyPond
+will grab all segments that have already been entered and injects them into an otherwise
+complete but empty score.
+
+This working evnironment was realized with a combination of programming within LilyPond files (using the built-in extension languag Scheme) as well as programming Python scripts
+that for example generate empty stub files for a whole new instrumental part.
+
+\section{Conclusions}\label{sec:conclusions}
+
+We both think that learning version control was the most rewarding thing we did
+in the last five years, and we \emph{wholeheartedly} recommend every knowledge
+worker to at least give it a try.
+
+If you're not tech-savvy, you may be intimidated at first -- version control
+is, after all, an advanced tool developed originally by software enigineers
+for themselves.  But its user-friendliness has increased dramatically over the
+last years%
+\footnote{And we expect this trend to continue.},
+and there are now many tools to make working with it easier, as well as an abundance
+of excellent documentation.
+In the context of another project we're currently preparing a set of documents with a
+hands-on introduction to the concepts from the perspective of musicians%
+\footnote{\url{https://github.com/engraving-challenges/main}}.
+
+Similarly, making the switch from \textsc{gui} software to plain text workflows
+requires effort and learning a new paradigm, but the investment is well worth it.
+The ability to effectively use version control is, in our opinion, enough in itself
+to make the switch to plain text tools worthwhile. 
+And there \emph{are} some promising projects around intending to streamline the user
+experience of editing musical scores with plain text document files. For example the
+LilyPond \textsc{ide} Frescobaldi%
+\footnote{\url{http://www.frescobaldi.org}}
+will soon allow you to edit the source code by graphically manipulating the score.
+Being able to export LilyPond scores to MusicXML will add new options of interchanging
+work with other users and tools.
+And it is intended to integrate Git workflows directly into the score editing program!
+
+Being able to easily experiment, collaborate smoothly and work in a more natural way
+significantly changes your attitude towards your work and really opens your mind%
+\footnote{\url{http://lilypondblog.org/2013/08/version-control-text-quality-and-creativity}}.
+
+While we're really happy with our overall experience, we \emph{do} know that there are
+considerable areas of improvement. But we could use our project to collect and evaluate 
+many of them and make up our minds about future projects that can make our tools of choice 
+even better.
+Some of these could well be realized as crowd funded efforts, and we encourage anybody
+interested in new ways of (scholarly) music editing powered by Free Software joining our
+crusade.
+
+\section{Acknowledgements}
+
+There are several addressees who should receive our thanks. First of all we have to thank our publisher, \emph{sound-rel}%
+\footnote{\url{http://www.sound-rel.de}} for making this whole undertaking possible and
+enabling us to work on this fascinating task. We know that they have taken a financial
+risk whose outcome is still open.
+
+We would definitely not have managed to finish this production in a satisfactory manner
+without the generous support from people on the lilypond-user mailing list%
+\footnote{\url{https://lists.gnu.org/mailman/listinfo/lilypond-user}}
+and the Stackexchange site%
+\footnote{\url{http://tex.stackexchange.com}}. In particular we are indebted to
+Thomas Morley, David Nalesnik and David Kastrup for providing invaluable insights and
+incredible functions for our project and LilyPond.
+
+And finally we are infinitely grateful for all the people who have voluntarily developed
+such great tools as LilyPond, \LaTeX{} and Git.
+
+\end{document}
